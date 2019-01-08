@@ -6,8 +6,10 @@ import { IConfig } from './interfaces/iConfig';
 import { IJiraApi } from './interfaces/iJiraApi';
 
 import { IBacklog } from './interfaces/api/iBacklog';
+import { IEpic } from './interfaces/api/iEpic';
 
 import { Backlog } from './api/backlog';
+import { Epic } from './api/epic';
 
 class JiraApi implements IJiraApi {
   agileApiVersion: number | string;
@@ -34,6 +36,7 @@ class JiraApi implements IJiraApi {
   webhookApiVersion: number | string;
 
   backlog: IBacklog;
+  epic: IEpic;
 
   constructor(config: IConfig) {
     this.host = config.host;
@@ -67,6 +70,7 @@ class JiraApi implements IJiraApi {
     this.rejectUnauthorized = config.rejectUnauthorized;
 
     this.backlog = new Backlog(this);
+    this.epic = new Epic(this);
 
     JiraApi.validateConfig(config);
   }

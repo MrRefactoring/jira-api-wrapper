@@ -1,4 +1,5 @@
 import { IBacklog } from './api/iBacklog';
+import {IIssue} from "./api/iIssue";
 
 export interface IJiraApi {
   host: string;
@@ -29,7 +30,8 @@ export interface IJiraApi {
   cookieJar?: any;
   rejectUnauthorized: any;
 
-  backlog: IBacklog
+  backlog: IBacklog;
+  issue: IIssue;
 
   buildAgileUrl(path: string): string;
   buildApiUrl(path: string): string;

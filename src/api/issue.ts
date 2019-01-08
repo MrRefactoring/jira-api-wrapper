@@ -30,24 +30,6 @@ export class Issue implements IIssue {
     return this.context.makeRequest(options, callback);
   }
 
-  getAgileIssue(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}`;
-
-    const options = {
-      uri: this.context.buildAgileUrl(endpoint),
-      method: 'GET',
-      json: true,
-      followAllRedirects: true,
-      qs: {
-        fields: params.fields ? params.fields.join(',') : undefined,
-        expand: params.expand,
-        updateHistory: params.updateHistory
-      }
-    };
-
-    return this.context.makeRequest(options, callback);
-  }
-
   getIssueEstimationForBoard(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}/estimation`;
 
@@ -83,12 +65,12 @@ export class Issue implements IIssue {
     return this.context.makeRequest(options, callback);
   }
 
-  // REST API
+  // Agile and REST API
   getIssue(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}`;
 
     const options = {
-      uri: this.context.buildApiUrl(endpoint),
+      uri: params.agile ? this.context.buildAgileUrl(endpoint) : this.context.buildApiUrl(endpoint),
       method: 'GET',
       json: true,
       followAllRedirects: true,

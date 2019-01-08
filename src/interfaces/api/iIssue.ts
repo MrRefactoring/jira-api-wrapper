@@ -6,10 +6,9 @@ export interface IIssue {
 
   // Agile API
   rankIssues(params: any, callback: any): any;
-  getAgileIssue(params: any, callback: any): any;
   getIssueEstimationForBoard(params: any, callback: any): any;
   estimateIssueForBoard(params: any, callback: any): any;
 
-  // REST API
+  // Agile and REST API
   getIssue(params: any, callback: any): any;
 }

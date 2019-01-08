@@ -1,5 +1,5 @@
 import { IBacklog } from './api/iBacklog';
-import {IIssue} from "./api/iIssue";
+import { IIssue } from './api/iIssue';
 
 export interface IJiraApi {
   host: string;

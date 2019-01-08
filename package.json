@@ -19,7 +19,7 @@
   ],
   "scripts": {
     "build": "npm rum lint && tsc",
-    "lint": "eslint src/",
+    "lint": "eslint src/**/*.ts",
     "lint-fix": "npm run lint -- --fix"
   },
   "devDependencies": {

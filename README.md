@@ -249,6 +249,14 @@ is still valid!
     * getIssue (params.agile = true required)
     * getIssueEstimationForBoard
     * estimateIssueForBoard
+* epic
+    * getIssuesWithoutEpic
+    * removeIssuesFromEpic
+    * getEpic
+    * partiallyUpdateEpic
+    * getIssuesForEpic
+    * moveIssuesToEpic
+    * rankEpics
 ### Rest Api
 
 * search

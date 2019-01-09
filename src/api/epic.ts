@@ -1,20 +1,20 @@
-import { IEpic } from '../interfaces/api/iEpic';
-import { IJiraApi } from '../interfaces/iJiraApi';
+import { IEpic } from 'interfaces/api/iEpic';
+import { IJiraApi } from 'interfaces/iJiraApi';
 
 export class Epic implements IEpic {
-  prefix: string;
-  context: IJiraApi;
+  public prefix: string;
+  public context: IJiraApi;
 
   constructor(context: IJiraApi) {
     this.prefix = '/epic';
     this.context = context;
   }
 
-  getIssuesWithoutEpic(params: any, callback: any): any {
+  public getIssuesWithoutEpic(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/none/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -28,14 +28,14 @@ export class Epic implements IEpic {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  removeIssuesFromEpic(params: any, callback: any): any {
+  public removeIssuesFromEpic(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/none/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -44,27 +44,27 @@ export class Epic implements IEpic {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getEpic(params: any, callback: any): any {
+  public getEpic(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  partiallyUpdateEpic(params: any, callback: any): any {
+  public partiallyUpdateEpic(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -76,14 +76,14 @@ export class Epic implements IEpic {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getIssuesForEpic(params: any, callback: any): any {
+  public getIssuesForEpic(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -97,14 +97,14 @@ export class Epic implements IEpic {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  moveIssuesToEpic(params: any, callback: any): any {
+  public moveIssuesToEpic(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -113,14 +113,14 @@ export class Epic implements IEpic {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  rankEpics(params: any, callback: any): any {
+  public rankEpics(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/rank`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
@@ -131,6 +131,6 @@ export class Epic implements IEpic {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 }

@@ -1,20 +1,20 @@
-import { IBoard } from '../interfaces/api/iBoard';
-import { IJiraApi } from '../interfaces/iJiraApi';
+import { IBoard } from 'interfaces/api/iBoard';
+import { IJiraApi } from 'interfaces/iJiraApi';
 
 export class Board implements IBoard {
-  context: IJiraApi;
-  prefix: string;
+  public context: IJiraApi;
+  public prefix: string;
 
   constructor(context: IJiraApi) {
     this.prefix = '/board';
     this.context = context;
   }
 
-  getAllBoards(params: any, callback: any): any {
+  public getAllBoards(params: any, callback: any): any {
     const endpoint = this.prefix;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -35,14 +35,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  createBoard(params: any, callback: any): any {
+  public createBoard(params: any, callback: any): any {
     const endpoint = this.prefix;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -54,40 +54,40 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getBoard(params: any, callback: any): any {
+  public getBoard(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  deleteBoard(params: any, callback: any): any {
+  public deleteBoard(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'DELETE',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getIssuesForBacklog(params: any, callback: any): any {
+  public getIssuesForBacklog(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/backlog`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -101,27 +101,27 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getConfiguration(params: any, callback: any): any {
+  public getConfiguration(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/configuration`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getEpics(params: any, callback: any): any {
+  public getEpics(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/epic`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -132,14 +132,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getIssuesWithoutEpic(params: any, callback: any): any {
+  public getIssuesWithoutEpic(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/epic/none/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -153,14 +153,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getIssuesForEpic(params: any, callback: any): any {
+  public getIssuesForEpic(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/epic/${params.epicId}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -174,27 +174,27 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getFeaturesForBoard(params: any, callback: any): any {
+  public getFeaturesForBoard(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/features`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  toggleFeatures(params: any, callback: any): any {
+  public toggleFeatures(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/features`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
@@ -205,14 +205,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getIssuesForBoard(params: any, callback: any): any {
+  public getIssuesForBoard(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -226,14 +226,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  moveIssuesToBoard(params: any, callback: any): any {
+  public moveIssuesToBoard(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -245,14 +245,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getProjects(params: any, callback: any): any {
+  public getProjects(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/project`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -262,79 +262,79 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getProjectsFull(params: any, callback: any): any {
+  public getProjectsFull(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/project/full`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getBoardPropertyKeys(params: any, callback: any): any {
+  public getBoardPropertyKeys(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getBoardProperty(params: any, callback: any): any {
+  public getBoardProperty(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  setBoardProperty(params: any, callback: any): any {
+  public setBoardProperty(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  deleteBoardProperty(params: any, callback: any): any {
+  public deleteBoardProperty(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'DELETE',
       json: true,
       followAllRedirects: true
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getAllQuickFilters(params: any, callback: any): any {
+  public getAllQuickFilters(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/quickfilter`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -344,40 +344,40 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getQuickFilter(params: any, callback: any): any {
+  public getQuickFilter(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/quickfilter/${params.quickFilterId}`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getReportsForBoard(params: any, callback: any): any {
+  public getReportsForBoard(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/reports`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getAllSprints(params: any, callback: any): any {
+  public getAllSprints(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/sprint`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -388,14 +388,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getIssuesForSprint(params: any, callback: any): any {
+  public getIssuesForSprint(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/sprint/${params.sprintId}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -409,14 +409,14 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getAllVersions(params: any, callback: any): any {
+  public getAllVersions(params: any, callback: any): any {
     const endpoint = `${this.prefix}/${params.boardId}/version`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -427,6 +427,6 @@ export class Board implements IBoard {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 }

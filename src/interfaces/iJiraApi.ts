@@ -29,11 +29,8 @@ export interface IJiraApi {
   cookieJar?: any;
   rejectUnauthorized: any;
 
-  backlog: IBacklog
+  backlog: IBacklog;
 
-  buildAgileUrl(path: string): string;
-  buildApiUrl(path: string): string;
-  buildWebhookUrl(path: string): string;
-  buildAuthUrl(path: string): string;
-  makeRequest(options: any, callback: any, successString?: string): any;
+  buildUrl(path: string, apiType: 'agile' | 'api' | 'auth' | 'webhook'): any;
+  sendRequest(options: any, callback: any, successString?: string): any;
 }

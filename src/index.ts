@@ -1,14 +1,14 @@
 import * as request from 'request';
 import * as url from 'url';
-import * as errors from './utils/errors';
+import * as errors from 'utils/errors';
 
-import { IBacklog } from './interfaces/api/iBacklog';
-import { ISearch } from './interfaces/api/ISearch';
-import { IConfig } from './interfaces/iConfig';
-import { IJiraApi } from './interfaces/iJiraApi';
+import { IBacklog } from 'interfaces/api/iBacklog';
+import { ISearch } from 'interfaces/api/ISearch';
+import { IConfig } from 'interfaces/iConfig';
+import { IJiraApi } from 'interfaces/iJiraApi';
 
-import { Backlog } from './api/backlog';
-import { Search } from './api/search';
+import { Backlog } from 'api/backlog';
+import { Search } from 'api/search';
 
 class JiraApi implements IJiraApi {
   public agileApiVersion: number | string;
@@ -74,51 +74,18 @@ class JiraApi implements IJiraApi {
     JiraApi.validateConfig(config);
   }
 
-  public buildAgileUrl(path: string): string {
+  public buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any {
     const requestUrl = url.format({
       hostname: this.host,
       protocol: this.protocol,
       port: this.port,
-      pathname: `${this.pathPrefix}/rest/agile/${this.agileApiVersion}/${path}`
+      pathname: `${this.pathPrefix}/rest/${apiType || 'api'}/${this.agileApiVersion}/${path}`
     });
 
     return decodeURIComponent(requestUrl);
   }
 
-  public buildApiUrl(path: string): string {
-    const requestUrl = url.format({
-      hostname: this.host,
-      protocol: this.protocol,
-      port: this.port,
-      pathname: `${this.pathPrefix}/rest/api/${this.apiVersion}/${path}`
-    });
-
-    return decodeURIComponent(requestUrl);
-  }
-
-  public buildAuthUrl(path: string): string {
-    const requestUrl = url.format({
-      hostname: this.host,
-      protocol: this.protocol,
-      port: this.port,
-      pathname: `${this.pathPrefix}/rest/auth/${this.authApiVersion}/${path}`
-    });
-
-    return decodeURIComponent(requestUrl);
-  }
-
-  public buildWebhookUrl(path: string): string {
-    const requestUrl = url.format({
-      hostname: this.host,
-      protocol: this.protocol,
-      port: this.port,
-      pathname: `${this.pathPrefix}/rest/webhook/${this.webhookApiVersion}/${path}`
-    });
-
-    return decodeURIComponent(requestUrl);
-  }
-
-  public makeRequest(options: any, callback: any, successString: string): any {
+  public sendRequest(options: any, callback: any, successString: string): any {
     options.rejectUnauthorized = this.rejectUnauthorized;
 
     if (this.oauth) {
@@ -134,7 +101,9 @@ class JiraApi implements IJiraApi {
       }
     }
 
-    if (this.cookieJar) { options.jar = this.cookieJar; }
+    if (this.cookieJar) {
+      options.jar = this.cookieJar;
+    }
 
     if (callback) {
       request(options, (error: any, response: any, body: any) => {
@@ -157,8 +126,8 @@ class JiraApi implements IJiraApi {
         const req = request(options);
         let requestObj: any = null;
 
-        req.on('request', (reqst) => {
-          requestObj = reqst;
+        req.on('request', (reqs) => {
+          requestObj = reqs;
         });
 
         req.on('response', (response) => {
@@ -169,7 +138,6 @@ class JiraApi implements IJiraApi {
           response.on('data', push);
 
           response.on('end', () => {
-
             let result = body.join('');
 
             if (result[0] === '[' || result[0] === '{') {
@@ -218,7 +186,6 @@ class JiraApi implements IJiraApi {
               resolve(result);
             }
           });
-
         });
 
         req.on('error', reject);
@@ -227,16 +194,30 @@ class JiraApi implements IJiraApi {
   }
 
   private static validateConfig(config: IConfig): void {
-    if (!config.host) { throw new Error(errors.hostIsNotDefined); }
+    if (!config.host) {
+      throw new Error(errors.hostIsNotDefined);
+    }
 
     if (config.oauth) {
-      if (!config.oauth.consumerKey) { throw new Error(errors.consumerIsNotDefined); }
-      if (!config.oauth.privateKey) { throw new Error(errors.privateKeyIsNotDefined); }
-      if (!config.oauth.token) { throw new Error(errors.tokenIsNotDefined); }
-      if (!config.oauth.tokenSecret) { throw new Error(errors.tokenSecretIsNotDefined); }
+      if (!config.oauth.consumerKey) {
+        throw new Error(errors.consumerIsNotDefined);
+      }
+      if (!config.oauth.privateKey) {
+        throw new Error(errors.privateKeyIsNotDefined);
+      }
+      if (!config.oauth.token) {
+        throw new Error(errors.tokenIsNotDefined);
+      }
+      if (!config.oauth.tokenSecret) {
+        throw new Error(errors.tokenSecretIsNotDefined);
+      }
     } else if (config.basicAuth && !config.basicAuth.base64) {
-      if (!config.basicAuth.username) { throw new Error(errors.usernameIsNotDefined); }
-      if (!config.basicAuth.password) { throw new Error(errors.passwordIsNotDefined); }
+      if (!config.basicAuth.username) {
+        throw new Error(errors.usernameIsNotDefined);
+      }
+      if (!config.basicAuth.password) {
+        throw new Error(errors.passwordIsNotDefined);
+      }
     }
   }
 }

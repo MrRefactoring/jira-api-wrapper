@@ -1,5 +1,5 @@
-import { IBacklog } from '../interfaces/api/iBacklog';
-import { IJiraApi } from '../interfaces/iJiraApi';
+import { IBacklog } from 'interfaces/api/iBacklog';
+import { IJiraApi } from 'interfaces/iJiraApi';
 
 export class Backlog implements IBacklog {
   public context: IJiraApi;
@@ -14,23 +14,23 @@ export class Backlog implements IBacklog {
     const endpoint: string = `${this.prefix}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
       body: {
         issues: params.issues ? params.issues.join(',') : undefined
-      },
+      }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
   public moveIssuesToBacklogForBoard(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -39,9 +39,9 @@ export class Backlog implements IBacklog {
         rankBeforeIssue: params.rankBeforeIssue,
         rankAfterIssue: params.rankAfterIssue,
         rankCustomFieldId: params.rankCustomFieldId
-      },
+      }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 }

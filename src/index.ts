@@ -5,6 +5,7 @@ import * as errors from 'utils/errors';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
 import { IIssue } from 'interfaces/api/iIssue';
+import { IEpic } from 'interfaces/api/iEpic';
 import { ISearch } from 'interfaces/api/ISearch';
 
 import { IConfig } from 'interfaces/iConfig';
@@ -13,6 +14,7 @@ import { IJiraApi } from 'interfaces/iJiraApi';
 import { Backlog } from 'api/backlog';
 import { Board } from './api/board';
 import { Issue } from 'api/issue';
+import { Epic } from 'api/epic';
 import { Search } from 'api/search';
 
 class JiraApi implements IJiraApi {
@@ -42,6 +44,7 @@ class JiraApi implements IJiraApi {
   public backlog: IBacklog;
   public board: IBoard;
   public issue: IIssue;
+  public epic: IEpic;
   public search: ISearch;
 
   constructor(config: IConfig) {
@@ -78,6 +81,7 @@ class JiraApi implements IJiraApi {
     this.backlog = new Backlog(this);
     this.board = new Board(this);
     this.issue = new Issue(this);
+    this.epic = new Epic(this);
     this.search = new Search(this);
 
     JiraApi.validateConfig(config);
@@ -88,7 +92,7 @@ class JiraApi implements IJiraApi {
       hostname: this.host,
       protocol: this.protocol,
       port: this.port,
-      pathname: `${this.pathPrefix}/rest/${apiType || 'api'}/${this.agileApiVersion}/${path}`
+      pathname: `${this.pathPrefix}/rest/auth/${this.authApiVersion}/${path}`
     });
 
     return decodeURIComponent(requestUrl);

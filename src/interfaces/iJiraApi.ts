@@ -31,6 +31,6 @@ export interface IJiraApi {
 
   backlog: IBacklog;
 
-  buildUrl(path: string, apiType: 'agile' | 'api' | 'auth' | 'webhook'): any;
+  buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any;
   sendRequest(options: any, callback: any, successString?: string): any;
 }

@@ -71,12 +71,12 @@ class JiraApi implements IJiraApi {
     JiraApi.validateConfig(config);
   }
 
-  public buildUrl(path: string, apiType: 'agile' | 'api' | 'auth' | 'webhook'): any {
+  public buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any {
     const requestUrl = url.format({
       hostname: this.host,
       protocol: this.protocol,
       port: this.port,
-      pathname: `${this.pathPrefix}/rest/${apiType}/${this.agileApiVersion}/${path}`
+      pathname: `${this.pathPrefix}/rest/${apiType || 'api'}/${this.agileApiVersion}/${path}`
     });
 
     return decodeURIComponent(requestUrl);

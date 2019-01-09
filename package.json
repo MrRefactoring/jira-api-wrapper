@@ -1,8 +1,8 @@
 {
   "name": "jira-api-wrapper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
-  "author": "Vladislav Tupikin",
+  "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
   "description": "Wrapper of jira api for nodejs and typescript",
   "keywords": [
     "Jira",
@@ -12,6 +12,10 @@
     "NodeJS",
     "Typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:MrRefactoring/jira-api-wrapper.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

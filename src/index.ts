@@ -4,6 +4,7 @@ import * as errors from 'utils/errors';
 
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { ISearch } from 'interfaces/api/ISearch';
+
 import { IConfig } from 'interfaces/iConfig';
 import { IJiraApi } from 'interfaces/iJiraApi';
 

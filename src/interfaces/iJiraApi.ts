@@ -1,5 +1,5 @@
-import { IBacklog } from 'api/iBacklog';
-import { ISearch } from 'api/ISearch';
+import { IBacklog } from 'interfaces/api/iBacklog';
+import { ISearch } from 'interfaces/api/ISearch';
 
 export interface IJiraApi {
   host: string;

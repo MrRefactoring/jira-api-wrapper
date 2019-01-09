@@ -1,5 +1,5 @@
-import { ISearch } from '../interfaces/api/ISearch';
-import { IJiraApi } from '../interfaces/iJiraApi';
+import { ISearch } from 'interfaces/api/ISearch';
+import { IJiraApi } from 'interfaces/iJiraApi';
 
 export class Search implements ISearch {
   public context: IJiraApi;
@@ -14,7 +14,7 @@ export class Search implements ISearch {
     params.method = params.method || 'POST';
 
     const options: any = {
-      uri: this.context.buildApiUrl('/search'),
+      uri: this.context.buildUrl('/search'),
       method: params.method,
       json: true,
       followAllRedirects: true,
@@ -38,6 +38,6 @@ export class Search implements ISearch {
       options.qs = searchParams;
     }
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 }

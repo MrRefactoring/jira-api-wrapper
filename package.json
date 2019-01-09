@@ -1,6 +1,6 @@
 {
   "name": "jira-api-wrapper",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Vladislav Tupikin",
   "description": "Wrapper of jira api for nodejs and typescript",
@@ -15,7 +15,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "src/"
+    "dist/"
   ],
   "scripts": {
     "build": "npm rum lint && tsc",

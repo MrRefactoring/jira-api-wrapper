@@ -1,4 +1,5 @@
 import { IBacklog } from 'interfaces/api/iBacklog';
+import { IIssue } from 'interfaces/api/iIssue';
 import { ISearch } from 'interfaces/api/ISearch';
 
 export interface IJiraApi {
@@ -31,6 +32,7 @@ export interface IJiraApi {
   rejectUnauthorized: any;
 
   backlog: IBacklog;
+  issue: IIssue;
   search: ISearch;
 
   buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any;

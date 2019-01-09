@@ -219,6 +219,31 @@ is still valid!
     * moveIssuesToBacklog
     * moveIssuesToBacklogForBoard
 * board
+    * getAllBoards
+    * createBoard
+    * getBoard
+    * deleteBoard
+    * getIssuesForBacklog
+    * getConfiguration
+    * getEpics
+    * getIssuesWithoutEpic
+    * getIssuesForEpic
+    * getFeaturesForBoard
+    * toggleFeatures
+    * getIssuesForBoard
+    * moveIssuesToBoard
+    * getProjects
+    * getProjectsFull
+    * getBoardPropertyKeys
+    * getBoardProperty
+    * setBoardProperty
+    * deleteBoardProperty
+    * getAllQuickFilters
+    * getQuickFilter
+    * getReportsForBoard
+    * getAllSprints
+    * getIssuesForSprint
+    * getAllVersions
 * issue
     * rankIssues
     * getIssue (params.agile = true required)

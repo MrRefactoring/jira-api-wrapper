@@ -1,9 +1,9 @@
-import { IIssue } from '../interfaces/api/iIssue';
-import { IJiraApi } from '../interfaces/iJiraApi';
+import { IIssue } from 'interfaces/api/iIssue';
+import { IJiraApi } from 'interfaces/iJiraApi';
 
 export class Issue implements IIssue {
-  prefix: string;
-  context: IJiraApi;
+  public prefix: string;
+  public context: IJiraApi;
 
   constructor(context: IJiraApi) {
     this.prefix = '/issue';
@@ -11,11 +11,11 @@ export class Issue implements IIssue {
   }
 
   // Agile API
-  rankIssues(params: any, callback: any): any{
+  public rankIssues(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/rank`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
@@ -27,14 +27,14 @@ export class Issue implements IIssue {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  getIssueEstimationForBoard(params: any, callback: any): any {
+  public getIssueEstimationForBoard(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}/estimation`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -43,14 +43,14 @@ export class Issue implements IIssue {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
-  estimateIssueForBoard(params: any, callback: any): any {
+  public estimateIssueForBoard(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}/estimation`;
 
     const options = {
-      uri: this.context.buildAgileUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
@@ -62,15 +62,15 @@ export class Issue implements IIssue {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 
   // Agile and REST API
-  getIssue(params: any, callback: any): any {
+  public getIssue(params: any, callback: any): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}`;
 
     const options = {
-      uri: params.agile ? this.context.buildAgileUrl(endpoint) : this.context.buildApiUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, params.agile ? 'agile' : 'api'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -83,6 +83,6 @@ export class Issue implements IIssue {
       }
     };
 
-    return this.context.makeRequest(options, callback);
+    return this.context.sendRequest(options, callback);
   }
 }

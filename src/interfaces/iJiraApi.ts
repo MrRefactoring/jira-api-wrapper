@@ -1,4 +1,5 @@
 import { IBacklog } from 'interfaces/api/iBacklog';
+import { IIssue } from 'interfaces/api/iIssue';
 import { ISearch } from 'interfaces/api/ISearch';
 
 export interface IJiraApi {

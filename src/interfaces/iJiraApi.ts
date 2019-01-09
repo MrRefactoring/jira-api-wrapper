@@ -1,4 +1,5 @@
 import { IBacklog } from 'interfaces/api/iBacklog';
+import { IBoard } from 'interfaces/api/iBoard';
 import { IIssue } from 'interfaces/api/iIssue';
 import { ISearch } from 'interfaces/api/ISearch';
 
@@ -32,6 +33,7 @@ export interface IJiraApi {
   rejectUnauthorized: any;
 
   backlog: IBacklog;
+  board: IBoard;
   issue: IIssue;
   search: ISearch;
 

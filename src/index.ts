@@ -3,6 +3,7 @@ import * as url from 'url';
 import * as errors from 'utils/errors';
 
 import { IBacklog } from 'interfaces/api/iBacklog';
+import { IBoard } from 'interfaces/api/iBoard';
 import { IIssue } from 'interfaces/api/iIssue';
 import { ISearch } from 'interfaces/api/ISearch';
 
@@ -10,6 +11,7 @@ import { IConfig } from 'interfaces/iConfig';
 import { IJiraApi } from 'interfaces/iJiraApi';
 
 import { Backlog } from 'api/backlog';
+import { Board } from './api/board';
 import { Issue } from 'api/issue';
 import { Search } from 'api/search';
 
@@ -38,6 +40,7 @@ class JiraApi implements IJiraApi {
   public webhookApiVersion: number | string;
 
   public backlog: IBacklog;
+  public board: IBoard;
   public issue: IIssue;
   public search: ISearch;
 
@@ -73,6 +76,7 @@ class JiraApi implements IJiraApi {
     this.rejectUnauthorized = config.rejectUnauthorized;
 
     this.backlog = new Backlog(this);
+    this.board = new Board(this);
     this.issue = new Issue(this);
     this.search = new Search(this);
 

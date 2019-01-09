@@ -1,5 +1,5 @@
-import { IBacklog } from './api/iBacklog';
-import { IIssue } from './api/iIssue';
+import { IBacklog } from 'interfaces/api/iBacklog';
+import { ISearch } from 'interfaces/api/ISearch';
 
 export interface IJiraApi {
   host: string;
@@ -32,10 +32,8 @@ export interface IJiraApi {
 
   backlog: IBacklog;
   issue: IIssue;
+  search: ISearch;
 
-  buildAgileUrl(path: string): string;
-  buildApiUrl(path: string): string;
-  buildWebhookUrl(path: string): string;
-  buildAuthUrl(path: string): string;
-  makeRequest(options: any, callback: any, successString?: string): any;
+  buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any;
+  sendRequest(options: any, callback: any, successString?: string): any;
 }

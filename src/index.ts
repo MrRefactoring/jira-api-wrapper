@@ -1,42 +1,45 @@
-import * as url from 'url';
 import * as request from 'request';
-import * as errors from './utils/errors';
+import * as url from 'url';
+import * as errors from 'utils/errors';
 
-import { IConfig } from './interfaces/iConfig';
-import { IJiraApi } from './interfaces/iJiraApi';
+import { IBacklog } from 'interfaces/api/iBacklog';
+import { IIssue } from 'interfaces/api/iIssue';
+import { ISearch } from 'interfaces/api/ISearch';
 
-import { IBacklog } from './interfaces/api/iBacklog';
-import { IIssue } from './interfaces/api/iIssue';
+import { IConfig } from 'interfaces/iConfig';
+import { IJiraApi } from 'interfaces/iJiraApi';
 
-import { Backlog } from './api/backlog';
-import { Issue } from './api/issue';
+import { Backlog } from 'api/backlog';
+import { Issue } from 'api/issue';
+import { Search } from 'api/search';
 
 class JiraApi implements IJiraApi {
-  agileApiVersion: number | string;
-  apiVersion: number | string;
-  authApiVersion: number | string;
-  basicAuth: {
+  public agileApiVersion: number | string;
+  public apiVersion: number | string;
+  public authApiVersion: number | string;
+  public basicAuth: {
     base64?: string;
     username?: string;
     password?: string
   } | undefined;
-  cookieJar: any;
-  host: string;
-  oauth: {
+  public cookieJar: any;
+  public host: string;
+  public oauth: {
     consumerKey: string;
     privateKey: string;
     token: string;
     tokenSecret: string;
     signatureMethod: string
   } | undefined;
-  pathPrefix: string;
-  port: number;
-  protocol: string;
-  rejectUnauthorized: any;
-  webhookApiVersion: number | string;
+  public pathPrefix: string;
+  public port: number;
+  public protocol: string;
+  public rejectUnauthorized: any;
+  public webhookApiVersion: number | string;
 
-  backlog: IBacklog;
-  issue: IIssue;
+  public backlog: IBacklog;
+  public issue: IIssue;
+  public search: ISearch;
 
   constructor(config: IConfig) {
     this.host = config.host;
@@ -71,55 +74,23 @@ class JiraApi implements IJiraApi {
 
     this.backlog = new Backlog(this);
     this.issue = new Issue(this);
+    this.search = new Search(this);
 
     JiraApi.validateConfig(config);
   }
 
-  buildAgileUrl(path: string): string {
+  public buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any {
     const requestUrl = url.format({
       hostname: this.host,
       protocol: this.protocol,
       port: this.port,
-      pathname: `${this.pathPrefix}/rest/agile/${this.agileApiVersion}/${path}`
+      pathname: `${this.pathPrefix}/rest/${apiType || 'api'}/${this.agileApiVersion}/${path}`
     });
 
     return decodeURIComponent(requestUrl);
   }
 
-  buildApiUrl(path: string): string {
-    const requestUrl = url.format({
-      hostname: this.host,
-      protocol: this.protocol,
-      port: this.port,
-      pathname: `${this.pathPrefix}/rest/api/${this.apiVersion}/${path}`
-    });
-
-    return decodeURIComponent(requestUrl);
-  }
-
-  buildAuthUrl(path: string): string {
-    const requestUrl = url.format({
-      hostname: this.host,
-      protocol: this.protocol,
-      port: this.port,
-      pathname: `${this.pathPrefix}/rest/auth/${this.authApiVersion}/${path}`
-    });
-
-    return decodeURIComponent(requestUrl);
-  }
-
-  buildWebhookUrl(path: string): string {
-    const requestUrl = url.format({
-      hostname: this.host,
-      protocol: this.protocol,
-      port: this.port,
-      pathname: `${this.pathPrefix}/rest/webhook/${this.webhookApiVersion}/${path}`
-    });
-
-    return decodeURIComponent(requestUrl);
-  }
-
-  makeRequest(options: any, callback: any, successString: string): any {
+  public sendRequest(options: any, callback: any, successString: string): any {
     options.rejectUnauthorized = this.rejectUnauthorized;
 
     if (this.oauth) {
@@ -129,13 +100,15 @@ class JiraApi implements IJiraApi {
         if (!options.headers) {
           options.headers = {};
         }
-        options.headers['Authorization'] = 'Basic ' + this.basicAuth.base64;
+        options.headers.Authorization = 'Basic ' + this.basicAuth.base64;
       } else {
         options.auth = this.basicAuth;
       }
     }
 
-    if (this.cookieJar) options.jar = this.cookieJar;
+    if (this.cookieJar) {
+      options.jar = this.cookieJar;
+    }
 
     if (callback) {
       request(options, (error: any, response: any, body: any) => {
@@ -154,29 +127,28 @@ class JiraApi implements IJiraApi {
         return callback(null, successString ? successString : body, response);
       });
     } else {
-      return new Promise(function (resolve, reject) {
+      return new Promise((resolve, reject) => {
         const req = request(options);
         let requestObj: any = null;
 
-        req.on('request', function(request) {
-          requestObj = request;
+        req.on('request', (reqs) => {
+          requestObj = reqs;
         });
 
-        req.on('response', function(response) {
+        req.on('response', (response) => {
           const error = response.statusCode.toString()[0] !== '2';
 
           const body: any = [];
           const push = body.push.bind(body);
           response.on('data', push);
 
-          response.on('end', function () {
-
+          response.on('end', () => {
             let result = body.join('');
 
             if (result[0] === '[' || result[0] === '{') {
               try {
                 result = JSON.parse(result);
-              } catch(e) {
+              } catch (e) {
                 // nothing to do
               }
             }
@@ -187,7 +159,7 @@ class JiraApi implements IJiraApi {
                 reject({
                   result: JSON.stringify(response),
                   debug: {
-                    options: options,
+                    options,
                     request: {
                       headers: requestObj._headers,
                     },
@@ -206,7 +178,7 @@ class JiraApi implements IJiraApi {
               resolve({
                 result,
                 debug: {
-                  options: options,
+                  options,
                   request: {
                     headers: requestObj._headers,
                   },
@@ -219,7 +191,6 @@ class JiraApi implements IJiraApi {
               resolve(result);
             }
           });
-
         });
 
         req.on('error', reject);
@@ -228,16 +199,30 @@ class JiraApi implements IJiraApi {
   }
 
   private static validateConfig(config: IConfig): void {
-    if (!config.host) throw new Error(errors.hostIsNotDefined);
+    if (!config.host) {
+      throw new Error(errors.hostIsNotDefined);
+    }
 
     if (config.oauth) {
-      if (!config.oauth.consumerKey) throw new Error(errors.consumerIsNotDefined);
-      if (!config.oauth.privateKey) throw new Error(errors.privateKeyIsNotDefined);
-      if (!config.oauth.token) throw new Error(errors.tokenIsNotDefined);
-      if (!config.oauth.tokenSecret) throw new Error(errors.tokenSecretIsNotDefined);
+      if (!config.oauth.consumerKey) {
+        throw new Error(errors.consumerIsNotDefined);
+      }
+      if (!config.oauth.privateKey) {
+        throw new Error(errors.privateKeyIsNotDefined);
+      }
+      if (!config.oauth.token) {
+        throw new Error(errors.tokenIsNotDefined);
+      }
+      if (!config.oauth.tokenSecret) {
+        throw new Error(errors.tokenSecretIsNotDefined);
+      }
     } else if (config.basicAuth && !config.basicAuth.base64) {
-      if (!config.basicAuth.username) throw new Error(errors.usernameIsNotDefined);
-      if (!config.basicAuth.password) throw new Error(errors.passwordIsNotDefined);
+      if (!config.basicAuth.username) {
+        throw new Error(errors.usernameIsNotDefined);
+      }
+      if (!config.basicAuth.password) {
+        throw new Error(errors.passwordIsNotDefined);
+      }
     }
   }
 }

@@ -218,6 +218,11 @@ is still valid!
 * backlog
     * moveIssuesToBacklog
     * moveIssuesToBacklogForBoard
+    
+### Rest Api
+
+* search
+    * search
 
 ## License
 

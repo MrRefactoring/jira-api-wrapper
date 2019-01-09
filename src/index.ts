@@ -2,12 +2,14 @@ import * as request from 'request';
 import * as url from 'url';
 import * as errors from 'utils/errors';
 
+import { IBacklog } from 'interfaces/api/iBacklog';
+import { ISearch } from 'interfaces/api/ISearch';
+
 import { IConfig } from 'interfaces/iConfig';
 import { IJiraApi } from 'interfaces/iJiraApi';
 
-import { IBacklog } from 'interfaces/api/iBacklog';
-
 import { Backlog } from 'api/backlog';
+import { Search } from 'api/search';
 
 class JiraApi implements IJiraApi {
   public agileApiVersion: number | string;
@@ -34,6 +36,7 @@ class JiraApi implements IJiraApi {
   public webhookApiVersion: number | string;
 
   public backlog: IBacklog;
+  public search: ISearch;
 
   constructor(config: IConfig) {
     this.host = config.host;
@@ -67,6 +70,7 @@ class JiraApi implements IJiraApi {
     this.rejectUnauthorized = config.rejectUnauthorized;
 
     this.backlog = new Backlog(this);
+    this.search = new Search(this);
 
     JiraApi.validateConfig(config);
   }

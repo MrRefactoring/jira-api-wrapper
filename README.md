@@ -218,7 +218,12 @@ is still valid!
 * backlog
     * moveIssuesToBacklog
     * moveIssuesToBacklogForBoard
-    
+* board
+* issue
+    * rankIssues
+    * getIssue (params.agile = true required)
+    * getIssueEstimationForBoard
+    * estimateIssueForBoard
 ### Rest Api
 
 * search

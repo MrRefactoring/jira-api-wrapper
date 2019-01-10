@@ -4,6 +4,6 @@ export interface IBacklog {
   context: IJiraApi;
   prefix: string;
 
-  moveIssuesToBacklog(params: any, callback: any): any;
-  moveIssuesToBacklogForBoard(params: any, callback: any): any;
+  moveIssuesToBacklog(params: any, callback?: any): any;
+  moveIssuesToBacklogForBoard(params: any, callback?: any): any;
 }

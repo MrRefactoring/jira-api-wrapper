@@ -7,10 +7,10 @@ export class Backlog implements IBacklog {
 
   constructor(context: IJiraApi) {
     this.context = context;
-    this.prefix = '/backlog';
+    this.prefix = 'backlog';
   }
 
-  public moveIssuesToBacklog(params: any, callback: any): any {
+  public moveIssuesToBacklog(params: any = {}, callback: any): any {
     const endpoint: string = `${this.prefix}/issue`;
 
     const options = {

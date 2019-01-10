@@ -6,11 +6,11 @@ export class Board implements IBoard {
   public prefix: string;
 
   constructor(context: IJiraApi) {
-    this.prefix = '/board';
+    this.prefix = 'board';
     this.context = context;
   }
 
-  public getAllBoards(params: any, callback: any): any {
+  public getAllBoards(params: any = {}, callback: any): any {
     const endpoint = this.prefix;
 
     const options = {
@@ -38,7 +38,7 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public createBoard(params: any, callback: any): any {
+  public createBoard(params: any = {}, callback: any): any {
     const endpoint = this.prefix;
 
     const options = {

@@ -6,11 +6,11 @@ export class Search implements ISearch {
   public prefix: string;
 
   public constructor(context: IJiraApi) {
-    this.prefix = '/search';
+    this.prefix = 'search';
     this.context = context;
   }
 
-  public search(params: any, callback: any): any {
+  public search(params: any = {}, callback: any): any {
     params.method = params.method || 'POST';
 
     const options: any = {

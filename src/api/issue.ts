@@ -6,12 +6,12 @@ export class Issue implements IIssue {
   public context: IJiraApi;
 
   constructor(context: IJiraApi) {
-    this.prefix = '/issue';
+    this.prefix = 'issue';
     this.context = context;
   }
 
   // Agile API
-  public rankIssues(params: any, callback: any): any {
+  public rankIssues(params: any = {}, callback: any): any {
     const endpoint: string = `${this.prefix}/rank`;
 
     const options = {

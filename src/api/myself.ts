@@ -6,11 +6,11 @@ export class Myself implements IMyself {
   public prefix: string;
 
   constructor(context: IJiraApi) {
-    this.prefix = '/myself';
+    this.prefix = 'myself';
     this.context = context;
   }
 
-  public getCurrentUser(params: any, callback: any): any {
+  public getCurrentUser(params: any = {}, callback?: any): any {
     const endpoint = this.prefix;
 
     const options = {

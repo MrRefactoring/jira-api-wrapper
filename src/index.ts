@@ -92,11 +92,31 @@ class JiraApi implements IJiraApi {
   }
 
   public buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any {
+    let apiVersion: number | string;
+
+    switch (apiType) {
+    case 'agile':
+      apiVersion = this.agileApiVersion;
+      break;
+    case 'api':
+      apiVersion = this.apiVersion;
+      break;
+    case 'auth':
+      apiVersion = this.authApiVersion;
+      break;
+    case 'webhook':
+      apiVersion = this.webhookApiVersion;
+      break;
+    default:
+      apiVersion = this.apiVersion;
+      break;
+    }
+
     const requestUrl = url.format({
       hostname: this.host,
       protocol: this.protocol,
       port: this.port,
-      pathname: `${this.pathPrefix}/rest/auth/${this.authApiVersion}/${path}`
+      pathname: `${this.pathPrefix}rest/${apiType}/${apiVersion}/${path}`
     });
 
     return decodeURIComponent(requestUrl);

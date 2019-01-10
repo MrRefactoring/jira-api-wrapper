@@ -5,10 +5,10 @@ export interface IIssue {
   context: IJiraApi;
 
   // Agile API
-  rankIssues(params: any, callback: any): any;
-  getIssueEstimationForBoard(params: any, callback: any): any;
-  estimateIssueForBoard(params: any, callback: any): any;
+  rankIssues(params: any, callback?: any): any;
+  getIssueEstimationForBoard(params: any, callback?: any): any;
+  estimateIssueForBoard(params: any, callback?: any): any;
 
   // Agile and REST API
-  getIssue(params: any, callback: any): any;
+  getIssue(params: any, callback?: any): any;
 }

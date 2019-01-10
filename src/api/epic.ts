@@ -6,11 +6,11 @@ export class Epic implements IEpic {
   public context: IJiraApi;
 
   constructor(context: IJiraApi) {
-    this.prefix = '/epic';
+    this.prefix = 'epic';
     this.context = context;
   }
 
-  public getIssuesWithoutEpic(params: any, callback: any): any {
+  public getIssuesWithoutEpic(params: any = {}, callback: any): any {
     const endpoint: string = `${this.prefix}/none/issue`;
 
     const options = {
@@ -31,7 +31,7 @@ export class Epic implements IEpic {
     return this.context.sendRequest(options, callback);
   }
 
-  public removeIssuesFromEpic(params: any, callback: any): any {
+  public removeIssuesFromEpic(params: any = {}, callback: any): any {
     const endpoint: string = `${this.prefix}/none/issue`;
 
     const options = {

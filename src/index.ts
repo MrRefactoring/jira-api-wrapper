@@ -6,6 +6,7 @@ import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
 import { IEpic } from 'interfaces/api/iEpic';
 import { IIssue } from 'interfaces/api/iIssue';
+import { IMyself } from 'interfaces/api/iMyself';
 import { ISearch } from 'interfaces/api/ISearch';
 
 import { IConfig } from 'interfaces/iConfig';
@@ -15,6 +16,7 @@ import { Backlog } from 'api/backlog';
 import { Board } from 'api/board';
 import { Epic } from 'api/epic';
 import { Issue } from 'api/issue';
+import { Myself } from 'api/myself';
 import { Search } from 'api/search';
 
 class JiraApi implements IJiraApi {
@@ -45,6 +47,7 @@ class JiraApi implements IJiraApi {
   public board: IBoard;
   public issue: IIssue;
   public epic: IEpic;
+  public myself: IMyself;
   public search: ISearch;
 
   constructor(config: IConfig) {
@@ -82,6 +85,7 @@ class JiraApi implements IJiraApi {
     this.board = new Board(this);
     this.issue = new Issue(this);
     this.epic = new Epic(this);
+    this.myself = new Myself(this);
     this.search = new Search(this);
 
     JiraApi.validateConfig(config);

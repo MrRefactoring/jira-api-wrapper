@@ -259,6 +259,8 @@ is still valid!
     * rankEpics
 ### Rest Api
 
+* myself
+    * getCurrentUser
 * search
     * search
 

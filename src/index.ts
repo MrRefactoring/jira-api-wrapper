@@ -4,17 +4,17 @@ import * as errors from 'utils/errors';
 
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
-import { IIssue } from 'interfaces/api/iIssue';
 import { IEpic } from 'interfaces/api/iEpic';
+import { IIssue } from 'interfaces/api/iIssue';
 import { ISearch } from 'interfaces/api/ISearch';
 
 import { IConfig } from 'interfaces/iConfig';
 import { IJiraApi } from 'interfaces/iJiraApi';
 
 import { Backlog } from 'api/backlog';
-import { Board } from './api/board';
-import { Issue } from 'api/issue';
+import { Board } from 'api/board';
 import { Epic } from 'api/epic';
+import { Issue } from 'api/issue';
 import { Search } from 'api/search';
 
 class JiraApi implements IJiraApi {

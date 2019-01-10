@@ -3,15 +3,18 @@
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "strict": true,
     "lib": ["es6", "dom"],
     "moduleResolution": "node",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "api/*": ["src/api/*"],
       "interfaces/*": ["src/interfaces/*"],
       "utils/*": ["src/utils/*"]
-    }
+    },
+    "plugins": [
+      { "transform": "@zerollup/ts-transform-paths" }
+    ]
   }
 }

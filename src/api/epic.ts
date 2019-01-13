@@ -40,7 +40,7 @@ export class Epic implements IEpic {
       json: true,
       followAllRedirects: true,
       body: {
-        issues: params.issues ? params.issues.join(',') : undefined
+        issues: params.issues
       }
     };
 
@@ -109,7 +109,7 @@ export class Epic implements IEpic {
       json: true,
       followAllRedirects: true,
       body: {
-        issues: params.issues ? params.issues.join(',') : undefined
+        issues: params.issues
       }
     };
 

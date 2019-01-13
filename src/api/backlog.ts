@@ -19,7 +19,7 @@ export class Backlog implements IBacklog {
       json: true,
       followAllRedirects: true,
       body: {
-        issues: params.issues ? params.issues.join(',') : undefined
+        issues: params.issues
       }
     };
 
@@ -35,7 +35,7 @@ export class Backlog implements IBacklog {
       json: true,
       followAllRedirects: true,
       body: {
-        issues: params.issues ? params.issues.join(',') : undefined,
+        issues: params.issues,
         rankBeforeIssue: params.rankBeforeIssue,
         rankAfterIssue: params.rankAfterIssue,
         rankCustomFieldId: params.rankCustomFieldId

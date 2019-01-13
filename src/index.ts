@@ -8,6 +8,12 @@ import { IEpic } from 'interfaces/api/iEpic';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IMyself } from 'interfaces/api/iMyself';
 import { ISearch } from 'interfaces/api/ISearch';
+import { ISprint } from 'interfaces/api/iSprint';
+
+import { IBuilds } from 'interfaces/api/iBuilds';
+import { IDeployments } from 'interfaces/api/iDeployments';
+import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
+import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 
 import { IConfig } from 'interfaces/iConfig';
 import { IJiraApi } from 'interfaces/iJiraApi';
@@ -18,18 +24,26 @@ import { Epic } from 'api/epic';
 import { Issue } from 'api/issue';
 import { Myself } from 'api/myself';
 import { Search } from 'api/search';
+import { Sprint } from 'api/sprint';
+
+import { Builds } from 'api/builds';
+import { Deployments } from 'api/deployments';
+import { DevelopmentInformation } from 'api/developmentInformation';
+import { FeatureFlags } from 'api/featureFlags';
 
 class JiraApi implements IJiraApi {
+  public host: string;
+  public port: number;
+
   public agileApiVersion: number | string;
   public apiVersion: number | string;
   public authApiVersion: number | string;
-  public basicAuth: {
-    base64?: string;
-    username?: string;
-    password?: string
-  } | undefined;
-  public cookieJar: any;
-  public host: string;
+
+  public devInfoApiVersion: number | string;
+  public featureFlagsApiVersion: number | string;
+  public deploymentApiVersion: number | string;
+  public buildsApiVersion: number | string;
+
   public oauth: {
     consumerKey: string;
     privateKey: string;
@@ -37,18 +51,32 @@ class JiraApi implements IJiraApi {
     tokenSecret: string;
     signatureMethod: string
   } | undefined;
+
+  public basicAuth: {
+    base64?: string;
+    username?: string;
+    password?: string
+  } | undefined;
+
+  public cookieJar: any;
+
   public pathPrefix: string;
-  public port: number;
   public protocol: string;
   public rejectUnauthorized: any;
   public webhookApiVersion: number | string;
 
   public backlog: IBacklog;
   public board: IBoard;
-  public issue: IIssue;
   public epic: IEpic;
+  public issue: IIssue;
   public myself: IMyself;
   public search: ISearch;
+  public sprint: ISprint;
+
+  public builds: IBuilds;
+  public deployments: IDeployments;
+  public developmentInformation: IDevelopmentInformation;
+  public featureFlags: IFeatureFlags;
 
   constructor(config: IConfig) {
     this.host = config.host;
@@ -62,17 +90,15 @@ class JiraApi implements IJiraApi {
     this.authApiVersion = 1;
     this.webhookApiVersion = '1.0';
 
+    this.devInfoApiVersion = '0.10';
+    this.featureFlagsApiVersion = '0.1';
+    this.deploymentApiVersion = '0.1';
+    this.buildsApiVersion = '0.1';
+
     if (config.oauth) {
-      this.oauth = { ...config.oauth, signatureMethod: '' };
+      this.oauth = { ...config.oauth, signatureMethod: 'RSA-SHA1' };
     } else if (config.basicAuth) {
-      if (config.basicAuth.base64) {
-        this.basicAuth = { base64: config.basicAuth.base64 };
-      } else {
-        this.basicAuth = {
-          username: config.basicAuth.username,
-          password: config.basicAuth.password
-        };
-      }
+      this.basicAuth = { ...config.basicAuth };
     }
 
     if (config.cookieJar) {
@@ -83,34 +109,61 @@ class JiraApi implements IJiraApi {
 
     this.backlog = new Backlog(this);
     this.board = new Board(this);
-    this.issue = new Issue(this);
     this.epic = new Epic(this);
+    this.issue = new Issue(this);
     this.myself = new Myself(this);
     this.search = new Search(this);
+    this.sprint = new Sprint(this);
+
+    this.builds = new Builds(this);
+    this.deployments = new Deployments(this);
+    this.developmentInformation = new DevelopmentInformation(this);
+    this.featureFlags = new FeatureFlags(this);
 
     JiraApi.validateConfig(config);
   }
 
-  public buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any {
+  public buildUrl(path: string, apiType?:
+    'agile'
+    | 'api'
+    | 'auth'
+    | 'webhook'
+    | 'devInfo'
+    | 'featureFlags'
+    | 'deployment'
+    | 'builds'
+  ): any {
     apiType = apiType || 'api';
     let apiVersion: number | string;
 
     switch (apiType) {
-    case 'agile':
-      apiVersion = this.agileApiVersion;
-      break;
-    case 'api':
-      apiVersion = this.apiVersion;
-      break;
-    case 'auth':
-      apiVersion = this.authApiVersion;
-      break;
-    case 'webhook':
-      apiVersion = this.webhookApiVersion;
-      break;
-    default:
-      apiVersion = this.apiVersion;
-      break;
+      case 'agile':
+        apiVersion = this.agileApiVersion;
+        break;
+      case 'api':
+        apiVersion = this.apiVersion;
+        break;
+      case 'auth':
+        apiVersion = this.authApiVersion;
+        break;
+      case 'webhook':
+        apiVersion = this.webhookApiVersion;
+        break;
+      case 'devInfo':
+        apiVersion = this.devInfoApiVersion;
+        break;
+      case 'featureFlags':
+        apiVersion = this.featureFlagsApiVersion;
+        break;
+      case 'deployment':
+        apiVersion = this.deploymentApiVersion;
+        break;
+      case 'builds':
+        apiVersion = this.buildsApiVersion;
+        break;
+      default:
+        apiVersion = this.apiVersion;
+        break;
     }
 
     const requestUrl = url.format({

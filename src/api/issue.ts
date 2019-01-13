@@ -20,7 +20,7 @@ export class Issue implements IIssue {
       json: true,
       followAllRedirects: true,
       body: {
-        issues: params.issues ? params.issues.join(',') : undefined,
+        issues: params.issues,
         rankBeforeIssue: params.rankBeforeIssue,
         rankAfterIssue: params.rankAfterIssue,
         rankCustomFieldId: params.rankCustomFieldId

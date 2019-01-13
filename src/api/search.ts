@@ -21,6 +21,7 @@ export class Search implements ISearch {
       timeout: params.timeout || 10000,
     };
 
+    // todo check properties field when called GET query
     const searchParams = {
       jql: params.jql,
       startAt: params.startAt,
@@ -28,7 +29,7 @@ export class Search implements ISearch {
       validateQuery: params.validateQuery,
       fields: params.fields,
       expand: params.expand,
-      properties: params.properties ? params.properties.join(',') : undefined,
+      properties: params.properties,
       fieldsByKey: params.fieldsByKey
     };
 

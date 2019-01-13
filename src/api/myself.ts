@@ -14,7 +14,7 @@ export class Myself implements IMyself {
     const endpoint = this.prefix;
 
     const options = {
-      uri: this.context.buildUrl(endpoint),
+      uri: this.context.buildUrl(endpoint, 'api'),
       method: 'GET',
       json: true,
       followAllRedirects: true,

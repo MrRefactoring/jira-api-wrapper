@@ -14,7 +14,7 @@ export class Search implements ISearch {
     params.method = params.method || 'POST';
 
     const options: any = {
-      uri: this.context.buildUrl('/search'),
+      uri: this.context.buildUrl(this.prefix, 'api'),
       method: params.method,
       json: true,
       followAllRedirects: true,
@@ -26,7 +26,7 @@ export class Search implements ISearch {
       startAt: params.startAt,
       maxResults: params.maxResults,
       validateQuery: params.validateQuery,
-      fields: params.fields ? params.fields.join(',') : undefined,
+      fields: params.fields,
       expand: params.expand,
       properties: params.properties ? params.properties.join(',') : undefined,
       fieldsByKey: params.fieldsByKey

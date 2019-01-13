@@ -92,6 +92,7 @@ class JiraApi implements IJiraApi {
   }
 
   public buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any {
+    apiType = apiType || 'api';
     let apiVersion: number | string;
 
     switch (apiType) {

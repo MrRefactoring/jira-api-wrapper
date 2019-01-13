@@ -39,6 +39,6 @@ export interface IJiraApi {
   myself: IMyself;
   search: ISearch;
 
-  buildUrl(path: string, apiType?: 'agile' | 'api' | 'auth' | 'webhook'): any;
+  buildUrl(path: string, apiType: 'agile' | 'api' | 'auth' | 'webhook'): any;
   sendRequest(options: any, callback: any, successString?: string): any;
 }

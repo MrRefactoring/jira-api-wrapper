@@ -7,8 +7,9 @@ import { IBoard } from 'interfaces/api/iBoard';
 import { IEpic } from 'interfaces/api/iEpic';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IMyself } from 'interfaces/api/iMyself';
-import { ISearch } from 'interfaces/api/ISearch';
+import { ISearch } from 'interfaces/api/iSearch';
 import { ISprint } from 'interfaces/api/iSprint';
+import { IWorklog } from 'interfaces/api/iWorklog';
 
 import { IBuilds } from 'interfaces/api/iBuilds';
 import { IDeployments } from 'interfaces/api/iDeployments';
@@ -25,6 +26,7 @@ import { Issue } from 'api/issue';
 import { Myself } from 'api/myself';
 import { Search } from 'api/search';
 import { Sprint } from 'api/sprint';
+import { Worklog } from 'api/worklog';
 
 import { Builds } from 'api/builds';
 import { Deployments } from 'api/deployments';
@@ -72,6 +74,7 @@ class JiraApi implements IJiraApi {
   public myself: IMyself;
   public search: ISearch;
   public sprint: ISprint;
+  public worklog: IWorklog;
 
   public builds: IBuilds;
   public deployments: IDeployments;
@@ -114,6 +117,7 @@ class JiraApi implements IJiraApi {
     this.myself = new Myself(this);
     this.search = new Search(this);
     this.sprint = new Sprint(this);
+    this.worklog = new Worklog(this);
 
     this.builds = new Builds(this);
     this.deployments = new Deployments(this);

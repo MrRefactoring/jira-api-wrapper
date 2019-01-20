@@ -1,4 +1,4 @@
-import { ISearch } from 'interfaces/api/ISearch';
+import { ISearch } from 'interfaces/api/iSearch';
 import { IJiraApi } from 'interfaces/iJiraApi';
 
 export class Search implements ISearch {

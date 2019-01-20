@@ -7,8 +7,9 @@ import { IEpic } from 'interfaces/api/iEpic';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IMyself } from 'interfaces/api/iMyself';
-import { ISearch } from 'interfaces/api/ISearch';
+import { ISearch } from 'interfaces/api/iSearch';
 import { ISprint } from 'interfaces/api/iSprint';
+import { IWorklog } from 'interfaces/api/iWorklog';
 
 export interface IJiraApi {
   host: string;
@@ -51,6 +52,7 @@ export interface IJiraApi {
   myself: IMyself;
   search: ISearch;
   sprint: ISprint;
+  worklog: IWorklog;
 
   builds: IBuilds;
   deployments: IDeployments;

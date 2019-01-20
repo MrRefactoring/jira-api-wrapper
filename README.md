@@ -24,16 +24,40 @@ import JiraApi from 'jira-api-wrapper';
 const api: JiraApi = new JiraApi({
   host: 'jira.atlassian.com'
 });
+
+// Async/await example
+const someAsyncFunc = async () => {
+    const response: any = await api.search.search({ jql: 'some jql request' });
+    
+    console.log(response);
+};
+
+// Callback example
+api.search.search({
+    jql: 'some jql request'
+}, (data) => { console.log(data); })
 ```
 
 ##### Pure NodeJS
 
-```javascript 1.8
+```javascript
 const JiraApi = require('jira-api-wrapper');
 
 const api = new JiraApi({
   host: 'jira.atlassian.com'
 });
+
+// Async/await example
+const someAsyncFunc = async () => {
+    const response = await api.search.search({ jql: 'some jql request' });
+    
+    console.log(response);
+};
+
+// Callback example
+api.search.search({
+    jql: 'some jql request'
+}, (data) => { console.log(data); })
 ```
 
 
@@ -296,9 +320,13 @@ is still valid!
 ### Rest Api
 
 * myself
-    * getCurrentUser
+    * [getCurrentUser](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-myself-get) /rest/api/3/myself
 * search
-    * search
+    * [search](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-group-Search) /rest/api/3/search
+* worklog
+    * [getIDsOfDeletedWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-worklog-deleted-get) /rest/api/3/worklog/deleted
+    * [getWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-worklog-list-post) /rest/api/3/worklog/list
+    * [getIDsOfUpdatedWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-worklog-updated-get) /rest/api/3/worklog/updated
 
 ## License
 

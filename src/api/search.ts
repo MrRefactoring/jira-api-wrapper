@@ -1,4 +1,4 @@
-import { ISearch } from 'interfaces/api/ISearch';
+import { ISearch } from 'interfaces/api/iSearch';
 import { IJiraApi } from 'interfaces/iJiraApi';
 
 export class Search implements ISearch {
@@ -14,7 +14,7 @@ export class Search implements ISearch {
     params.method = params.method || 'POST';
 
     const options: any = {
-      uri: this.context.buildUrl(this.prefix, 'api'),
+      uri: this.context.makeUrl(this.prefix, 'api'),
       method: params.method,
       json: true,
       followAllRedirects: true,

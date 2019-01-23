@@ -24,16 +24,40 @@ import JiraApi from 'jira-api-wrapper';
 const api: JiraApi = new JiraApi({
   host: 'jira.atlassian.com'
 });
+
+// Async/await example
+const someAsyncFunc = async () => {
+    const response: any = await api.search.search({ jql: 'some jql request' });
+    
+    console.log(response);
+};
+
+// Callback example
+api.search.search({
+    jql: 'some jql request'
+}, (data) => { console.log(data); })
 ```
 
 ##### Pure NodeJS
 
-```javascript 1.8
+```javascript
 const JiraApi = require('jira-api-wrapper');
 
 const api = new JiraApi({
   host: 'jira.atlassian.com'
 });
+
+// Async/await example
+const someAsyncFunc = async () => {
+    const response = await api.search.search({ jql: 'some jql request' });
+    
+    console.log(response);
+};
+
+// Callback example
+api.search.search({
+    jql: 'some jql request'
+}, (data) => { console.log(data); })
 ```
 
 
@@ -293,12 +317,22 @@ is still valid!
     * [getBuildByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-pipelines-pipelineId-builds-buildNumber-get) /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber} `help wanted`
     * [deleteBuildByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-pipelines-pipelineId-builds-buildNumber-delete) /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber} `help wanted`
 
-### Rest Api
-
-* myself
-    * getCurrentUser
-* search
-    * search
+### Rest Api supported calls ###
+| Class | Method | REST Call |
+| ----- | ------ | --------- |
+| Issue |
+| | `issue.createIssue({ params })` | POST /rest/api/3/issue
+| | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk
+| | `issue.addWorklog({ params })` | POST /rest/api/3/issue/{issueIdOrKey}/worklog
+| | `issue.getWorklog({ params })` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.updateWorklog({ params })` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.deleteWorklog({ params })` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| Myself | `myself.getCurrentUser()` | GET /rest/agile/1.0/myself |
+| Search | `search.search({ post: false or true (default: true), params })` | GET or POST /rest/api/3/search
+| Worklog |
+| | `worklog.getIDsOfDeletedWorklogs({ params })` | GET /rest/api/3/worklog/deleted
+| | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list
+| | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated 
 
 ## License
 

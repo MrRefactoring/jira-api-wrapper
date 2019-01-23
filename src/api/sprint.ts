@@ -14,7 +14,7 @@ export class Sprint implements ISprint {
     const endpoint = this.prefix;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -34,7 +34,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -47,7 +47,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
@@ -71,7 +71,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -95,7 +95,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'DELETE',
       json: true,
       followAllRedirects: true
@@ -108,7 +108,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -129,7 +129,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -148,7 +148,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}/properties`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -161,7 +161,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -174,7 +174,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true
@@ -187,7 +187,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'DELETE',
       json: true,
       followAllRedirects: true
@@ -200,7 +200,7 @@ export class Sprint implements ISprint {
     const endpoint = `${this.prefix}/${params.sprintId}/swap`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,

@@ -14,7 +14,7 @@ export class Epic implements IEpic {
     const endpoint: string = `${this.prefix}/none/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -35,7 +35,7 @@ export class Epic implements IEpic {
     const endpoint: string = `${this.prefix}/none/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -51,7 +51,7 @@ export class Epic implements IEpic {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -64,7 +64,7 @@ export class Epic implements IEpic {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -83,7 +83,7 @@ export class Epic implements IEpic {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -104,7 +104,7 @@ export class Epic implements IEpic {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -120,7 +120,7 @@ export class Epic implements IEpic {
     const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/rank`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,

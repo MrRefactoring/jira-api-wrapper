@@ -14,7 +14,7 @@ export class Board implements IBoard {
     const endpoint = this.prefix;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -42,7 +42,7 @@ export class Board implements IBoard {
     const endpoint = this.prefix;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -61,7 +61,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -74,7 +74,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'DELETE',
       json: true,
       followAllRedirects: true
@@ -87,7 +87,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/backlog`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -108,7 +108,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/configuration`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -121,7 +121,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/epic`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -139,7 +139,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/epic/none/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -160,7 +160,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/epic/${params.epicId}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -181,7 +181,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/features`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -194,7 +194,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/features`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true,
@@ -212,7 +212,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -233,7 +233,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -252,7 +252,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/project`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -269,7 +269,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/project/full`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -282,7 +282,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/properties`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -295,7 +295,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true
@@ -308,7 +308,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'PUT',
       json: true,
       followAllRedirects: true
@@ -321,7 +321,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'DELETE',
       json: true,
       followAllRedirects: true
@@ -334,7 +334,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/quickfilter`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -351,7 +351,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/quickfilter/${params.quickFilterId}`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -364,7 +364,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/reports`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -377,7 +377,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/sprint`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -395,7 +395,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/sprint/${params.sprintId}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -416,7 +416,7 @@ export class Board implements IBoard {
     const endpoint = `${this.prefix}/${params.boardId}/version`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'GET',
       json: true,
       followAllRedirects: true,

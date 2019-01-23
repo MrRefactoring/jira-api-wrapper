@@ -14,7 +14,7 @@ export class Backlog implements IBacklog {
     const endpoint: string = `${this.prefix}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -30,7 +30,7 @@ export class Backlog implements IBacklog {
     const endpoint: string = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'agile'),
+      uri: this.context.makeUrl(endpoint, 'agile'),
       method: 'POST',
       json: true,
       followAllRedirects: true,

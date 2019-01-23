@@ -127,7 +127,7 @@ class JiraApi implements IJiraApi {
     JiraApi.validateConfig(config);
   }
 
-  public buildUrl(path: string, apiType?:
+  public makeUrl(path: string, apiType?:
     'agile'
     | 'api'
     | 'auth'

@@ -59,7 +59,7 @@ export interface IJiraApi {
   developmentInformation: IDevelopmentInformation;
   featureFlags: IFeatureFlags;
 
-  buildUrl(path: string, apiType:
+  makeUrl(path: string, apiType:
     'agile'
     | 'api'
     | 'auth'

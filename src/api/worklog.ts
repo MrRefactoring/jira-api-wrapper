@@ -14,7 +14,7 @@ export class Worklog implements IWorklog {
     const endpoint = `${this.prefix}/deleted`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'api'),
+      uri: this.context.makeUrl(endpoint, 'api'),
       method: 'GET',
       json: true,
       followAllRedirects: true,
@@ -30,7 +30,7 @@ export class Worklog implements IWorklog {
     const endpoint = `${this.prefix}/list`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'api'),
+      uri: this.context.makeUrl(endpoint, 'api'),
       method: 'POST',
       json: true,
       followAllRedirects: true,
@@ -49,7 +49,7 @@ export class Worklog implements IWorklog {
     const endpoint = `${this.prefix}/updated`;
 
     const options = {
-      uri: this.context.buildUrl(endpoint, 'api'),
+      uri: this.context.makeUrl(endpoint, 'api'),
       method: 'GET',
       json: true,
       followAllRedirects: true,

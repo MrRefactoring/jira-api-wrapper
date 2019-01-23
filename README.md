@@ -317,16 +317,22 @@ is still valid!
     * [getBuildByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-pipelines-pipelineId-builds-buildNumber-get) /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber} `help wanted`
     * [deleteBuildByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-pipelines-pipelineId-builds-buildNumber-delete) /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber} `help wanted`
 
-### Rest Api
-
-* myself
-    * [getCurrentUser](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-myself-get) /rest/api/3/myself
-* search
-    * [search](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-group-Search) /rest/api/3/search
-* worklog
-    * [getIDsOfDeletedWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-worklog-deleted-get) /rest/api/3/worklog/deleted
-    * [getWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-worklog-list-post) /rest/api/3/worklog/list
-    * [getIDsOfUpdatedWorklogs](https://developer.atlassian.com/cloud/jira/platform/rest/v3/?utm_source=%2Fcloud%2Fjira%2Fplatform%2Frest%2F&utm_medium=302#api-api-3-worklog-updated-get) /rest/api/3/worklog/updated
+### Rest Api supported calls ###
+| Class | Method | REST Call |
+| ----- | ------ | --------- |
+| Issue |
+| | `issue.createIssue({ params })` | POST /rest/api/3/issue
+| | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk
+| | `issue.addWorklog({ params })` | POST /rest/api/3/issue/{issueIdOrKey}/worklog
+| | `issue.getWorklog({ params })` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.updateWorklog({ params })` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.deleteWorklog({ params })` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| Myself | `myself.getCurrentUser()` | GET /rest/agile/1.0/myself |
+| Search | `search.search({ post: false or true (default: true), params })` | GET or POST /rest/api/3/search
+| Worklog |
+| | `worklog.getIDsOfDeletedWorklogs({ params })` | GET /rest/api/3/worklog/deleted
+| | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list
+| | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated 
 
 ## License
 

@@ -237,63 +237,65 @@ is still valid!
 
 ## Supported API Calls
 
-### Agile
+### Agile supported calls ###
+| API | Method | REST Call |
+| ----- | ------ | --------- |
+| Backlog
+| | `backlog.moveIssuesToBacklog({ params })` | POST /rest/agile/1.0/backlog/issue
+| | `backlog.moveIssuesToBacklogForBoard({ params })` | POST /rest/agile/1.0/backlog/{boardId}/issue
+| Board
+| | `board.getAllBoards({ params })` | GET /rest/agile/1.0/board
+| | `board.createBoard({ params })` | POST /rest/agile/1.0/board
+| | `board.getBoard({ params })` | GET /rest/agile/1.0/board/{boardId}
+| | `board.deleteBoard({ params })` | DELETE /rest/agile/1.0/board/{boardId}
+| | `board.getIssuesForBacklog({ params })` | GET /rest/agile/1.0/board/{boardId}/backlog
+| | `board.getConfiguration({ params })` | GET /rest/agile/1.0/board/{boardId}/configuration
+| | `board.getEpics({ params })` | GET /rest/agile/1.0/board/{boardId}/epic
+| | `board.getIssuesWithoutEpic({ params })` | GET /rest/agile/1.0/board/{boardId}/epic/none/issue
+| | `board.getIssuesForEpic({ params })` | GET /rest/agile/1.0/board/{boardId}/epic/{epicId}/issue
+| | `board.getFeaturesForBoard({ params })` | GET /rest/agile/1.0/board/{boardId}/features
+| | `board.toggleFeatures({ params })` | PUT /rest/agile/1.0/board/{boardId}/features
+| | `board.getIssuesForBoard({ params })` | GET /rest/agile/1.0/board/{boardId}/issue
+| | `board.moveIssuesToBoard({ params })` | POST /rest/agile/1.0/board/{boardId}/issue
+| | `board.getProjects({ params })` | GET /rest/agile/1.0/board/{boardId}/project
+| | `board.getProjectsFull({ params })` | GET /rest/agile/1.0/board/{boardId}/project/full
+| | `board.getBoardPropertyKeys({ params })` | GET /rest/agile/1.0/board/{boardId}/properties
+| | `board.getBoardProperty({ params })` | GET /rest/agile/1.0/board/{boardId}/properties/{propertyKey}
+| | `board.setBoardProperty({ params })` | PUT /rest/agile/1.0/board/{boardId}/properties/{propertyKey}
+| | `board.deleteBoardProperty({ params })` | DELETE /rest/agile/1.0/board/{boardId}/properties/{propertyKey}
+| | `board.getAllQuickFilters({ params })` | GET /rest/agile/1.0/board/{boardId}/quickfilter
+| | `board.getQuickFilter({ params })` | GET /rest/agile/1.0/board/{boardId}/quickfilter/{quickFilterId}
+| | `board.getReportsForBoard({ params })` | GET /rest/agile/1.0/board/{boardId}/reports
+| | `board.getAllSprints({ params })` | GET /rest/agile/1.0/board/{boardId}/sprint
+| | `board.getIssuesForSprint({ params })` | GET /rest/agile/1.0/board/{boardId}/sprint/{sprintId}/issue
+| | `board.getAllVersions({ params })` | GET /rest/agile/1.0/board/{boardId}/version
+| Epic
+| | `epic.getIssuesWithoutEpic({ params })` | GET /rest/agile/1.0/epic/none/issue
+| | `epic.removeIssuesFromEpic({ params })` | POST /rest/agile/1.0/epic/none/issue
+| | `epic.getEpic({ params })` | GET /rest/agile/1.0/epic/{epicIdOrKey}
+| | `epic.partiallyUpdateEpic({ params })` | POST /rest/agile/1.0/epic/{epicIdOrKey}
+| | `epic.getIssuesForEpic({ params })` | GET /rest/agile/1.0/epic/{epicIdOrKey}/issue
+| | `epic.moveIssuesToEpic({ params })` | POST /rest/agile/1.0/epic/{epicIdOrKey}/issue
+| | `epic.rankEpics({ params })` | PUT /rest/agile/1.0/epic/{epicIdOrKey}/rank
+| Issue
+| | `issue.rankIssues({ params })` | PUT /rest/agile/1.0/issue/rank
+| | `issue.getIssue({agile: true, params })` | GET /rest/agile/1.0/issue/{issueIdOrKey}
+| | `issue.getIssueEstimationForBoard({ params })` | GET /rest/agile/1.0/issue/{issueIdOrKey}/estimation
+| | `issue.estimateIssueForBoard({ params })` | PUT /rest/agile/1.0/issue/{issueIdOrKey}/estimation
+| Sprint
+| | `sprint.createSprint({ params })` | POST /rest/agile/1.0/sprint
+| | `sprint.getSprint({ params })` | GET /rest/agile/1.0/sprint/{sprintId}
+| | `sprint.updateSprint({ params })` | PUT /rest/agile/1.0/sprint/{sprintId}
+| | `sprint.partiallyUpdateSprint({ params })` | POST /rest/agile/1.0/sprint/{sprintId}
+| | `sprint.deleteSprint({ params })` | DELETE /rest/agile/1.0/sprint/{sprintId}
+| | `sprint.getIssuesForSprint({ params })` | GET /rest/agile/1.0/sprint/{sprintId}/issue
+| | `sprint.moveIssuesToSprintAndRank({ params })` | POST /rest/agile/1.0/sprint/{sprintId}/issue
+| | `sprint.getPropertiesKeys({ params })` | GET /rest/agile/1.0/sprint/{sprintId}/properties
+| | `sprint.getProperty({ params })` | GET /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
+| | `sprint.setProperty({ params })` | PUT /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
+| | `sprint.deleteProperty({ params })` | DELETE /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
+| | `sprint.swapSprint({ params })` | POST /rest/agile/1.0/sprint/{sprintId}/swap
 
-* backlog
-    * [moveIssuesToBacklog](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-backlog-issue-post) /rest/agile/1.0/backlog/issue
-    * [moveIssuesToBacklogForBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-backlog-boardId-issue-post) /rest/agile/1.0/backlog/{boardId}/issue
-* board
-    * [getAllBoards](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-get) /rest/agile/1.0/board
-    * [createBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-post) /rest/agile/1.0/board
-    * [getBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-get) /rest/agile/1.0/board/{boardId}
-    * [deleteBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-delete) /rest/agile/1.0/board/{boardId}
-    * [getIssuesForBacklog](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-backlog-get) /rest/agile/1.0/board/{boardId}/backlog
-    * [getConfiguration](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-configuration-get) /rest/agile/1.0/board/{boardId}/configuration
-    * [getEpics](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-epic-get) /rest/agile/1.0/board/{boardId}/epic
-    * [getIssuesWithoutEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-epic-none-issue-get) /rest/agile/1.0/board/{boardId}/epic/none/issue
-    * [getIssuesForEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-epic-epicId-issue-get) /rest/agile/1.0/board/{boardId}/epic/{epicId}/issue
-    * [getFeaturesForBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-features-get) /rest/agile/1.0/board/{boardId}/features
-    * [toggleFeatures](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-features-put) /rest/agile/1.0/board/{boardId}/features
-    * [getIssuesForBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-issue-get) /rest/agile/1.0/board/{boardId}/issue
-    * [moveIssuesToBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-issue-post) /rest/agile/1.0/board/{boardId}/issue
-    * [getProjects](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-project-get) /rest/agile/1.0/board/{boardId}/project
-    * [getProjectsFull](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-project-full-get) /rest/agile/1.0/board/{boardId}/project/full
-    * [getBoardPropertyKeys](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-properties-get) /rest/agile/1.0/board/{boardId}/properties
-    * [getBoardProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-properties-propertyKey-get) /rest/agile/1.0/board/{boardId}/properties/{propertyKey}
-    * [setBoardProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-properties-propertyKey-put) /rest/agile/1.0/board/{boardId}/properties/{propertyKey}
-    * [deleteBoardProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-properties-propertyKey-delete) /rest/agile/1.0/board/{boardId}/properties/{propertyKey}
-    * [getAllQuickFilters](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-quickfilter-get) /rest/agile/1.0/board/{boardId}/quickfilter
-    * [getQuickFilter](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-quickfilter-quickFilterId-get) /rest/agile/1.0/board/{boardId}/quickfilter/{quickFilterId}
-    * [getReportsForBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-reports-get) /rest/agile/1.0/board/{boardId}/reports
-    * [getAllSprints](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-sprint-get) /rest/agile/1.0/board/{boardId}/sprint
-    * [getIssuesForSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-sprint-sprintId-issue-get) /rest/agile/1.0/board/{boardId}/sprint/{sprintId}/issue
-    * [getAllVersions](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-board-boardId-version-get) /rest/agile/1.0/board/{boardId}/version
-* epic
-    * [getIssuesWithoutEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-epic-none-issue-get) /rest/agile/1.0/epic/none/issue
-    * [removeIssuesFromEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-epic-none-issue-post) /rest/agile/1.0/epic/none/issue
-    * [getEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-epic-epicIdOrKey-get) /rest/agile/1.0/epic/{epicIdOrKey}
-    * [partiallyUpdateEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-epic-epicIdOrKey-post) /rest/agile/1.0/epic/{epicIdOrKey}
-    * [getIssuesForEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-epic-epicIdOrKey-issue-get) /rest/agile/1.0/epic/{epicIdOrKey}/issue
-    * [moveIssuesToEpic](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-epic-epicIdOrKey-issue-post) /rest/agile/1.0/epic/{epicIdOrKey}/issue
-    * [rankEpics](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-epic-epicIdOrKey-rank-put) /rest/agile/1.0/epic/{epicIdOrKey}/rank
-* issue
-    * [rankIssues](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-issue-rank-put) /rest/agile/1.0/issue/rank
-    * [getIssue](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-issue-issueIdOrKey-get) (params.agile = true required) /rest/agile/1.0/issue/{issueIdOrKey}
-    * [getIssueEstimationForBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-issue-issueIdOrKey-estimation-get) /rest/agile/1.0/issue/{issueIdOrKey}/estimation
-    * [estimateIssueForBoard](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-issue-issueIdOrKey-estimation-put) /rest/agile/1.0/issue/{issueIdOrKey}/estimation
-* sprint
-    * [createSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-post) /rest/agile/1.0/sprint
-    * [getSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-get) /rest/agile/1.0/sprint/{sprintId}
-    * [updateSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-put) /rest/agile/1.0/sprint/{sprintId}
-    * [partiallyUpdateSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-post) /rest/agile/1.0/sprint/{sprintId}
-    * [deleteSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-delete) /rest/agile/1.0/sprint/{sprintId}
-    * [getIssuesForSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-issue-get) /rest/agile/1.0/sprint/{sprintId}/issue
-    * [moveIssuesToSprintAndRank](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-issue-post) /rest/agile/1.0/sprint/{sprintId}/issue
-    * [getPropertiesKeys](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-properties-get) /rest/agile/1.0/sprint/{sprintId}/properties
-    * [getProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-properties-propertyKey-get) /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
-    * [setProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-properties-propertyKey-put) /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
-    * [deleteProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-properties-propertyKey-delete) /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
-    * [swapSprint](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-agile-1-0-sprint-sprintId-swap-post) /rest/agile/1.0/sprint/{sprintId}/swap
 * developmentInformation `help wanted`
     * [storeDevelopmentInformation](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-bulk-post) /rest/devinfo/0.10/bulk `help wanted`
     * [getRepository](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-repository-repositoryId-get) /rest/devinfo/0.10/repository/{repositoryId} `help wanted`
@@ -318,7 +320,7 @@ is still valid!
     * [deleteBuildByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-pipelines-pipelineId-builds-buildNumber-delete) /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber} `help wanted`
 
 ### Rest Api supported calls ###
-| Class | Method | REST Call |
+| API | Method | REST Call |
 | ----- | ------ | --------- |
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
@@ -327,8 +329,10 @@ is still valid!
 | | `issue.getWorklog({ params })` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
 | | `issue.updateWorklog({ params })` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
 | | `issue.deleteWorklog({ params })` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
-| Myself | `myself.getCurrentUser()` | GET /rest/agile/1.0/myself |
-| Search | `search.search({ post: false or true (default: true), params })` | GET or POST /rest/api/3/search
+| Myself
+| | `myself.getCurrentUser()` | GET /rest/api/3/myself |
+| Search 
+| | `search.search({ post: false or true (default: true), params })` | GET or POST /rest/api/3/search
 | Worklog |
 | | `worklog.getIDsOfDeletedWorklogs({ params })` | GET /rest/api/3/worklog/deleted
 | | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list

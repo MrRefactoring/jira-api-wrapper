@@ -1,8 +1,10 @@
-export const hostIsNotDefined: string = '\'host\' property is not defined';
-export const usernameIsNotDefined: string = '\'username\' property is not defined';
-export const passwordIsNotDefined: string = '\'password\' property is not defined';
-export const consumerIsNotDefined: string = '\'consumerKey\' is not defined';
-export const privateKeyIsNotDefined: string = '\'privateKey\' is not defined';
-export const tokenIsNotDefined: string = '\'token\' is not defined';
-export const tokenSecretIsNotDefined: string = '\'tokenSecret\' is not defined';
-export const notImplementedExpection: string = 'this method not implemented';
+export const NO_USERNAME = 'Missing \'username\' property';
+export const NO_PASSWORD = 'Missing \'password\' property';
+export const NO_TOKEN = 'Missing \'token\' property';
+export const NO_TOKEN_SECRET = 'Missing \'tokenSecret\' property';
+export const NO_HOST_ERROR = 'Missing \'host\' property.';
+export const NO_CONSUMER_KEY_ERROR = 'Missing \'consumerKey\' property.';
+export const NO_PRIVATE_KEY_ERROR = 'Missing \'privateKey\' property.';
+export const NO_VERIFIER_ERROR = 'Missing \'verifier\' property.';
+
+export const NOT_IMPLEMENTED = 'this method is not implemented';

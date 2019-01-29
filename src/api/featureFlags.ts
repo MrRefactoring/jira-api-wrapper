@@ -1,6 +1,6 @@
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 import { IJiraApi } from 'interfaces/iJiraApi';
-import { notImplementedExpection } from 'utils/errors';
+import { NOT_IMPLEMENTED } from 'utils/errors';
 
 export class FeatureFlags implements IFeatureFlags {
   public context: IJiraApi;
@@ -12,18 +12,18 @@ export class FeatureFlags implements IFeatureFlags {
   }
 
   public submitFeatureFlagData(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteFeatureFlagsByProperty(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public getFeatureFlagById(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteFeatureFlagById(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 }

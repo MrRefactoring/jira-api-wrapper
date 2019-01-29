@@ -1,6 +1,6 @@
 import { IBuilds } from 'interfaces/api/iBuilds';
 import { IJiraApi } from 'interfaces/iJiraApi';
-import { notImplementedExpection } from 'utils/errors';
+import { NOT_IMPLEMENTED } from 'utils/errors';
 
 export class Builds implements IBuilds {
   public context: IJiraApi;
@@ -12,18 +12,18 @@ export class Builds implements IBuilds {
   }
 
   public submitBuildData(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteBuildsByProperty(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public getBuildByKey(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteBuildByKey(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 }

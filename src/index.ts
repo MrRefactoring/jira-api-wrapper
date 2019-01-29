@@ -1,6 +1,7 @@
 import * as request from 'request';
 import * as url from 'url';
 import * as errors from 'utils/errors';
+import * as oauth from 'utils/oauth';
 
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
@@ -99,7 +100,12 @@ class JiraApi implements IJiraApi {
     this.buildsApiVersion = '0.1';
 
     if (config.oauth) {
-      this.oauth = { ...config.oauth, signatureMethod: 'RSA-SHA1' };
+      this.oauth = {
+        signatureMethod: 'RSA-SHA1',
+        token: '',
+        tokenSecret: '',
+        ...config.oauth
+      };
     } else if (config.basicAuth) {
       this.basicAuth = { ...config.basicAuth };
     }
@@ -288,30 +294,38 @@ class JiraApi implements IJiraApi {
     }
   }
 
+  public static getAuthorizeURL(config: IConfig, callback: any) {
+    oauth.getAuthorizeURL(config, callback);
+  }
+
+  public static swapRequestTokenWithAccessToken(config: IConfig, callback: any) {
+    oauth.swapRequestTokenWithAccessToken(config, callback);
+  }
+
   private static validateConfig(config: IConfig): void {
     if (!config.host) {
-      throw new Error(errors.hostIsNotDefined);
+      throw new Error(errors.NO_HOST_ERROR);
     }
 
     if (config.oauth) {
       if (!config.oauth.consumerKey) {
-        throw new Error(errors.consumerIsNotDefined);
+        throw new Error(errors.NO_CONSUMER_KEY_ERROR);
       }
       if (!config.oauth.privateKey) {
-        throw new Error(errors.privateKeyIsNotDefined);
+        throw new Error(errors.NO_PRIVATE_KEY_ERROR);
       }
       if (!config.oauth.token) {
-        throw new Error(errors.tokenIsNotDefined);
+        throw new Error(errors.NO_TOKEN);
       }
       if (!config.oauth.tokenSecret) {
-        throw new Error(errors.tokenSecretIsNotDefined);
+        throw new Error(errors.NO_TOKEN_SECRET);
       }
     } else if (config.basicAuth && !config.basicAuth.base64) {
       if (!config.basicAuth.username) {
-        throw new Error(errors.usernameIsNotDefined);
+        throw new Error(errors.NO_USERNAME);
       }
       if (!config.basicAuth.password) {
-        throw new Error(errors.passwordIsNotDefined);
+        throw new Error(errors.NO_PASSWORD);
       }
     }
   }

@@ -1,6 +1,6 @@
 import { IDeployments } from 'interfaces/api/iDeployments';
 import { IJiraApi } from 'interfaces/iJiraApi';
-import { notImplementedExpection } from 'utils/errors';
+import { NOT_IMPLEMENTED } from 'utils/errors';
 
 export class Deployments implements IDeployments {
   public context: IJiraApi;
@@ -12,18 +12,18 @@ export class Deployments implements IDeployments {
   }
 
   public submitDeploymentData(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteDeploymentsByProperty(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public getDeploymentByKey(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteDeploymentByKey(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 }

@@ -155,143 +155,143 @@ export class Issue implements IIssue {
   }
 
   public getCreateIssueMetadata(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getIssuePickerSuggestions(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public bulkSetIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public bulkDeleteIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public editIssue(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteIssue(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public assignIssue(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public addAttachment(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getChangeLog(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getComments(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public addComment(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getComment(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public updateComment(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteComment(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getEditIssueMetadata(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public sendNotificationForIssue(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getIssuePropertyKeys(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public setIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getRemoteIssueLinks(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public createOrUpdateRemoteIssueLink(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteRemoteIssueLinkByGlobalId(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getRemoteIssueLinkById(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public updateRemoteIssueLink(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteRemoteIssueLinkById(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getTransitions(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public transitionIssue(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getVotes(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public addVote(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteVote(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getIssueWatchers(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public addWatcher(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteWatcher(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getIssueWorklogs(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public addWorklog(
@@ -420,18 +420,18 @@ export class Issue implements IIssue {
   }
 
   public getWorklogPropertyKeys(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public getWorklogProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public setWorklogProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 
   public deleteWorklogProperty(params: any, callback: any): any {
-    throw new Error(errors.notImplementedExpection);
+    throw new Error(errors.NOT_IMPLEMENTED);
   }
 }

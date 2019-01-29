@@ -36,7 +36,8 @@
     "typescript-eslint-parser": "^22.0.0"
   },
   "dependencies": {
-    "@types/request": "^2.48.1"
+    "@types/request": "^2.48.1",
+    "oauth": "^0.9.15"
   },
   "engines": {
     "node": ">=6"

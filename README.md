@@ -109,7 +109,7 @@ const api = new JiraApi({
 // Base64 encoding of 'myUsername:myPassword'
 ```
 
-### OAuth Authentication (in progress)
+### OAuth Authentication
 
 This should be the preferred method of authentication; it is more secure and does not require disclosing
 your password.
@@ -127,10 +127,10 @@ create the link, and the consumer key that was provided when the link was create
 Once you have this data, you will need to generate an OAuth token and secret for your account; jira-connector provides
 helper functions for exactly this purpose:
 
-```javascript 1.8
-const JiraApi = require('jira-api-wrapper');
+```typescript
+const JiraApi = require('jira-api-wrapper'); // or import JiraApi from 'jira-api-wrapper'
 
-JiraApi.oauth_util.getAuthorizeURL({
+JiraApi.getAuthorizeURL({
     host: 'jira.atlassian.net',
     oauth: {
         consumerKey: 'your-consumer-key',
@@ -138,7 +138,7 @@ JiraApi.oauth_util.getAuthorizeURL({
         'SomePrivateKeyHere\n' +
         '-----END RSA PRIVATE KEY-----'
     }
-}, function (error, oauth) {
+}, (error, oauth) => {
     console.log(oauth);
 });
 ```
@@ -157,10 +157,10 @@ You can then visit the specified URL, which will display a page asking you to al
 Allowing access will display a verifier code.  Once you have this code, you can swap out your current OAuth token
 for an Access Token with all the permissions of your account; jira-connector provides a function to help with this:
 
-```javascript
-const JiraApi = require('jira-api-wrapper');
+```typescript
+const JiraApi = require('jira-api-wrapper'); // or import JiraApi from 'jira-api-wrapper'
 
-JiraApi.oauth_util.swapRequestTokenWithAccessToken({
+JiraApi.swapRequestTokenWithAccessToken({
     host: 'jira.atlassian.net',
     oauth: {
         token: 'your-oauth-token',
@@ -171,7 +171,7 @@ JiraApi.oauth_util.swapRequestTokenWithAccessToken({
         'SomePrivateKeyHere\n' +
         '-----END RSA PRIVATE KEY-----'
     }
-}, function (error, accessToken) {
+}, (error, accessToken) => {
     console.log(accessToken);
 });
 ```
@@ -180,10 +180,10 @@ This will query Jira for an Access Token, which will then be printed to the scre
 Jira with OAuth!
 
 ```javascript
-const JiraApi = require('jira-api-wrapper');
+const JiraApi = require('jira-api-wrapper'); // or import JiraApi from 'jira-api-wrapper'
 
 const api = new JiraApi({
-    host: 'jenjinstudios.atlassian.net',
+    host: 'jira.atlassian.net',
     oauth: {
         consumerKey: 'your-consumer-key',
         privateKey: '-----BEGIN RSA PRIVATE KEY-----\n' +
@@ -204,11 +204,11 @@ pain of setting up an OAuth method.
 
 For example, using `though-cookie-filestore`:
 ```javascript
-const JiraApi = require('jira-api-wrapper'),
-    FileCookieStore = require('tough-cookie-filestore'),
+const JiraApi = require('jira-api-wrapper');
+const FileCookieStore = require('tough-cookie-filestore');
 
-    request = require('request'),
-    path = require('path');
+const request = require('request');
+const path = require('path');
 
 const jar = request.jar(new FileCookieStore(path.join(__dirname, 'cookies.json')));
 
@@ -219,13 +219,13 @@ const api = new JiraApi( {
         username: 'SirUserOfName',
         password: 'Password123'
     },
-    cookie_jar: jar
+    cookieJar: jar
 });
 
 // For the following connections
 const api = new JiraApi( {
     host: 'jira.atlassian.net',
-    cookie_jar: jar
+    cookieJar: jar
 });
 ```
 

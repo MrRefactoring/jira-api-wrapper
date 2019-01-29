@@ -1,6 +1,6 @@
 import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
 import { IJiraApi } from 'interfaces/iJiraApi';
-import { notImplementedExpection } from 'utils/errors';
+import { NOT_IMPLEMENTED } from 'utils/errors';
 
 export class DevelopmentInformation implements IDevelopmentInformation {
   public context: IJiraApi;
@@ -12,26 +12,26 @@ export class DevelopmentInformation implements IDevelopmentInformation {
   }
 
   public storeDevelopmentInformation(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public getRepository(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteRepository(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteDevelopmentInformationByProperties(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public checkIfDataExistsForSuppliedProperties(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 
   public deleteDevelopmentInformationEntity(params: any, callback: any): any {
-    throw new Error(notImplementedExpection);
+    throw new Error(NOT_IMPLEMENTED);
   }
 }

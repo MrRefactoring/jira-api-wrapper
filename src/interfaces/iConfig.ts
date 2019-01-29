@@ -8,8 +8,10 @@ export interface IConfig {
   oauth?: {
     consumerKey: string;
     privateKey: string;
-    token: string;
-    tokenSecret: string;
+    token?: string;
+    tokenSecret?: string;
+    verifier?: any;
+    callbackUrl?: any;
   };
 
   basicAuth?: {

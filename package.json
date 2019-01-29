@@ -1,6 +1,6 @@
 {
   "name": "jira-api-wrapper",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "MIT",
   "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
   "description": "Wrapper of jira api for nodejs and typescript",

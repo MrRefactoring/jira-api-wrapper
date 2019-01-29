@@ -128,7 +128,7 @@ Once you have this data, you will need to generate an OAuth token and secret for
 helper functions for exactly this purpose:
 
 ```typescript
-const JiraApi = require('jira-api-wrapper'); // or import JiraApi from 'jira-api-wrapper'
+const JiraApi = require('jira-api-wrapper');
 
 JiraApi.getAuthorizeURL({
     host: 'jira.atlassian.net',
@@ -158,7 +158,7 @@ Allowing access will display a verifier code.  Once you have this code, you can 
 for an Access Token with all the permissions of your account; jira-connector provides a function to help with this:
 
 ```typescript
-const JiraApi = require('jira-api-wrapper'); // or import JiraApi from 'jira-api-wrapper'
+const JiraApi = require('jira-api-wrapper');
 
 JiraApi.swapRequestTokenWithAccessToken({
     host: 'jira.atlassian.net',
@@ -180,7 +180,7 @@ This will query Jira for an Access Token, which will then be printed to the scre
 Jira with OAuth!
 
 ```javascript
-const JiraApi = require('jira-api-wrapper'); // or import JiraApi from 'jira-api-wrapper'
+const JiraApi = require('jira-api-wrapper');
 
 const api = new JiraApi({
     host: 'jira.atlassian.net',

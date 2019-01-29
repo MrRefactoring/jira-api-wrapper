@@ -100,7 +100,12 @@ class JiraApi implements IJiraApi {
     this.buildsApiVersion = '0.1';
 
     if (config.oauth) {
-      this.oauth = { ...config.oauth, signatureMethod: 'RSA-SHA1' };
+      this.oauth = {
+        signatureMethod: 'RSA-SHA1',
+        token: '',
+        tokenSecret: '',
+        ...config.oauth
+      };
     } else if (config.basicAuth) {
       this.basicAuth = { ...config.basicAuth };
     }

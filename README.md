@@ -295,6 +295,18 @@ is still valid!
 | | `sprint.setProperty({ params })` | PUT /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
 | | `sprint.deleteProperty({ params })` | DELETE /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
 | | `sprint.swapSprint({ params })` | POST /rest/agile/1.0/sprint/{sprintId}/swap
+| Development Information
+| | `developmentInformation.storeDevelopmentInformation({ params })` | POST /rest/devinfo/0.10/bulk
+| | `developmentInformation.getRepository({ params })` | GET /rest/devinfo/0.10/repository/{repositoryId}
+| | `developmentInformation.deleteRepository({ params })` | DELETE /rest/devinfo/0.10/repository/{repositoryId}
+| | `developmentInformation.deleteDevelopmentInformationByProperties({ params })` | DELETE /rest/devinfo/0.10/bulkByProperties
+| | `developmentInformation.checkIfDataExistsForSuppliedProperties({ params })` | GET /rest/devinfo/0.10/existsByProperties
+| | `developmentInformation.deleteDevelopmentInformationEntity({ params })` | DELETE /rest/devinfo/0.10/repository/{repositoryId}/{entityType}/{entityId}
+| Feature Flags
+| | `featureFlags.submitFeatureFlagData({ params })` | 
+| | `featureFlags.deleteFeatureFlagsByProperty({ params })` | 
+| | `featureFlags.getFeatureFlagById({ params })` | 
+| | `featureFlags.deleteFeatureFlagById({ params })` | 
 | Deployments
 | | `deployments.submitDeploymentData({ params })` | POST /rest/deployments/0.1/bulk
 | | `deployments.deleteDeploymentsByProperty({ params })` | DELETE /rest/deployments/0.1/bulkByProperties
@@ -305,19 +317,6 @@ is still valid!
 | | `builds.deleteBuildsByProperty({ params })` | DELETE /rest/builds/0.1/bulkByProperties
 | | `builds.getBuildByKey({ params })` | GET /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
 | | `builds.deleteBuildByKey({ params })` | DELETE /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
-
-* developmentInformation `help wanted`
-    * [storeDevelopmentInformation](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-bulk-post) /rest/devinfo/0.10/bulk `help wanted`
-    * [getRepository](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-repository-repositoryId-get) /rest/devinfo/0.10/repository/{repositoryId} `help wanted`
-    * [deleteRepository](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-repository-repositoryId-delete) /rest/devinfo/0.10/repository/{repositoryId} `help wanted`
-    * [deleteDevelopmentInformationByProperties](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-bulkByProperties-delete) /rest/devinfo/0.10/bulkByProperties `help wanted`
-    * [checkIfDataExistsForSuppliedProperties](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-existsByProperties-get) /rest/devinfo/0.10/existsByProperties `help wanted`
-    * [deleteDevelopmentInformationEntity](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-repository-repositoryId-entityType-entityId-delete) /rest/devinfo/0.10/repository/{repositoryId}/{entityType}/{entityId} `help wanted`
-* featureFlags `help wanted`
-    * [submitFeatureFlagData](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-bulk-post) /rest/featureflags/0.1/bulk `help wanted`
-    * [deleteFeatureFlagsByProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-bulkByProperties-delete) /rest/featureflags/0.1/bulkByProperties `help wanted`
-    * [getFeatureFlagById](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-flag-featureFlagId-get) /rest/featureflags/0.1/flag/{featureFlagId} `help wanted`
-    * [deleteFeatureFlagById](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-flag-featureFlagId-delete) /rest/featureflags/0.1/flag/{featureFlagId} `help wanted`
 
 ### Rest Api supported calls
 | API | Method | REST Call |

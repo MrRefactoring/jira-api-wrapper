@@ -1,8 +1,6 @@
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJiraApi } from 'interfaces/iJiraApi';
 
-import * as errors from 'utils/errors';
-
 export class Issue implements IIssue {
   public prefix: string;
   public context: IJiraApi;
@@ -13,8 +11,17 @@ export class Issue implements IIssue {
   }
 
   // Agile API
-  public rankIssues(params: any = {}, callback: any): any {
+  public rankIssues(
+    params?: {
+      issues?: string[],
+      rankBeforeIssue?: string,
+      rankAfterIssue?: string,
+      rankCustomFieldId?: number,
+    },
+    callback?: any
+  ): any {
     const endpoint: string = `${this.prefix}/rank`;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -32,8 +39,15 @@ export class Issue implements IIssue {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssueEstimationForBoard(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}/estimation`;
+  public getIssueEstimationForBoard(
+    params: {
+      issueIdOrKey: number | string,
+
+      boardId?: number
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/estimation`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -48,8 +62,17 @@ export class Issue implements IIssue {
     return this.context.sendRequest(options, callback);
   }
 
-  public estimateIssueForBoard(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.issueIdOrKey || params.issueId || params.issueKey}/estimation`;
+  public estimateIssueForBoard(
+    params: {
+      issueIdOrKey: number | string,
+
+      boardId?: number,
+
+      value?: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/estimation`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -70,15 +93,17 @@ export class Issue implements IIssue {
   // Agile and REST API
   public getIssue(
     params: {
-      agile?: boolean,
       issueIdOrKey: number | string,
+
+      agile?: boolean,
+
       fields?: string[],
       fieldsByKeys?: boolean,
       expand?: string,
       properties?: string[],
       updateHistory?: boolean
     },
-    callback: any
+    callback?: any
   ): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey}`;
 
@@ -101,7 +126,7 @@ export class Issue implements IIssue {
 
   // REST API
   public createIssue(
-    params: {
+    params?: {
       updateHistory?: boolean,
       transition?: any,
       fields?: any,
@@ -112,6 +137,7 @@ export class Issue implements IIssue {
     callback?: any
   ): any {
     const endpoint: string = this.prefix;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'api'),
@@ -134,12 +160,13 @@ export class Issue implements IIssue {
   }
 
   public bulkIssueCreate(
-    params: {
-      issueUpdates: any[]
+    params?: {
+      issueUpdates?: any[]
     },
-    callback: any
+    callback?: any
   ): any {
     const endpoint: string = `${this.prefix}/bulk`;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'api'),
@@ -154,144 +181,863 @@ export class Issue implements IIssue {
     return this.context.sendRequest(options, callback);
   }
 
-  public getCreateIssueMetadata(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getCreateIssueMetadata(
+    params?: {
+      projectIds?: string[],
+      projectKeys?: string[],
+      issuetypeIds?: string[],
+      issuetypeNames?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/createmeta`;
+    params = params || {};
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        projectIds: params.projectIds ? params.projectIds.join(',') : undefined,
+        projectKeys: params.projectKeys ? params.projectKeys.join(',') : undefined,
+        issuetypeIds: params.issuetypeIds ? params.issuetypeIds.join(',') : undefined,
+        issuetypeNames: params.issuetypeNames ? params.issuetypeNames.join(',') : undefined,
+        expand: params.expand
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getIssuePickerSuggestions(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getIssuePickerSuggestions(
+    params?: {
+      query?: string,
+      currentJQL?: string,
+      currentIssueKey?: string,
+      currentProjectId?: string,
+      showSubTasks?: boolean,
+      showSubTaskParent?: boolean
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/picker`;
+    params = params || {};
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        query: params.query,
+        currentJQL: params.currentJQL,
+        currentIssueKey: params.currentIssueKey,
+        currentProjectId: params.currentProjectId,
+        showSubTasks: params.showSubTasks,
+        showSubTaskParent: params.showSubTaskParent
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public bulkSetIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public bulkSetIssueProperty(
+    params: {
+      propertyKey: string,
+      value?: any,
+      filter?: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/properties/${params.propertyKey}`;
+    params = params || {};
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        value: params.value,
+        filter: params.filter
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public bulkDeleteIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public bulkDeleteIssueProperty(
+    params: {
+      propertyKey: string,
+      entityIds?: number[],
+      currentValue?: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/properties/${params.propertyKey}`;
+    params = params || {};
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        entityIds: params.entityIds,
+        currentValue: params.currentValue
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public editIssue(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public editIssue(
+    params: {
+      issueIdOrKey: number | string,
+
+      notifyUsers?: boolean,
+      overrideScreenSecurity?: boolean,
+      overrideEditableFlag?: boolean,
+
+      transition?: any,
+      fields?: any,
+      update?: any,
+      historyMetadata?: any,
+      properties?: any[]
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        notifyUsers: params.notifyUsers,
+        overrideScreenSecurity: params.overrideScreenSecurity,
+        overrideEditableFlag: params.overrideEditableFlag
+      },
+      body: {
+        transition: params.transition,
+        fields: params.fields,
+        update: params.update,
+        historyMetadata: params.historyMetadata,
+        properties: params.properties
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteIssue(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteIssue(
+    params: {
+      issueIdOrKey: number | string,
+      deleteSubtasks?: boolean | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        deleteSubtasks: params.deleteSubtasks
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public assignIssue(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public assignIssue(
+    params: {
+      issueIdOrKey: number | string,
+
+      key?: string,
+      accountId?: string,
+      name?: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/assignee`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        key: params.key,
+        accountId: params.accountId,
+        name: params.name
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public addAttachment(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public addAttachment(
+    params: {
+      issueIdOrKey: number | string,
+      body?: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/attachments`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true,
+      body: params.body
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getChangeLog(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getChangeLog(
+    params: {
+      issueIdOrKey: number | string,
+      startAt?: number,
+      maxResults?: number
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/changelog`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: params.startAt,
+        maxResults: params.maxResults
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getComments(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getComments(
+    params: {
+      issueIdOrKey: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      orderBy?: string,
+      expand?: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/comment`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        startAt: params.startAt,
+        maxResults: params.maxResults,
+        orderBy: params.orderBy,
+        expand: params.expand
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public addComment(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public addComment(
+    params: {
+      issueIdOrKey: number | string,
+
+      expand?: string,
+
+      body?: any,
+      visibility?: any,
+      jsdPublic?: boolean,
+      properties?: any[]
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/comment`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        expand: params.expand
+      },
+      body: {
+        body: params.body,
+        visibility: params.visibility,
+        jsdPublic: params.jsdPublic,
+        properties: params.properties
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getComment(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getComment(
+    params: {
+      issueIdOrKey: number | string,
+      id: number | string,
+
+      expand?: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/comment/${params.id}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        expand: params.expand
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public updateComment(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public updateComment(
+    params: {
+      issueIdOrKey: number | string,
+      id: number | string,
+
+      expand?: string,
+
+      body?: any,
+      visibility?: any,
+      jsdPublic?: boolean,
+      properties?: any[]
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/comment/${params.id}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        expand: params.expand
+      },
+      body: {
+        body: params.body,
+        visibility: params.visibility,
+        jsdPublic: params.jsdPublic,
+        properties: params.properties
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteComment(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteComment(
+    params: {
+      issueIdOrKey: number | string,
+      id: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/comment/${params.id}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getEditIssueMetadata(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getEditIssueMetadata(
+    params: {
+      issueIdOrKey: number | string,
+
+      overrideScreenSecurity?: boolean,
+      overrideEditableFlag?: boolean
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/editmeta`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        overrideScreenSecurity: params.overrideScreenSecurity,
+        overrideEditableFlag: params.overrideEditableFlag
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public sendNotificationForIssue(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public sendNotificationForIssue(
+    params: {
+      issueIdOrKey: string | number,
+
+      subject?: string,
+      textBody?: string,
+      htmlBody?: string,
+      to?: any,
+      restrict?: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/notify`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        subject: params.subject,
+        textBody: params.textBody,
+        htmlBody: params.htmlBody,
+        to: params.to,
+        restrict: params.restrict
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getIssuePropertyKeys(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getIssuePropertyKeys(
+    params: {
+      issueIdOrKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/properties`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getIssueProperty(
+    params: {
+      issueIdOrKey: number | string,
+      propertyKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/properties/${params.propertyKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public setIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public setIssueProperty(
+    params: {
+      issueIdOrKey: number | string,
+      propertyKey: number | string,
+
+      body?: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/properties/${params.propertyKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      body: params.body
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteIssueProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteIssueProperty(
+    params: {
+      issueIdOrKey: number | string,
+      propertyKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/properties/${params.propertyKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getRemoteIssueLinks(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getRemoteIssueLinks(
+    params: {
+      issueIdOrKey: number | string,
+
+      globalId?: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/remotelink`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        globalId: params.globalId
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public createOrUpdateRemoteIssueLink(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public createOrUpdateRemoteIssueLink(
+    params: {
+      issueIdOrKey: number | string,
+
+      globalId?: number | string,
+      application?: any,
+      relationship?: string,
+      object: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/remotelink`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        globalId: params.globalId,
+        application: params.application,
+        relationship: params.relationship,
+        object: params.object
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteRemoteIssueLinkByGlobalId(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteRemoteIssueLinkByGlobalId(
+    params: {
+      issueIdOrKey: number | string,
+
+      globalId: number | string,
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/remotelink`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        globalId: params.globalId
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getRemoteIssueLinkById(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getRemoteIssueLinkById(
+    params: {
+      issueIdOrKey: number | string,
+      linkId: number | string,
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/remotelink/${params.linkId}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public updateRemoteIssueLink(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public updateRemoteIssueLink(
+    params: {
+      issueIdOrKey: number | string,
+      linkId: number | string,
+
+      globalId?: number | string,
+      application?: any,
+      relationship?: string,
+      object: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/remotelink/${params.linkId}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        globalId: params.globalId,
+        application: params.application,
+        relationship: params.relationship,
+        object: params.object
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteRemoteIssueLinkById(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteRemoteIssueLinkById(
+    params: {
+      issueIdOrKey: number | string,
+      linkId: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/remotelink/${params.linkId}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getTransitions(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getTransitions(
+    params: {
+      issueIdOrKey: number | string,
+
+      expand?: string,
+      transitionId?: string,
+      skipRemoteOnlyCondition?: boolean
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/transitions`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        expand: params.expand,
+        transitionId: params.transitionId,
+        skipRemoteOnlyCondition: params.skipRemoteOnlyCondition
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public transitionIssue(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public transitionIssue(
+    params: {
+      issueIdOrKey: number | string,
+
+      transition: any,
+      fields: any,
+      update: any,
+      historyMetadata: any,
+      properties: any[]
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/transitions`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true,
+      body: {
+        transition: params.transition,
+        fields: params.fields,
+        update: params.update,
+        historyMetadata: params.historyMetadata,
+        properties: params.properties
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getVotes(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getVotes(
+    params: {
+      issueIdOrKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/votes`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public addVote(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public addVote(
+    params: {
+      issueIdOrKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/votes`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteVote(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteVote(
+    params: {
+      issueIdOrKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/votes`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getIssueWatchers(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getIssueWatchers(
+    params: {
+      issueIdOrKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/watchers`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public addWatcher(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public addWatcher(
+    params: {
+      issueIdOrKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/watchers`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'POST',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteWatcher(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteWatcher(
+    params: {
+      issueIdOrKey: number | string,
+
+      username?: string,
+      accountId?: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/watchers`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        username: params.username,
+        accountId: params.accountId
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getIssueWorklogs(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getIssueWorklogs(
+    params: {
+      issueIdOrKey: number | string,
+      id: number | string,
+      expand?: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/worklog/${params.id}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true,
+      qs: {
+        expand: params.expand
+      }
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
   public addWorklog(
@@ -314,7 +1060,7 @@ export class Issue implements IIssue {
       timeSpentSeconds?: number,
       properties?: any[]
     },
-    callback: any
+    callback?: any
   ): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/worklog`;
 
@@ -352,7 +1098,7 @@ export class Issue implements IIssue {
       id: string | number,
       expand?: string
     },
-    callback: any
+    callback?: any
   ): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/worklog/${params.id}`;
 
@@ -369,7 +1115,28 @@ export class Issue implements IIssue {
     return this.context.sendRequest(options, callback);
   }
 
-  public updateWorklog(params: any, callback: any): any {
+  public updateWorklog(
+    params: {
+      issueIdOrKey: number | string,
+      id: number | string,
+
+      notifyUsers?: boolean,
+      adjustEstimate?: string,
+      newEstimate?: string,
+      expand?: string,
+      overrideEditableFlag?: boolean,
+
+      author?: any,
+      updateAuthor?: any,
+      comment?: any,
+      visibility?: any,
+      started?: string,
+      timeSpent?: string,
+      timeSpentSeconds?: number | string,
+      properties?: any[]
+    },
+    callback?: any
+  ): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/worklog/${params.id}`;
 
     const options = {
@@ -399,7 +1166,18 @@ export class Issue implements IIssue {
     return this.context.sendRequest(options, callback);
   }
 
-  public deleteWorklog(params: any, callback: any): any {
+  public deleteWorklog(
+    params: {
+      issueIdOrKey: number | string,
+      id: number | string,
+      notifyUsers?: boolean,
+      adjustEstimate?: string,
+      newEstimate?: string,
+      increaseBy?: string,
+      overrideEditableFlag?: boolean
+    },
+    callback?: any
+  ): any {
     const endpoint: string = `${this.prefix}/${params.issueIdOrKey}/worklog/${params.id}`;
 
     const options = {
@@ -419,19 +1197,88 @@ export class Issue implements IIssue {
     return this.context.sendRequest(options, callback);
   }
 
-  public getWorklogPropertyKeys(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getWorklogPropertyKeys(
+    params: {
+      issueIdOrKey: number | string,
+      worklogId: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string =
+      `${this.prefix}/${params.issueIdOrKey}/worklog/${params.worklogId}/properties`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public getWorklogProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public getWorklogProperty(
+    params: {
+      issueIdOrKey: number | string,
+      worklogId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string =
+      `${this.prefix}/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'GET',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public setWorklogProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public setWorklogProperty(
+    params: {
+      issueIdOrKey: number | string,
+      worklogId: number | string,
+      propertyKey: string,
+      body?: any
+    },
+    callback?: any
+  ): any {
+    const endpoint: string =
+      `${this.prefix}/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'PUT',
+      json: true,
+      followAllRedirects: true,
+      body: params.body
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 
-  public deleteWorklogProperty(params: any, callback: any): any {
-    throw new Error(errors.NOT_IMPLEMENTED);
+  public deleteWorklogProperty(
+    params: {
+      issueIdOrKey: number | string,
+      worklogId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string =
+      `${this.prefix}/${params.issueIdOrKey}/worklog/${params.worklogId}/properties/${params.propertyKey}`;
+
+    const options = {
+      uri: this.context.makeUrl(endpoint, 'api'),
+      method: 'DELETE',
+      json: true,
+      followAllRedirects: true
+    };
+
+    return this.context.sendRequest(options, callback);
   }
 }

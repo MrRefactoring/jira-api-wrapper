@@ -295,40 +295,79 @@ is still valid!
 | | `sprint.setProperty({ params })` | PUT /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
 | | `sprint.deleteProperty({ params })` | DELETE /rest/agile/1.0/sprint/{sprintId}/properties/{propertyKey}
 | | `sprint.swapSprint({ params })` | POST /rest/agile/1.0/sprint/{sprintId}/swap
+| Development Information
+| | `developmentInformation.storeDevelopmentInformation({ params })` | POST /rest/devinfo/0.10/bulk
+| | `developmentInformation.getRepository({ params })` | GET /rest/devinfo/0.10/repository/{repositoryId}
+| | `developmentInformation.deleteRepository({ params })` | DELETE /rest/devinfo/0.10/repository/{repositoryId}
+| | `developmentInformation.deleteDevelopmentInformationByProperties({ params })` | DELETE /rest/devinfo/0.10/bulkByProperties
+| | `developmentInformation.checkIfDataExistsForSuppliedProperties({ params })` | GET /rest/devinfo/0.10/existsByProperties
+| | `developmentInformation.deleteDevelopmentInformationEntity({ params })` | DELETE /rest/devinfo/0.10/repository/{repositoryId}/{entityType}/{entityId}
+| Feature Flags
+| | `featureFlags.submitFeatureFlagData({ params })` | 
+| | `featureFlags.deleteFeatureFlagsByProperty({ params })` | 
+| | `featureFlags.getFeatureFlagById({ params })` | 
+| | `featureFlags.deleteFeatureFlagById({ params })` | 
+| Deployments
+| | `deployments.submitDeploymentData({ params })` | POST /rest/deployments/0.1/bulk
+| | `deployments.deleteDeploymentsByProperty({ params })` | DELETE /rest/deployments/0.1/bulkByProperties
+| | `deployments.getDeploymentByKey({ params })` | GET /rest/deployments/0.1/pipelines/{pipelineId}/environments/{environmentId}/deployments/{deploymentSequenceNumber}
+| | `deployments.deleteDeploymentByKey({ params })` | DELETE /rest/deployments/0.1/pipelines/{pipelineId}/environments/{environmentId}/deployments/{deploymentSequenceNumber}
+| Builds
+| | `builds.submitBuildData({ params })` | POST /rest/builds/0.1/bulk
+| | `builds.deleteBuildsByProperty({ params })` | DELETE /rest/builds/0.1/bulkByProperties
+| | `builds.getBuildByKey({ params })` | GET /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
+| | `builds.deleteBuildByKey({ params })` | DELETE /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
 
-* developmentInformation `help wanted`
-    * [storeDevelopmentInformation](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-bulk-post) /rest/devinfo/0.10/bulk `help wanted`
-    * [getRepository](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-repository-repositoryId-get) /rest/devinfo/0.10/repository/{repositoryId} `help wanted`
-    * [deleteRepository](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-repository-repositoryId-delete) /rest/devinfo/0.10/repository/{repositoryId} `help wanted`
-    * [deleteDevelopmentInformationByProperties](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-bulkByProperties-delete) /rest/devinfo/0.10/bulkByProperties `help wanted`
-    * [checkIfDataExistsForSuppliedProperties](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-existsByProperties-get) /rest/devinfo/0.10/existsByProperties `help wanted`
-    * [deleteDevelopmentInformationEntity](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-devinfo-0-10-repository-repositoryId-entityType-entityId-delete) /rest/devinfo/0.10/repository/{repositoryId}/{entityType}/{entityId} `help wanted`
-* featureFlags `help wanted`
-    * [submitFeatureFlagData](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-bulk-post) /rest/featureflags/0.1/bulk `help wanted`
-    * [deleteFeatureFlagsByProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-bulkByProperties-delete) /rest/featureflags/0.1/bulkByProperties `help wanted`
-    * [getFeatureFlagById](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-flag-featureFlagId-get) /rest/featureflags/0.1/flag/{featureFlagId} `help wanted`
-    * [deleteFeatureFlagById](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-featureflags-0-1-flag-featureFlagId-delete) /rest/featureflags/0.1/flag/{featureFlagId} `help wanted`
-* deployments `help wanted`
-    * [submitDeploymentData](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-deployments-0-1-bulk-post) /rest/deployments/0.1/bulk `help wanted`
-    * [deleteDeploymentsByProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-deployments-0-1-bulkByProperties-delete) /rest/deployments/0.1/bulkByProperties `help wanted`
-    * [getDeploymentByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-deployments-0-1-pipelines-pipelineId-environments-environmentId-deployments-deploymentSequenceNumber-get) /rest/deployments/0.1/pipelines/{pipelineId}/environments/{environmentId}/deployments/{deploymentSequenceNumber} `help wanted`
-    * [deleteDeploymentByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-deployments-0-1-pipelines-pipelineId-environments-environmentId-deployments-deploymentSequenceNumber-delete) /rest/deployments/0.1/pipelines/{pipelineId}/environments/{environmentId}/deployments/{deploymentSequenceNumber} `help wanted`
-* builds `help wanted`
-    * [submitBuildData](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-bulk-post) /rest/builds/0.1/bulk `help wanted`
-    * [deleteBuildsByProperty](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-bulkByProperties-delete) /rest/builds/0.1/bulkByProperties `help wanted`
-    * [getBuildByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-pipelines-pipelineId-builds-buildNumber-get) /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber} `help wanted`
-    * [deleteBuildByKey](https://developer.atlassian.com/cloud/jira/software/rest/#api-rest-builds-0-1-pipelines-pipelineId-builds-buildNumber-delete) /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber} `help wanted`
-
-### Rest Api supported calls ###
+### Rest Api supported calls
 | API | Method | REST Call |
 | ----- | ------ | --------- |
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
 | | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk
-| | `issue.addWorklog({ params })` | POST /rest/api/3/issue/{issueIdOrKey}/worklog
-| | `issue.getWorklog({ params })` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
-| | `issue.updateWorklog({ params })` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
-| | `issue.deleteWorklog({ params })` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.getCreateIssueMetadata({params})` | GET /rest/api/3/issue/createmeta
+| | `issue.getIssuePickerSuggestions({params})` | GET /rest/api/3/issue/picker
+| | `issue.bulkSetIssueProperty({params})` | PUT /rest/api/3/issue/properties/{propertyKey}
+| | `issue.bulkDeleteIssueProperty({params})` | DELETE /rest/api/3/issue/properties/{propertyKey}
+| | `issue.getIssue({params})` | GET /rest/api/3/issue/{issueIdOrKey}
+| | `issue.editIssue({params})` | PUT /rest/api/3/issue/{issueIdOrKey}
+| | `issue.deleteIssue({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}
+| | `issue.assignIssue({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/assignee
+| | `issue.addAttachment({params})` | POST /rest/api/3/issue/{issueIdOrKey}/attachments
+| | `issue.getChangeLog({params})` | GET /rest/api/3/issue/{issueIdOrKey}/changelog
+| | `issue.getComments({params})` | GET /rest/api/3/issue/{issueIdOrKey}/comment
+| | `issue.addComment({params})` | POST /rest/api/3/issue/{issueIdOrKey}/comment
+| | `issue.getComment({params})` | GET /rest/api/3/issue/{issueIdOrKey}/comment/{id}
+| | `issue.updateComment({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/comment/{id}
+| | `issue.deleteComment({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/comment/{id}
+| | `issue.getEditIssueMetadata({params})` | GET /rest/api/3/issue/{issueIdOrKey}/editmeta
+| | `issue.sendNotificationForIssue({params})` | POST /rest/api/3/issue/{issueIdOrKey}/notify
+| | `issue.getIssuePropertyKeys({params})` | GET /rest/api/3/issue/{issueIdOrKey}/properties
+| | `issue.getIssueProperty({params})` | GET /rest/api/3/issue/{issueIdOrKey}/properties/{propertyKey}
+| | `issue.setIssueProperty({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/properties/{propertyKey}
+| | `issue.deleteIssueProperty({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/properties/{propertyKey}
+| | `issue.getRemoteIssueLinks({params})` | GET /rest/api/3/issue/{issueIdOrKey}/remotelink
+| | `issue.createOrUpdateRemoteIssueLink({params})` | POST /rest/api/3/issue/{issueIdOrKey}/remotelink
+| | `issue.deleteRemoteIssueLinkByGlobalId({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/remotelink
+| | `issue.getRemoteIssueLinkById({params})` | GET /rest/api/3/issue/{issueIdOrKey}/remotelink/{linkId}
+| | `issue.updateRemoteIssueLink({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/remotelink/{linkId}
+| | `issue.deleteRemoteIssueLinkById({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/remotelink/{linkId}
+| | `issue.getTransitions({params})` | GET /rest/api/3/issue/{issueIdOrKey}/transitions
+| | `issue.transitionIssue({params})` | POST /rest/api/3/issue/{issueIdOrKey}/transitions
+| | `issue.getVotes({params})` | GET /rest/api/3/issue/{issueIdOrKey}/votes
+| | `issue.addVote({params})` | POST /rest/api/3/issue/{issueIdOrKey}/votes
+| | `issue.deleteVote({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/votes
+| | `issue.getIssueWatchers({params})` | GET /rest/api/3/issue/{issueIdOrKey}/watchers
+| | `issue.addWatcher({params})` | POST /rest/api/3/issue/{issueIdOrKey}/watchers
+| | `issue.deleteWatcher({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/watchers
+| | `issue.getIssueWorklogs({params})` | GET /rest/api/3/issue/{issueIdOrKey}/worklog
+| | `issue.addWorklog({params})` | POST /rest/api/3/issue/{issueIdOrKey}/worklog
+| | `issue.getWorklog({params})` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.updateWorklog({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.deleteWorklog({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{id}
+| | `issue.getWorklogPropertyKeys({params})` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties
+| | `issue.getWorklogProperty({params})` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
+| | `issue.setWorklogProperty({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
+| | `issue.deleteWorklogProperty({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
 | Myself
 | | `myself.getCurrentUser()` | GET /rest/api/3/myself |
 | Search 

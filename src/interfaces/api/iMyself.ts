@@ -4,5 +4,5 @@ export interface IMyself {
   context: IJiraApi;
   prefix: string;
 
-  getCurrentUser(params: any, callback?: any | undefined): any;
+  getCurrentUser(params?: { expand?: string }, callback?: any | undefined): any;
 }

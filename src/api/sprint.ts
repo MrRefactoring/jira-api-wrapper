@@ -10,8 +10,18 @@ export class Sprint implements ISprint {
     this.context = context;
   }
 
-  public createSprint(params: any = {}, callback: any): any {
+  public createSprint(
+    params?: {
+      name?: string,
+      startDate?: string,
+      endDate?: string,
+      originBoardId?: number,
+      goal?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = this.prefix;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -30,7 +40,12 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public getSprint(params: any, callback: any): any {
+  public getSprint(
+    params: {
+      sprintId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
@@ -43,7 +58,22 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public updateSprint(params: any, callback: any): any {
+  public updateSprint(
+    params: {
+      sprintId: number | string,
+
+      id?: number | string,
+      self?: string,
+      state?: string,
+      name?: string,
+      startDate?: string,
+      endDate?: string,
+      completeDate?: string,
+      originBoardId?: number,
+      goal?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
@@ -67,7 +97,22 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public partiallyUpdateSprint(params: any, callback: any): any {
+  public partiallyUpdateSprint(
+    params: {
+      sprintId: number | string,
+
+      id?: number | string,
+      self?: string,
+      state?: string,
+      name?: string,
+      startDate?: string,
+      endDate?: string,
+      completeDate?: string,
+      originBoardId?: number,
+      goal?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
@@ -91,7 +136,12 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public deleteSprint(params: any, callback: any): any {
+  public deleteSprint(
+    params: {
+      sprintId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}`;
 
     const options = {
@@ -104,7 +154,19 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssuesForSprint(params: any, callback: any): any {
+  public getIssuesForSprint(
+    params: {
+      sprintId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}/issue`;
 
     const options = {
@@ -125,7 +187,17 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public moveIssuesToSprintAndRank(params: any, callback: any): any {
+  public moveIssuesToSprintAndRank(
+    params: {
+      sprintId: number | string,
+
+      issues?: string[],
+      rankBeforeIssue?: string,
+      rankAfterIssue?: string,
+      rankCustomFieldId?: number
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}/issue`;
 
     const options = {
@@ -144,7 +216,12 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public getPropertiesKeys(params: any, callback: any): any {
+  public getPropertiesKeys(
+    params: {
+      sprintId?: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}/properties`;
 
     const options = {
@@ -157,7 +234,13 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public getProperty(params: any, callback: any): any {
+  public getProperty(
+    params: {
+      sprintId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}/properties/${params.propertyKey}`;
 
     const options = {
@@ -170,7 +253,13 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public setProperty(params: any, callback: any): any {
+  public setProperty(
+    params: {
+      sprintId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}/properties/${params.propertyKey}`;
 
     const options = {
@@ -183,7 +272,13 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public deleteProperty(params: any, callback: any): any {
+  public deleteProperty(
+    params: {
+      sprintId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}/properties/${params.propertyKey}`;
 
     const options = {
@@ -196,7 +291,13 @@ export class Sprint implements ISprint {
     return this.context.sendRequest(options, callback);
   }
 
-  public swapSprint(params: any, callback: any): any {
+  public swapSprint(
+    params: {
+      sprintId: number | string,
+      sprintToSwapWith?: number
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.sprintId}/swap`;
 
     const options = {

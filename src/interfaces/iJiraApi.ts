@@ -59,15 +59,19 @@ export interface IJiraApi {
   developmentInformation: IDevelopmentInformation;
   featureFlags: IFeatureFlags;
 
-  makeUrl(path: string, apiType:
-    'agile'
-    | 'api'
-    | 'auth'
-    | 'webhook'
-    | 'devInfo'
-    | 'featureFlags'
-    | 'deployment'
-    | 'builds'
+  makeUrl(
+    path: string,
+    apiType:
+      'agile'
+      | 'api'
+      | 'auth'
+      | 'webhook'
+      | 'devInfo'
+      | 'featureFlags'
+      | 'deployment'
+      | 'builds'
+      | string,
+    apiVersion?: number | string
   ): any;
   sendRequest(options: any, callback: any, successString?: string): any;
 }

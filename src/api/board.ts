@@ -10,8 +10,26 @@ export class Board implements IBoard {
     this.context = context;
   }
 
-  public getAllBoards(params: any = {}, callback: any): any {
+  public getAllBoards(
+    params?: {
+      startAt?: number,
+      maxResults?: number,
+      type?: string,
+      name?: string,
+      projectKeyOrId?: string | number,
+      accountIdLocation?: string,
+      userkeyLocation?: string,
+      usernameLocation?: string,
+      projectLocation?: string,
+      includePrivate?: boolean,
+      negateLocationFiltering?: boolean,
+      orderBy?: string,
+      expand?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = this.prefix;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -38,8 +56,17 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public createBoard(params: any = {}, callback: any): any {
+  public createBoard(
+    params?: {
+      name?: string,
+      type?: string,
+      filterId?: number,
+      location?: any,
+    },
+    callback?: any
+  ): any {
     const endpoint = this.prefix;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -57,7 +84,12 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getBoard(params: any, callback: any): any {
+  public getBoard(
+    params: {
+      boardId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}`;
 
     const options = {
@@ -70,7 +102,12 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public deleteBoard(params: any, callback: any): any {
+  public deleteBoard(
+    params: {
+      boardId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}`;
 
     const options = {
@@ -83,7 +120,19 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssuesForBacklog(params: any, callback: any): any {
+  public getIssuesForBacklog(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/backlog`;
 
     const options = {
@@ -104,7 +153,12 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getConfiguration(params: any, callback: any): any {
+  public getConfiguration(
+    params: {
+      boardId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/configuration`;
 
     const options = {
@@ -117,7 +171,16 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getEpics(params: any, callback: any): any {
+  public getEpics(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      done?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/epic`;
 
     const options = {
@@ -135,7 +198,19 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssuesWithoutEpic(params: any, callback: any): any {
+  public getIssuesWithoutEpic(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/epic/none/issue`;
 
     const options = {
@@ -156,7 +231,20 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssuesForEpic(params: any, callback: any): any {
+  public getIssuesForEpic(
+    params: {
+      boardId: number | string,
+      epicId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/epic/${params.epicId}/issue`;
 
     const options = {
@@ -177,7 +265,12 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getFeaturesForBoard(params: any, callback: any): any {
+  public getFeaturesForBoard(
+    params: {
+      boardId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/features`;
 
     const options = {
@@ -190,8 +283,17 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public toggleFeatures(params: any, callback: any): any {
-    const endpoint = `${this.prefix}/${params.boardId}/features`;
+  public toggleFeatures(
+    params: {
+      boardIdPath: number | string,
+
+      boardId?: number | string,
+      feature?: string,
+      enabling?: boolean
+    },
+    callback?: any
+  ): any {
+    const endpoint = `${this.prefix}/${params.boardIdPath}/features`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -208,7 +310,19 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssuesForBoard(params: any, callback: any): any {
+  public getIssuesForBoard(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string,
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
@@ -229,7 +343,17 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public moveIssuesToBoard(params: any, callback: any): any {
+  public moveIssuesToBoard(
+    params: {
+      boardId: number | string,
+
+      issues?: string[],
+      rankBeforeIssue?: string,
+      rankAfterIssue?: string,
+      rankCustomFieldId?: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {
@@ -248,7 +372,15 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getProjects(params: any, callback: any): any {
+  public getProjects(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/project`;
 
     const options = {
@@ -265,7 +397,12 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getProjectsFull(params: any, callback: any): any {
+  public getProjectsFull(
+    params: {
+      boardId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/project/full`;
 
     const options = {
@@ -278,7 +415,12 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getBoardPropertyKeys(params: any, callback: any): any {
+  public getBoardPropertyKeys(
+    params: {
+      boardId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties`;
 
     const options = {
@@ -291,7 +433,13 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getBoardProperty(params: any, callback: any): any {
+  public getBoardProperty(
+    params: {
+      boardId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
@@ -304,7 +452,13 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public setBoardProperty(params: any, callback: any): any {
+  public setBoardProperty(
+    params: {
+      boardId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
@@ -317,7 +471,13 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public deleteBoardProperty(params: any, callback: any): any {
+  public deleteBoardProperty(
+    params: {
+      boardId: number | string,
+      propertyKey: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/properties/${params.propertyKey}`;
 
     const options = {
@@ -330,7 +490,15 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getAllQuickFilters(params: any, callback: any): any {
+  public getAllQuickFilters(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/quickfilter`;
 
     const options = {
@@ -347,7 +515,13 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getQuickFilter(params: any, callback: any): any {
+  public getQuickFilter(
+    params: {
+      boardId: number | string,
+      quickFilterId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/quickfilter/${params.quickFilterId}`;
 
     const options = {
@@ -360,7 +534,12 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getReportsForBoard(params: any, callback: any): any {
+  public getReportsForBoard(
+    params: {
+      boardId: number | string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/reports`;
 
     const options = {
@@ -373,7 +552,16 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getAllSprints(params: any, callback: any): any {
+  public getAllSprints(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      state?: string,
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/sprint`;
 
     const options = {
@@ -391,7 +579,20 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssuesForSprint(params: any, callback: any): any {
+  public getIssuesForSprint(
+    params: {
+      boardId: number | string,
+      sprintId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/sprint/${params.sprintId}/issue`;
 
     const options = {
@@ -412,7 +613,16 @@ export class Board implements IBoard {
     return this.context.sendRequest(options, callback);
   }
 
-  public getAllVersions(params: any, callback: any): any {
+  public getAllVersions(
+    params: {
+      boardId: number | string,
+
+      startAt?: number,
+      maxResults?: number,
+      released?: string
+    },
+    callback?: any
+  ): any {
     const endpoint = `${this.prefix}/${params.boardId}/version`;
 
     const options = {

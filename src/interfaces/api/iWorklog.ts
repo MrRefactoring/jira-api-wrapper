@@ -5,10 +5,10 @@ export interface IWorklog {
     context: IJiraApi;
 
     getIDsOfDeletedWorklogs(
-      params: {
+      params?: {
         since?: number
       },
-      callback: any
+      callback?: any
     ): any;
 
     getWorklogs(
@@ -16,14 +16,14 @@ export interface IWorklog {
         expand?: string,
         ids: number[]
       },
-      callback: any
+      callback?: any
     ): any;
 
     getIDsOfUpdatedWorklogs(
-      params: {
+      params?: {
         since?: number,
         expand?: string
       },
-      callback: any
+      callback?: any
     ): any;
 }

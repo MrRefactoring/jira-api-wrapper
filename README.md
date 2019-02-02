@@ -3,8 +3,8 @@
 Jira Api Wrapper for NodeJS
 
 Supports:
-* [REST supports API v3](#rest-api-supported-calls) (in progress)
-* [Agile supports API](#agile-supported-calls)
+* [Supported REST API v3](#rest-api-supported-calls) (in progress)
+* [Supported Agile API](#agile-supported-calls)
 * [Auth API](https://developer.atlassian.com/cloud/jira/platform/security-for-other-integrations/) (in progress)
 * [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 

@@ -1,12 +1,10 @@
-# jira-api-wrapper
-
-[![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
+# jira-api-wrapper [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
 
 Jira Api Wrapper for NodeJS
 
 Supports:
-* [REST API v3](https://developer.atlassian.com/cloud/jira/platform/rest/v3/) (in progress)
-* [Agile API](https://developer.atlassian.com/cloud/jira/software/rest/) (help needed)
+* [REST supports API v3](#rest-api-supported-calls) (in progress)
+* [Agile supports API](#agile-supported-calls)
 * [Auth API](https://developer.atlassian.com/cloud/jira/platform/security-for-other-integrations/) (in progress)
 * [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 
@@ -237,7 +235,7 @@ is still valid!
 
 ## Supported API Calls
 
-### Agile supported calls ###
+### Agile supported calls
 | API | Method | REST Call |
 | ----- | ------ | --------- |
 | Backlog

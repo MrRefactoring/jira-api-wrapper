@@ -133,54 +133,61 @@ class JiraApi implements IJiraApi {
     JiraApi.validateConfig(config);
   }
 
-  public makeUrl(path: string, apiType?:
-    'agile'
-    | 'api'
-    | 'auth'
-    | 'webhook'
-    | 'devInfo'
-    | 'featureFlags'
-    | 'deployment'
-    | 'builds'
+  public makeUrl(
+    path: string,
+    apiType:
+      'agile'
+      | 'api'
+      | 'auth'
+      | 'webhook'
+      | 'devInfo'
+      | 'featureFlags'
+      | 'deployment'
+      | 'builds'
+      | string,
+    apiVersion?: number | string
   ): any {
     apiType = apiType || 'api';
-    let apiVersion: number | string;
+
+    let localApiVersion: number | string;
 
     switch (apiType) {
       case 'agile':
-        apiVersion = this.agileApiVersion;
+        localApiVersion = this.agileApiVersion;
         break;
       case 'api':
-        apiVersion = this.apiVersion;
+        localApiVersion = this.apiVersion;
         break;
       case 'auth':
-        apiVersion = this.authApiVersion;
+        localApiVersion = this.authApiVersion;
         break;
       case 'webhook':
-        apiVersion = this.webhookApiVersion;
+        localApiVersion = this.webhookApiVersion;
         break;
       case 'devInfo':
-        apiVersion = this.devInfoApiVersion;
+        localApiVersion = this.devInfoApiVersion;
         break;
       case 'featureFlags':
-        apiVersion = this.featureFlagsApiVersion;
+        localApiVersion = this.featureFlagsApiVersion;
         break;
       case 'deployment':
-        apiVersion = this.deploymentApiVersion;
+        localApiVersion = this.deploymentApiVersion;
         break;
       case 'builds':
-        apiVersion = this.buildsApiVersion;
+        localApiVersion = this.buildsApiVersion;
         break;
       default:
-        apiVersion = this.apiVersion;
+        localApiVersion = this.apiVersion;
         break;
     }
+
+    localApiVersion = apiVersion || localApiVersion;
 
     const requestUrl = url.format({
       hostname: this.host,
       protocol: this.protocol,
       port: this.port,
-      pathname: `${this.pathPrefix}rest/${apiType}/${apiVersion}/${path}`
+      pathname: `${this.pathPrefix}rest/${apiType}/${localApiVersion}/${path}`
     });
 
     return decodeURIComponent(requestUrl);

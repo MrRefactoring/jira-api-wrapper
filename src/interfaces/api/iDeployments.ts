@@ -1,11 +1,44 @@
 import { IJiraApi } from 'interfaces/iJiraApi';
 
 export interface IDeployments {
-  prefix: string;
   context: IJiraApi;
 
-  submitDeploymentData(params: any, callback: any): any;
-  deleteDeploymentsByProperty(params: any, callback: any): any;
-  getDeploymentByKey(params: any, callback: any): any;
-  deleteDeploymentByKey(params: any, callback: any): any;
+  submitDeploymentData(
+    params: {
+      Authorization: string,
+
+      properties?: any,
+      deployments: any[]
+    },
+    callback?: any
+  ): any;
+
+  deleteDeploymentsByProperty(
+    params: {
+      Authorization: string,
+      _updateSequenceNumber?: number
+    },
+    callback?: any
+  ): any;
+
+  getDeploymentByKey(
+    params: {
+      Authorization: string
+      pipelineId: string,
+      environmentId: string,
+      deploymentSequenceNumber: number,
+    },
+    callback?: any
+  ): any;
+
+  deleteDeploymentByKey(
+    params: {
+      Authorization: string
+      pipelineId: string,
+      environmentId: string,
+      deploymentSequenceNumber: number,
+      _updateSequenceNumber?: number,
+    },
+    callback?: any
+  ): any;
 }

@@ -4,6 +4,22 @@ export interface IBacklog {
   context: IJiraApi;
   prefix: string;
 
-  moveIssuesToBacklog(params: any, callback?: any): any;
-  moveIssuesToBacklogForBoard(params: any, callback?: any): any;
+  moveIssuesToBacklog(
+    params?: {
+      issues?: string[]
+    },
+    callback?: any
+  ): any;
+
+  moveIssuesToBacklogForBoard(
+    params: {
+      boardId: number,
+
+      issues?: string[],
+      rankBeforeIssue?: string,
+      rankAfterIssue?: string,
+      rankCustomFieldId?: number
+    },
+    callback?: any
+  ): any;
 }

@@ -10,8 +10,14 @@ export class Backlog implements IBacklog {
     this.prefix = 'backlog';
   }
 
-  public moveIssuesToBacklog(params: any = {}, callback: any): any {
+  public moveIssuesToBacklog(
+    params?: {
+      issues?: string[]
+    },
+    callback?: any
+  ): any {
     const endpoint: string = `${this.prefix}/issue`;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -26,7 +32,17 @@ export class Backlog implements IBacklog {
     return this.context.sendRequest(options, callback);
   }
 
-  public moveIssuesToBacklogForBoard(params: any, callback: any): any {
+  public moveIssuesToBacklogForBoard(
+    params: {
+      boardId: number,
+
+      issues?: string[],
+      rankBeforeIssue?: string,
+      rankAfterIssue?: string,
+      rankCustomFieldId?: number
+    },
+    callback?: any
+  ): any {
     const endpoint: string = `${this.prefix}/${params.boardId}/issue`;
 
     const options = {

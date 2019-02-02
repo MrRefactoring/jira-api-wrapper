@@ -208,7 +208,7 @@ class JiraApi implements IJiraApi {
 
     if (callback) {
       request(options, (error: any, response: any, body: any) => {
-        if (error || response.statusCode.toString()[0] !== '2') {
+        if (error || response.statusCode.toString()[0] !== '2' || response.statusCode.toString()[0] !== '3') {
           return callback(error ? error : body, null, response);
         }
 

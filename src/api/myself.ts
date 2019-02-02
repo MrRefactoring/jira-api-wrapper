@@ -10,8 +10,9 @@ export class Myself implements IMyself {
     this.context = context;
   }
 
-  public getCurrentUser(params: any = {}, callback?: any): any {
+  public getCurrentUser(params?: { expand?: string }, callback?: any): any {
     const endpoint = this.prefix;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'api'),

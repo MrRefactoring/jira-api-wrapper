@@ -319,6 +319,8 @@ is still valid!
 ### Rest Api supported calls
 | API | Method | REST Call |
 | ----- | ------ | --------- |
+| Avatar
+| | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
 | | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk
@@ -366,6 +368,10 @@ is still valid!
 | | `issue.getWorklogProperty({params})` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
 | | `issue.setWorklogProperty({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
 | | `issue.deleteWorklogProperty({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
+| Jql
+| | `jql.getFieldReferenceData()` | GET /rest/api/3/jql/autocompletedata
+| | `jql.getFieldAutoCompleteSuggestions({ params })` | GET /rest/api/3/jql/autocompletedata/suggestions
+| | `jql.convertUserIdentifiers({ params })` | POST /rest/api/3/jql/pdcleaner
 | Myself
 | | `myself.getCurrentUser()` | GET /rest/api/3/myself |
 | Search 

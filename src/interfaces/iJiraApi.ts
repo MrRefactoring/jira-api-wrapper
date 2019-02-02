@@ -69,5 +69,6 @@ export interface IJiraApi {
     | 'deployment'
     | 'builds'
   ): any;
+
   sendRequest(options: any, callback: any, successString?: string): any;
 }

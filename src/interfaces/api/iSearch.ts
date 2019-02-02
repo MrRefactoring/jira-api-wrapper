@@ -4,5 +4,20 @@ export interface ISearch {
   prefix: string;
   context: IJiraApi;
 
-  search(params: any, callback?: any): any;
+  search(
+    params?: {
+      method?: string,
+      timeout?: number,
+
+      jql?: string,
+      startAt?: number,
+      maxResults?: number,
+      validateQuery?: string,
+      fields?: string[],
+      expand?: string | string[],
+      properties?: string[],
+      fieldsByKeys?: boolean
+    },
+    callback?: any
+  ): any;
 }

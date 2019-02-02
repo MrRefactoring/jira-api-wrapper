@@ -10,7 +10,23 @@ export class Search implements ISearch {
     this.context = context;
   }
 
-  public search(params: any = {}, callback: any): any {
+  public search(
+    params?: {
+      method?: string,
+      timeout?: number,
+
+      jql?: string,
+      startAt?: number,
+      maxResults?: number,
+      validateQuery?: string,
+      fields?: string[],
+      expand?: string | string[],
+      properties?: string[],
+      fieldsByKeys?: boolean
+    },
+    callback?: any
+  ): any {
+    params = params || {};
     params.method = params.method || 'POST';
 
     const options: any = {
@@ -30,7 +46,7 @@ export class Search implements ISearch {
       fields: params.fields,
       expand: params.expand,
       properties: params.properties,
-      fieldsByKey: params.fieldsByKey
+      fieldsByKeys: params.fieldsByKeys
     };
 
     if (params.method === 'POST') {

@@ -10,8 +10,19 @@ export class Epic implements IEpic {
     this.context = context;
   }
 
-  public getIssuesWithoutEpic(params: any = {}, callback: any): any {
+  public getIssuesWithoutEpic(
+    params?: {
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
     const endpoint: string = `${this.prefix}/none/issue`;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -31,8 +42,14 @@ export class Epic implements IEpic {
     return this.context.sendRequest(options, callback);
   }
 
-  public removeIssuesFromEpic(params: any = {}, callback: any): any {
+  public removeIssuesFromEpic(
+    params?: {
+      issues?: string[]
+    },
+    callback?: any
+  ): any {
     const endpoint: string = `${this.prefix}/none/issue`;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -47,8 +64,13 @@ export class Epic implements IEpic {
     return this.context.sendRequest(options, callback);
   }
 
-  public getEpic(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}`;
+  public getEpic(
+    params: {
+      epicIdOrKey: number | string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.epicIdOrKey}`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -60,8 +82,17 @@ export class Epic implements IEpic {
     return this.context.sendRequest(options, callback);
   }
 
-  public partiallyUpdateEpic(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}`;
+  public partiallyUpdateEpic(
+    params: {
+      epicIdOrKey: number | string,
+      name?: string,
+      summary?: string,
+      color?: any,
+      done?: boolean
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.epicIdOrKey}`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -79,8 +110,19 @@ export class Epic implements IEpic {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIssuesForEpic(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/issue`;
+  public getIssuesForEpic(
+    params: {
+      epicIdOrKey: number | string,
+      startAt?: number,
+      maxResults?: number,
+      jql?: string,
+      validateQuery?: boolean,
+      fields?: string[],
+      expand?: string
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.epicIdOrKey}/issue`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -100,8 +142,14 @@ export class Epic implements IEpic {
     return this.context.sendRequest(options, callback);
   }
 
-  public moveIssuesToEpic(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/issue`;
+  public moveIssuesToEpic(
+    params: {
+      epicIdOrKey: number | string,
+      issues?: string[]
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.epicIdOrKey}/issue`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),
@@ -116,8 +164,16 @@ export class Epic implements IEpic {
     return this.context.sendRequest(options, callback);
   }
 
-  public rankEpics(params: any, callback: any): any {
-    const endpoint: string = `${this.prefix}/${params.epicIdOrKey || params.epicId || params.epicKey}/rank`;
+  public rankEpics(
+    params: {
+      epicIdOrKey: number | string,
+      rankBeforeEpic?: string,
+      rankAfterEpic?: string,
+      rankCustomFieldId?: number
+    },
+    callback?: any
+  ): any {
+    const endpoint: string = `${this.prefix}/${params.epicIdOrKey}/rank`;
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'agile'),

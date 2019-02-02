@@ -10,8 +10,9 @@ export class Worklog implements IWorklog {
     this.context = context;
   }
 
-  public getIDsOfDeletedWorklogs(params: { since?: number }, callback: any): any {
+  public getIDsOfDeletedWorklogs(params?: { since?: number }, callback?: any): any {
     const endpoint = `${this.prefix}/deleted`;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'api'),
@@ -26,7 +27,7 @@ export class Worklog implements IWorklog {
     return this.context.sendRequest(options, callback);
   }
 
-  public getWorklogs(params: { expand?: string, ids: number[] }, callback: any): any {
+  public getWorklogs(params: { expand?: string, ids: number[] }, callback?: any): any {
     const endpoint = `${this.prefix}/list`;
 
     const options = {
@@ -45,8 +46,9 @@ export class Worklog implements IWorklog {
     return this.context.sendRequest(options, callback);
   }
 
-  public getIDsOfUpdatedWorklogs(params: { since?: number, expand?: string }, callback: any): any {
+  public getIDsOfUpdatedWorklogs(params?: { since?: number, expand?: string }, callback?: any): any {
     const endpoint = `${this.prefix}/updated`;
+    params = params || {};
 
     const options = {
       uri: this.context.makeUrl(endpoint, 'api'),

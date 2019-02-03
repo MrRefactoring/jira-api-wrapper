@@ -10,7 +10,9 @@ Supports:
 
 # Installation
 
-`npm i jira-api-wrapper`
+```
+npm i jira-api-wrapper
+```
 
 ## Example
 
@@ -33,7 +35,7 @@ const someAsyncFunc = async () => {
 // Callback example
 api.search.search({
     jql: 'some jql request'
-}, (data) => { console.log(data); })
+}, (response) => { console.log(response); })
 ```
 
 ##### Pure NodeJS
@@ -55,7 +57,7 @@ const someAsyncFunc = async () => {
 // Callback example
 api.search.search({
     jql: 'some jql request'
-}, (data) => { console.log(data); })
+}, (response) => { console.log(response); })
 ```
 
 

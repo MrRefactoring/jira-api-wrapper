@@ -3,8 +3,8 @@
 Jira Api Wrapper for NodeJS
 
 Supports:
-* [REST supports API v3](#rest-api-supported-calls) (in progress)
-* [Agile supports API](#agile-supported-calls)
+* [Supported REST API v3](#rest-api-supported-calls) (in progress)
+* [Supported Agile API](#agile-supported-calls)
 * [Auth API](https://developer.atlassian.com/cloud/jira/platform/security-for-other-integrations/) (in progress)
 * [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 
@@ -319,6 +319,15 @@ is still valid!
 ### Rest Api supported calls
 | API | Method | REST Call |
 | ----- | ------ | --------- |
+| Application-properties
+| | `applicationProperties.getApplicationProperty({ params })` | GET /rest/api/3/application-properties
+| | `applicationProperties.getAdvancedSettings()` | GET /rest/api/3/application-properties/advanced-settings
+| | `applicationProperties.setApplicationProperty({ params })` | PUT /rest/api/3/application-properties/{id}
+| Applicationrole
+| | `applicationrole.getAllApplicationRoles()` | GET /rest/api/3/applicationrole
+| | `applicationrole.getApplicationRole({ params })` | GET /rest/api/3/applicationrole/{key}
+| Avatar
+| | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
 | | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk
@@ -366,6 +375,10 @@ is still valid!
 | | `issue.getWorklogProperty({params})` | GET /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
 | | `issue.setWorklogProperty({params})` | PUT /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
 | | `issue.deleteWorklogProperty({params})` | DELETE /rest/api/3/issue/{issueIdOrKey}/worklog/{worklogId}/properties/{propertyKey}
+| Jql
+| | `jql.getFieldReferenceData()` | GET /rest/api/3/jql/autocompletedata
+| | `jql.getFieldAutoCompleteSuggestions({ params })` | GET /rest/api/3/jql/autocompletedata/suggestions
+| | `jql.convertUserIdentifiers({ params })` | POST /rest/api/3/jql/pdcleaner
 | Myself
 | | `myself.getCurrentUser()` | GET /rest/api/3/myself |
 | Search 

@@ -1,3 +1,6 @@
+import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
+import { IApplicationrole } from 'interfaces/api/iApplicationrole';
+import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
 import { IBuilds } from 'interfaces/api/iBuilds';
@@ -6,6 +9,7 @@ import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation'
 import { IEpic } from 'interfaces/api/iEpic';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 import { IIssue } from 'interfaces/api/iIssue';
+import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
 import { ISearch } from 'interfaces/api/iSearch';
 import { ISprint } from 'interfaces/api/iSprint';
@@ -45,10 +49,14 @@ export interface IJiraApi {
   cookieJar?: any;
   rejectUnauthorized: any;
 
+  applicationProperties: IApplicationProperties;
+  applicationrole: IApplicationrole;
+  avatar: IAvatar;
   backlog: IBacklog;
   board: IBoard;
   epic: IEpic;
   issue: IIssue;
+  jql: IJql;
   myself: IMyself;
   search: ISearch;
   sprint: ISprint;

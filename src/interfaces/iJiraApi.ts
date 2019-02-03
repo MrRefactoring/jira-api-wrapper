@@ -1,4 +1,5 @@
 import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
+import { IApplicationrole } from 'interfaces/api/iApplicationrole';
 import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
@@ -49,6 +50,7 @@ export interface IJiraApi {
   rejectUnauthorized: any;
 
   applicationProperties: IApplicationProperties;
+  applicationrole: IApplicationrole;
   avatar: IAvatar;
   backlog: IBacklog;
   board: IBoard;

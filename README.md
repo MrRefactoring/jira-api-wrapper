@@ -323,6 +323,9 @@ is still valid!
 | | `applicationProperties.getApplicationProperty({ params })` | GET /rest/api/3/application-properties
 | | `applicationProperties.getAdvancedSettings()` | GET /rest/api/3/application-properties/advanced-settings
 | | `applicationProperties.setApplicationProperty({ params })` | PUT /rest/api/3/application-properties/{id}
+| Applicationrole
+| | `applicationrole.getAllApplicationRoles()` | GET /rest/api/3/applicationrole
+| | `applicationrole.getApplicationRole({ params })` | GET /rest/api/3/applicationrole/{key}
 | Avatar
 | | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
 | Issue |

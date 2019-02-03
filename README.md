@@ -319,6 +319,10 @@ is still valid!
 ### Rest Api supported calls
 | API | Method | REST Call |
 | ----- | ------ | --------- |
+| Application-properties
+| | `applicationProperties.getApplicationProperty({ params })` | GET /rest/api/3/application-properties
+| | `applicationProperties.getAdvancedSettings()` | GET /rest/api/3/application-properties/advanced-settings
+| | `applicationProperties.setApplicationProperty({ params })` | PUT /rest/api/3/application-properties/{id}
 | Avatar
 | | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
 | Issue |

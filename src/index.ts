@@ -3,6 +3,7 @@ import * as url from 'url';
 import * as errors from 'utils/errors';
 import * as oauth from 'utils/oauth';
 
+import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
 import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
@@ -22,6 +23,7 @@ import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 import { IConfig } from 'interfaces/iConfig';
 import { IJiraApi } from 'interfaces/iJiraApi';
 
+import { ApplicationProperties } from 'api/applicationProperties';
 import { Avatar } from 'api/avatar';
 import { Backlog } from 'api/backlog';
 import { Board } from 'api/board';
@@ -72,6 +74,7 @@ class JiraApi implements IJiraApi {
   public rejectUnauthorized: any;
   public webhookApiVersion: number | string;
 
+  public applicationProperties: IApplicationProperties;
   public avatar: IAvatar;
   public backlog: IBacklog;
   public board: IBoard;
@@ -122,6 +125,7 @@ class JiraApi implements IJiraApi {
 
     this.rejectUnauthorized = config.rejectUnauthorized;
 
+    this.applicationProperties = new ApplicationProperties(this);
     this.avatar = new Avatar(this);
     this.backlog = new Backlog(this);
     this.board = new Board(this);

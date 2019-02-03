@@ -1,3 +1,4 @@
+import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
 import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
@@ -47,6 +48,7 @@ export interface IJiraApi {
   cookieJar?: any;
   rejectUnauthorized: any;
 
+  applicationProperties: IApplicationProperties;
   avatar: IAvatar;
   backlog: IBacklog;
   board: IBoard;

@@ -5,6 +5,7 @@ import * as oauth from 'utils/oauth';
 
 import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
 import { IApplicationrole } from 'interfaces/api/iApplicationrole';
+import { IAttachment } from 'interfaces/api/iAttachment';
 import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
@@ -26,6 +27,7 @@ import { IJiraApi } from 'interfaces/iJiraApi';
 
 import { ApplicationProperties } from 'api/applicationProperties';
 import { Applicationrole } from 'api/applicationrole';
+import { Attachment } from 'api/attachment';
 import { Avatar } from 'api/avatar';
 import { Backlog } from 'api/backlog';
 import { Board } from 'api/board';
@@ -78,6 +80,7 @@ class JiraApi implements IJiraApi {
 
   public applicationProperties: IApplicationProperties;
   public applicationrole: IApplicationrole;
+  public attachment: IAttachment;
   public avatar: IAvatar;
   public backlog: IBacklog;
   public board: IBoard;
@@ -130,6 +133,7 @@ class JiraApi implements IJiraApi {
 
     this.applicationProperties = new ApplicationProperties(this);
     this.applicationrole = new Applicationrole(this);
+    this.attachment = new Attachment(this);
     this.avatar = new Avatar(this);
     this.backlog = new Backlog(this);
     this.board = new Board(this);

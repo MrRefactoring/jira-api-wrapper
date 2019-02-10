@@ -328,6 +328,12 @@ is still valid!
 | Applicationrole
 | | `applicationrole.getAllApplicationRoles()` | GET /rest/api/3/applicationrole
 | | `applicationrole.getApplicationRole({ params })` | GET /rest/api/3/applicationrole/{key}
+| Attachment
+| | `attachment.getGlobalAttachmentSettings()` | GET /rest/api/3/attachment/meta
+| | `attachment.getAttachmentMetadata({ params })` | GET /rest/api/3/attachment/{id}
+| | `attachment.deleteAttachment({ params })` | DELETE /rest/api/3/attachment/{id}
+| | `attachment.getAllMetadata({ params })` | GET /rest/api/3/attachment/{id}/expand/human
+| | `attachment.getContentsMetadata({ params })` | GET /rest/api/3/attachment/{id}/expand/raw
 | Avatar
 | | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
 | Issue |

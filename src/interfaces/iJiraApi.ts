@@ -1,7 +1,7 @@
 import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
 import { IApplicationrole } from 'interfaces/api/iApplicationrole';
 import { IAttachment } from 'interfaces/api/iAttachment';
-import {IAuditing} from 'interfaces/api/iAuditing';
+import { IAuditing } from 'interfaces/api/iAuditing';
 import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';

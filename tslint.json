@@ -15,14 +15,9 @@
     "eofline": true,
     "indent": [true, "spaces", 2],
     "semicolon": true,
-    "no-multiple-empty-lines": [true, {
-      "max": 1,
-      "maxEOF": 0,
-      "maxBOF": 0
-    }],
+    "no-consecutive-blank-lines": [true],
     "no-multi-spaces": true,
     "brace-style": false,
-    "quotes": [true, "single"],
     "object-curly-spacing": [true, "always"]
   },
   "rulesDirectory": []

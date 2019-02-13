@@ -334,6 +334,8 @@ is still valid!
 | | `attachment.deleteAttachment({ params })` | DELETE /rest/api/3/attachment/{id}
 | | `attachment.getAllMetadata({ params })` | GET /rest/api/3/attachment/{id}/expand/human
 | | `attachment.getContentsMetadata({ params })` | GET /rest/api/3/attachment/{id}/expand/raw
+| Auditing
+| | `auditing.getAuditRecords({ params })` | GET /rest/api/3/auditing/record
 | Avatar
 | | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
 | Issue |

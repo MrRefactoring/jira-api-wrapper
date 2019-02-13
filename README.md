@@ -338,6 +338,14 @@ is still valid!
 | | `auditing.getAuditRecords({ params })` | GET /rest/api/3/auditing/record
 | Avatar
 | | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
+| Dashboard
+| | `dashboard.getAllDashboards({ params })` | GET /rest/api/3/dashboard
+| | `dashboard.searchForDashboards({ params })` | GET /rest/api/3/dashboard/search
+| | `dashboard.getDashboardItemPropertyKeys({ params })` | GET /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties
+| | `dashboard.getDashboardItemProperty({ params })` | GET /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
+| | `dashboard.setDashboardItemProperty({ params })` | PUT /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
+| | `dashboard.deleteDashboardItemProperty({ params })` | DELETE /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
+| | `dashboard.getDashboard({ params })` | GET /rest/api/3/dashboard/{id}
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
 | | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk

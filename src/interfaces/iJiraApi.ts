@@ -6,6 +6,7 @@ import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
 import { IBuilds } from 'interfaces/api/iBuilds';
+import { IDashboard } from 'interfaces/api/iDashboard';
 import { IDeployments } from 'interfaces/api/iDeployments';
 import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
 import { IEpic } from 'interfaces/api/iEpic';
@@ -58,6 +59,7 @@ export interface IJiraApi {
   avatar: IAvatar;
   backlog: IBacklog;
   board: IBoard;
+  dashboard: IDashboard;
   epic: IEpic;
   issue: IIssue;
   jql: IJql;

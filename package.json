@@ -24,7 +24,9 @@
   "scripts": {
     "build": "npm rum lint && ttsc",
     "lint": "tslint src/**/*.ts",
-    "lint-fix": "npm run lint -- --fix"
+    "lint-fix": "npm run lint -- --fix",
+
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@zerollup/ts-transform-paths": "^1.7.0",

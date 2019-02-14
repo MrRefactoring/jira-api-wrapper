@@ -78,6 +78,7 @@ class JiraApi implements IJiraApi {
   } | undefined;
 
   public cookieJar: any;
+  public ca: any;
 
   public pathPrefix: string;
   public protocol: string;
@@ -139,6 +140,7 @@ class JiraApi implements IJiraApi {
     }
 
     this.rejectUnauthorized = config.rejectUnauthorized;
+    this.ca = config.ca;
 
     this.applicationProperties = new ApplicationProperties(this);
     this.applicationrole = new Applicationrole(this);
@@ -227,6 +229,7 @@ class JiraApi implements IJiraApi {
 
   public sendRequest(options: any, callback: any, successString: string): any {
     options.rejectUnauthorized = this.rejectUnauthorized;
+    options.ca = this.ca;
 
     if (this.oauth) {
       options.oauth = this.oauth;

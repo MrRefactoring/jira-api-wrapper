@@ -22,4 +22,5 @@ export interface IConfig {
 
   cookieJar?: any;
   rejectUnauthorized?: any;
+  ca?: any;
 }

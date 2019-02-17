@@ -338,6 +338,12 @@ is still valid!
 | | `auditing.getAuditRecords({ params })` | GET /rest/api/3/auditing/record
 | Avatar
 | | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
+| Comment
+| | `comment.getCommentsByIDs({ params })` | POST /rest/api/3/comment/list
+| | `comment.getCommentPropertyKeys({ params })` | GET /rest/api/3/comment/{commentId}/properties
+| | `comment.getCommentProperty({ params })` | GET /rest/api/3/comment/{commentId}/properties/{propertyKey}
+| | `comment.setCommentProperty({ params })` | PUT /rest/api/3/comment/{commentId}/properties/{propertyKey}
+| | `comment.deleteCommentProperty({ params })` | DELETE /rest/api/3/comment/{commentId}/properties/{propertyKey}
 | Component
 | | `component.createComponent({ params })` | POST /rest/api/3/component
 | | `component.getComponent({ params })` | GET /rest/api/3/component/{id}

@@ -3,9 +3,9 @@
 Jira Api Wrapper for NodeJS
 
 Supports:
-* [Supported REST API v3](#rest-api-supported-calls) (in progress)
 * [Supported Agile API](#agile-supported-calls)
-* [Auth API](https://developer.atlassian.com/cloud/jira/platform/security-for-other-integrations/) (in progress)
+* [Supported REST API v3](#rest-api-supported-calls) (in progress)
+* [Auth API](#auth-supported-calls) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
 * [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 
 # Installation
@@ -67,47 +67,6 @@ Depending on the Jira instance to which you are connecting, authentication may
 or may not be required for various API calls.
 
 `jira-api-wrapper` supports two forms of authentication:
-
-### Basic Authentication
-
-This is not recommended; it will require you to provide a username and password each
-time you connect to the Jira instance. However, jira-connector supports it
-for users who are unable to use OAuth.
-
-Example:
-
-```javascript 1.8
-const JiraApi = require('jira-api-wrapper');
-
-const api = new JiraApi({
-  host: 'jira.atlassian.net',
-  basicAuth: {
-    username: 'myUsername',
-    password: 'myPassword'
-  }
-});
-```
-
-### Basic Authentication (base64)
-
-Also not recommended, but slightly better than the above; it will require you to
-provide a Base64 encoded username and password (a Base64 encoding in the
-format of "username:password") each time you connect to the Jira instance.
-
-Example:
-
-```javascript 1.8
-const JiraApi = require('jira-api-wrapper');
-
-const api = new JiraApi({
-  host: 'jira.atlassian.net',
-  basicAuth: {
-    base64: 'bXlVc2VybmFtZTpteVBhc3N3b3Jk'
-  }
-});
-
-// Base64 encoding of 'myUsername:myPassword'
-```
 
 ### OAuth Authentication
 
@@ -197,7 +156,48 @@ const api = new JiraApi({
 // Jira is now authenticted with your account!
 ```
 
-### Cookie Jar
+### Basic Authentication 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+
+This is not recommended; it will require you to provide a username and password each
+time you connect to the Jira instance. However, jira-connector supports it
+for users who are unable to use OAuth.
+
+Example:
+
+```javascript 1.8
+const JiraApi = require('jira-api-wrapper');
+
+const api = new JiraApi({
+  host: 'jira.atlassian.net',
+  basicAuth: {
+    username: 'myUsername',
+    password: 'myPassword'
+  }
+});
+```
+
+### Basic Authentication (base64) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+
+Also not recommended, but slightly better than the above; it will require you to
+provide a Base64 encoded username and password (a Base64 encoding in the
+format of "username:password") each time you connect to the Jira instance.
+
+Example:
+
+```javascript 1.8
+const JiraApi = require('jira-api-wrapper');
+
+const api = new JiraApi({
+  host: 'jira.atlassian.net',
+  basicAuth: {
+    base64: 'bXlVc2VybmFtZTpteVBhc3N3b3Jk'
+  }
+});
+
+// Base64 encoding of 'myUsername:myPassword'
+```
+
+### Cookie Jar 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
 
 You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
 pain of setting up an OAuth method.
@@ -429,6 +429,14 @@ is still valid!
 | | `worklog.getIDsOfDeletedWorklogs({ params })` | GET /rest/api/3/worklog/deleted
 | | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list
 | | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated 
+
+### Auth supported calls 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+| API | Method | REST Call |
+| ----- | ------ | --------- |
+| Session
+| | `session.getSession()` | GET /rest/auth/1/session
+| | `session.createSession({ params })` | POST /rest/auth/1/session
+| | `session.deleteSession()` | DELETE /rest/auth/1/session
 
 ## License
 

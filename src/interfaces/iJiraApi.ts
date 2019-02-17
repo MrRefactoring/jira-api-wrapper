@@ -21,6 +21,7 @@ import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
 import { ISearch } from 'interfaces/api/iSearch';
+import { ISession } from 'interfaces/api/iSession';
 import { ISprint } from 'interfaces/api/iSprint';
 import { IWorklog } from 'interfaces/api/iWorklog';
 
@@ -79,6 +80,7 @@ export interface IJiraApi {
   search: ISearch;
   sprint: ISprint;
   worklog: IWorklog;
+  session: ISession;
 
   builds: IBuilds;
   deployments: IDeployments;

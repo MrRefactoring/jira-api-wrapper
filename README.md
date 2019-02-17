@@ -350,6 +350,8 @@ is still valid!
 | | `component.updateComponent({ params })` | PUT /rest/api/3/component/{id}
 | | `component.deleteComponent({ params })` | DELETE /rest/api/3/component/{id}
 | | `component.getComponentIssuesCount({ params })` | GET /rest/api/3/component/{id}/relatedIssueCounts
+| CustomFieldOption
+| | `customFieldOption.getCustomFieldOption({ params })` | GET /rest/api/3/customFieldOption/{id}
 | Dashboard
 | | `dashboard.getAllDashboards({ params })` | GET /rest/api/3/dashboard
 | | `dashboard.searchForDashboards({ params })` | GET /rest/api/3/dashboard/search

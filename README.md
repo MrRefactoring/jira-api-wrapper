@@ -1,9 +1,9 @@
 # 🔧Jira Api Wrapper for NodeJS [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
 
 Supports:
-* [Supported Agile API](#agile-supported-calls)
-* [Supported REST API v3](#rest-api-supported-calls) (in progress)
-* [Auth API](#auth-supported-calls) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+* ⬇️ [Supported Agile API](#agile-supported-calls)
+* ⬇️ [Supported REST API v3](#rest-supported-calls) (in progress)
+* ⬇️ [Supported Auth API](#auth-supported-calls) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
 * [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 
 # Installation
@@ -154,7 +154,8 @@ const api = new JiraApi({
 // Jira is now authenticted with your account!
 ```
 
-### Basic Authentication 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### Basic Authentication
 
 This is not recommended; it will require you to provide a username and password each
 time you connect to the Jira instance. However, jira-connector supports it
@@ -173,8 +174,8 @@ const api = new JiraApi({
   }
 });
 ```
-
-### Basic Authentication (base64) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### Basic Authentication (base64)
 
 Also not recommended, but slightly better than the above; it will require you to
 provide a Base64 encoded username and password (a Base64 encoding in the
@@ -194,8 +195,8 @@ const api = new JiraApi({
 
 // Base64 encoding of 'myUsername:myPassword'
 ```
-
-### Cookie Jar 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### Cookie Jar
 
 You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
 pain of setting up an OAuth method.
@@ -237,7 +238,8 @@ is still valid!
 
 ### Agile supported calls
 
-[⬇️Go to rest api supported calls](#rest-api-supported-calls)
+* [⬇️ Rest supported calls](#rest-supported-calls)
+* [⬇️ Auth supported calls](#auth-supported-calls)
 
 | API | Method | REST Call |
 | ----- | ------ | --------- |
@@ -319,7 +321,11 @@ is still valid!
 | | `builds.getBuildByKey({ params })` | GET /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
 | | `builds.deleteBuildByKey({ params })` | DELETE /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
 
-### Rest Api supported calls
+### Rest supported calls
+
+* [⬆️ Agile supported calls](#agile-supported-calls)
+* [⬇️ Auth supported calls](#auth-supported-calls)
+
 | API | Method | REST Call |
 | ----- | ------ | --------- |
 | Application-properties
@@ -431,7 +437,12 @@ is still valid!
 | | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list
 | | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated 
 
-### Auth supported calls 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### Auth supported calls
+
+* [⬆️ Agile supported calls](#agile-supported-calls)
+* [⬆️ Rest supported calls](#rest-supported-calls)
+
 | API | Method | REST Call |
 | ----- | ------ | --------- |
 | Session

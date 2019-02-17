@@ -8,6 +8,7 @@ import { IBoard } from 'interfaces/api/iBoard';
 import { IBuilds } from 'interfaces/api/iBuilds';
 import { IComment } from 'interfaces/api/iComment';
 import { IComponent } from 'interfaces/api/iComponent';
+import { ICustomFieldOption } from 'interfaces/api/iCustomFieldOption';
 import { IDashboard } from 'interfaces/api/iDashboard';
 import { IDeployments } from 'interfaces/api/iDeployments';
 import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
@@ -64,6 +65,7 @@ export interface IJiraApi {
   board: IBoard;
   comment: IComment;
   component: IComponent;
+  customFieldOption: ICustomFieldOption;
   dashboard: IDashboard;
   epic: IEpic;
   expression: IExpression;

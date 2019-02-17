@@ -1,6 +1,4 @@
-# jira-api-wrapper [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
-
-Jira Api Wrapper for NodeJS
+# 🔧Jira Api Wrapper for NodeJS [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
 
 Supports:
 * [Supported Agile API](#agile-supported-calls)
@@ -238,6 +236,9 @@ is still valid!
 ## Supported API Calls
 
 ### Agile supported calls
+
+[⬇️Go to rest api supported calls](#rest-api-supported-calls)
+
 | API | Method | REST Call |
 | ----- | ------ | --------- |
 | Backlog

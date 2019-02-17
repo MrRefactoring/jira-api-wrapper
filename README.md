@@ -350,6 +350,14 @@ is still valid!
 | | `component.updateComponent({ params })` | PUT /rest/api/3/component/{id}
 | | `component.deleteComponent({ params })` | DELETE /rest/api/3/component/{id}
 | | `component.getComponentIssuesCount({ params })` | GET /rest/api/3/component/{id}/relatedIssueCounts
+| Configuration
+| | `configuration.getGlobalSettings()` | GET /rest/api/3/configuration
+| | `configuration.getSelectedTimeTrackingProvider()` | GET /rest/api/3/configuration/timetracking
+| | `configuration.selectTimeTrackingProvider({ params })` | PUT /rest/api/3/configuration/timetracking
+| | `configuration.disableTimeTracking()` | DELETE /rest/api/3/configuration/timetracking
+| | `configuration.getAllTimeTrackingProviders()` | GET /rest/api/3/configuration/timetracking/list
+| | `configuration.getTimeTrackingSettings()` | GET /rest/api/3/configuration/timetracking/options
+| | `configuration.setTimeTrackingSettings({ params })` | PUT /rest/api/3/configuration/timetracking/options
 | CustomFieldOption
 | | `customFieldOption.getCustomFieldOption({ params })` | GET /rest/api/3/customFieldOption/{id}
 | Dashboard

@@ -25,6 +25,7 @@ import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
 import { ISearch } from 'interfaces/api/iSearch';
+import { ISession } from 'interfaces/api/iSession';
 import { ISprint } from 'interfaces/api/iSprint';
 import { IWorklog } from 'interfaces/api/iWorklog';
 
@@ -52,6 +53,7 @@ import { Issue } from 'api/issue';
 import { Jql } from 'api/jql';
 import { Myself } from 'api/myself';
 import { Search } from 'api/search';
+import { Session } from 'api/session';
 import { Sprint } from 'api/sprint';
 import { Worklog } from 'api/worklog';
 
@@ -121,6 +123,13 @@ class JiraApi implements IJiraApi {
   public developmentInformation: IDevelopmentInformation;
   public featureFlags: IFeatureFlags;
 
+  /**
+   * @deprecated This resource is deprecated and will be removed December 1, 2018. For more information,
+   * see [Deprecation notice - Basic authentication with passwords and cookie-based authentication]
+   * {@link https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/}.
+   */
+  public session: ISession;
+
   constructor(config: IConfig) {
     this.host = config.host;
     this.port = config.port;
@@ -176,6 +185,7 @@ class JiraApi implements IJiraApi {
     this.search = new Search(this);
     this.sprint = new Sprint(this);
     this.worklog = new Worklog(this);
+    this.session = new Session(this);
 
     this.builds = new Builds(this);
     this.deployments = new Deployments(this);

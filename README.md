@@ -3,9 +3,9 @@
 Jira Api Wrapper for NodeJS
 
 Supports:
-* [Supported REST API v3](#rest-api-supported-calls) (in progress)
 * [Supported Agile API](#agile-supported-calls)
-* [Auth API](https://developer.atlassian.com/cloud/jira/platform/security-for-other-integrations/) (in progress)
+* [Supported REST API v3](#rest-api-supported-calls) (in progress)
+* [Auth API](#auth-supported-calls) <span style="color:red">Deprecated</span>
 * [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 
 # Installation
@@ -429,6 +429,14 @@ is still valid!
 | | `worklog.getIDsOfDeletedWorklogs({ params })` | GET /rest/api/3/worklog/deleted
 | | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list
 | | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated 
+
+### Auth supported calls
+| API | Method | REST Call |
+| ----- | ------ | --------- |
+| Session <span style="color:red">Deprecated</span>
+| | `session.getSession()` | GET /rest/auth/1/session
+| | `session.createSession({ params })` | POST /rest/auth/1/session
+| | `session.deleteSession()` | DELETE /rest/auth/1/session
 
 ## License
 

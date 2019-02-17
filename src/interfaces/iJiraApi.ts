@@ -16,6 +16,7 @@ import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation'
 import { IEpic } from 'interfaces/api/iEpic';
 import { IExpression } from 'interfaces/api/iExpression';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
+import { IGroups } from 'interfaces/api/iGroups';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
@@ -71,6 +72,7 @@ export interface IJiraApi {
   dashboard: IDashboard;
   epic: IEpic;
   expression: IExpression;
+  groups: IGroups;
   issue: IIssue;
   jql: IJql;
   myself: IMyself;

@@ -7,6 +7,7 @@ import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
 import { IBuilds } from 'interfaces/api/iBuilds';
 import { IComment } from 'interfaces/api/iComment';
+import { IComponent } from 'interfaces/api/iComponent';
 import { IDashboard } from 'interfaces/api/iDashboard';
 import { IDeployments } from 'interfaces/api/iDeployments';
 import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
@@ -62,6 +63,7 @@ export interface IJiraApi {
   backlog: IBacklog;
   board: IBoard;
   comment: IComment;
+  component: IComponent;
   dashboard: IDashboard;
   epic: IEpic;
   expression: IExpression;

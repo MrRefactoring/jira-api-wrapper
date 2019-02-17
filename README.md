@@ -344,6 +344,12 @@ is still valid!
 | | `comment.getCommentProperty({ params })` | GET /rest/api/3/comment/{commentId}/properties/{propertyKey}
 | | `comment.setCommentProperty({ params })` | PUT /rest/api/3/comment/{commentId}/properties/{propertyKey}
 | | `comment.deleteCommentProperty({ params })` | DELETE /rest/api/3/comment/{commentId}/properties/{propertyKey}
+| Component
+| | `component.createComponent({ params })` | POST /rest/api/3/component
+| | `component.getComponent({ params })` | GET /rest/api/3/component/{id}
+| | `component.updateComponent({ params })` | PUT /rest/api/3/component/{id}
+| | `component.deleteComponent({ params })` | DELETE /rest/api/3/component/{id}
+| | `component.getComponentIssuesCount({ params })` | GET /rest/api/3/component/{id}/relatedIssueCounts
 | Dashboard
 | | `dashboard.getAllDashboards({ params })` | GET /rest/api/3/dashboard
 | | `dashboard.searchForDashboards({ params })` | GET /rest/api/3/dashboard/search

@@ -1,4 +1,8 @@
-# 🔧Jira Api Wrapper for NodeJS [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
+# 🔧Jira Api Wrapper for NodeJS
+[![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
+[![install size](https://packagephobia.now.sh/badge?p=jira-api-wrapper)](https://packagephobia.now.sh/result?p=jira-api-wrapper)
+[![Downloads](https://img.shields.io/npm/dm/jira-api-wrapper.svg)](https://npmjs.com/jira-api-wrapper)
+[![npm](https://img.shields.io/npm/v/jira-api-wrapper.svg)](https://www.npmjs.com/package/jira-api-wrapper)
 
 Supports:
 * ⬇️ [Supported Agile API](#agile-supported-calls)

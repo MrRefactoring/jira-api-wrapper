@@ -368,6 +368,8 @@ is still valid!
 | | `dashboard.setDashboardItemProperty({ params })` | PUT /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
 | | `dashboard.deleteDashboardItemProperty({ params })` | DELETE /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
 | | `dashboard.getDashboard({ params })` | GET /rest/api/3/dashboard/{id}
+| Groups
+| | `groups.findGroups({ params })` | GET /rest/api/3/groups/picker
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
 | | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk

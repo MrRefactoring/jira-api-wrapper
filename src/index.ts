@@ -3,6 +3,9 @@ import * as url from 'url';
 import * as errors from 'utils/errors';
 import * as oauth from 'utils/oauth';
 
+import { IConfig } from 'interfaces/iConfig';
+import { IJiraApi } from 'interfaces/iJiraApi';
+
 import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
 import { IApplicationrole } from 'interfaces/api/iApplicationrole';
 import { IAttachment } from 'interfaces/api/iAttachment';
@@ -12,6 +15,7 @@ import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
 import { IComment } from 'interfaces/api/iComment';
 import { IComponent } from 'interfaces/api/iComponent';
+import { ICustomFieldOption } from 'interfaces/api/iCustomFieldOption';
 import { IDashboard } from 'interfaces/api/iDashboard';
 import { IEpic } from 'interfaces/api/iEpic';
 import { IExpression } from 'interfaces/api/iExpression';
@@ -27,9 +31,6 @@ import { IDeployments } from 'interfaces/api/iDeployments';
 import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 
-import { IConfig } from 'interfaces/iConfig';
-import { IJiraApi } from 'interfaces/iJiraApi';
-
 import { ApplicationProperties } from 'api/applicationProperties';
 import { Applicationrole } from 'api/applicationrole';
 import { Attachment } from 'api/attachment';
@@ -39,6 +40,7 @@ import { Backlog } from 'api/backlog';
 import { Board } from 'api/board';
 import { Comment } from 'api/comment';
 import { Component } from 'api/component';
+import { CustomFieldOption } from 'api/customFieldOption';
 import { Dashboard } from 'api/dashboard';
 import { Epic } from 'api/epic';
 import { Expression } from 'api/expression';
@@ -97,6 +99,7 @@ class JiraApi implements IJiraApi {
   public board: IBoard;
   public comment: IComment;
   public component: IComponent;
+  public customFieldOption: ICustomFieldOption;
   public dashboard: IDashboard;
   public epic: IEpic;
   public expression: IExpression;
@@ -155,6 +158,7 @@ class JiraApi implements IJiraApi {
     this.board = new Board(this);
     this.comment = new Comment(this);
     this.component = new Component(this);
+    this.customFieldOption = new CustomFieldOption(this);
     this.dashboard = new Dashboard(this);
     this.expression = new Expression(this);
     this.epic = new Epic(this);

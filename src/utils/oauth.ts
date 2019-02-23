@@ -2,7 +2,6 @@ import { IConfig } from 'interfaces/iConfig';
 import * as url from 'url';
 import * as errors from './errors';
 
-// @ts-ignore
 import * as Oauth from 'oauth';
 
 export const getAuthorizeURL = (config: IConfig, callback: any) => {
@@ -30,13 +29,19 @@ export const getAuthorizeURL = (config: IConfig, callback: any) => {
 export const swapRequestTokenWithAccessToken = (config: IConfig, callback: any) => {
   if (!config.oauth!!.verifier) {
     throw new Error(errors.NO_VERIFIER_ERROR);
+  } else if (!config.oauth) {
+    throw new Error(errors.NO_OAUTH_ERROR);
+  } else if (!config.oauth.token) {
+    throw new Error(errors.NO_TOKEN);
+  } else if (!config.oauth.tokenSecret) {
+    throw new Error(errors.NO_TOKEN_SECRET);
   }
 
   const oauth = generateOAuthObject(config);
 
-  const token = config.oauth!!.token;
-  const secret = config.oauth!!.tokenSecret;
-  const verifier = config.oauth!!.verifier;
+  const token = config.oauth.token;
+  const secret = config.oauth.tokenSecret;
+  const verifier = config.oauth.verifier;
 
   oauth.getOAuthAccessToken(token, secret, verifier, callback);
 };

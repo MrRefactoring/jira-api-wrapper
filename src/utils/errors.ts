@@ -6,5 +6,4 @@ export const NO_HOST_ERROR = 'Missing \'host\' property.';
 export const NO_CONSUMER_KEY_ERROR = 'Missing \'consumerKey\' property.';
 export const NO_PRIVATE_KEY_ERROR = 'Missing \'privateKey\' property.';
 export const NO_VERIFIER_ERROR = 'Missing \'verifier\' property.';
-
-export const NOT_IMPLEMENTED = 'this method is not implemented';
+export const NO_OAUTH_ERROR = 'Missing \'oauth\' property.';

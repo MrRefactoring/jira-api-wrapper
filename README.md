@@ -379,6 +379,17 @@ is still valid!
 | | `dashboard.setDashboardItemProperty({ params })` | PUT /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
 | | `dashboard.deleteDashboardItemProperty({ params })` | DELETE /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
 | | `dashboard.getDashboard({ params })` | GET /rest/api/3/dashboard/{id}
+| Field
+| | `field.getFields()` | 
+| | `field.createCustomField({ params })` | GET /rest/api/3/field
+| | `field.getAllIssueFieldOptions({ params })` | POST /rest/api/3/field
+| | `field.createIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option
+| | `field.getSelectableIssueFieldOptions({ params })` | POST /rest/api/3/field/{fieldKey}/option
+| | `field.getVisibleIssueFieldOptions({ params })` | GET /rest/api/3/field/{fieldKey}/option/suggestions/edit
+| | `field.getIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option/suggestions/search
+| | `field.updateIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option/{optionId}
+| | `field.deleteIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}
+| | `field.replaceIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}/issue
 | Groups
 | | `groups.findGroups({ params })` | GET /rest/api/3/groups/picker
 | Issue |

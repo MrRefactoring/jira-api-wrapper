@@ -103,5 +103,6 @@ export interface IJiraApi {
       | string,
     apiVersion?: number | string
   ): any;
+
   sendRequest(options: any, callback: any, successString?: string): any;
 }

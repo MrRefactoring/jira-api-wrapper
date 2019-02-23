@@ -135,10 +135,10 @@ class JiraApi implements IJiraApi {
 
   constructor(config: IConfig) {
     this.host = config.host;
-    this.port = config.port;
+    this.port = config.port || 443;
 
-    this.protocol = config.protocol ? config.protocol : 'https';
-    this.pathPrefix = config.pathPrefix ? config.pathPrefix : '/';
+    this.protocol = config.protocol || 'https';
+    this.pathPrefix = config.pathPrefix || '/';
 
     this.apiVersion = 3;
     this.agileApiVersion = '1.0';
@@ -153,8 +153,8 @@ class JiraApi implements IJiraApi {
     if (config.oauth) {
       this.oauth = {
         signatureMethod: 'RSA-SHA1',
-        token: '',
-        tokenSecret: '',
+        token: config.oauth.token!!,
+        tokenSecret: config.oauth.tokenSecret!!,
         ...config.oauth
       };
     } else if (config.basicAuth) {
@@ -269,7 +269,7 @@ class JiraApi implements IJiraApi {
         if (!options.headers) {
           options.headers = {};
         }
-        options.headers.Authorization = 'Basic ' + this.basicAuth.base64;
+        options.headers.Authorization = `Basic ${this.basicAuth.base64}`;
       } else {
         options.auth = this.basicAuth;
       }

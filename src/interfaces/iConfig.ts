@@ -1,6 +1,6 @@
 export interface IConfig {
   host: string;
-  port: number;
+  port?: number;
 
   protocol?: string;
   pathPrefix?: string;

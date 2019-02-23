@@ -16,6 +16,7 @@ import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation'
 import { IEpic } from 'interfaces/api/iEpic';
 import { IExpression } from 'interfaces/api/iExpression';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
+import { IField } from 'interfaces/api/iField';
 import { IGroups } from 'interfaces/api/iGroups';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
@@ -73,6 +74,7 @@ export interface IJiraApi {
   dashboard: IDashboard;
   epic: IEpic;
   expression: IExpression;
+  field: IField;
   groups: IGroups;
   issue: IIssue;
   jql: IJql;
@@ -101,5 +103,6 @@ export interface IJiraApi {
       | string,
     apiVersion?: number | string
   ): any;
+
   sendRequest(options: any, callback: any, successString?: string): any;
 }

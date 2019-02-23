@@ -4,7 +4,6 @@ import * as errors from './errors';
 
 // @ts-ignore
 import * as Oauth from 'oauth';
-// const Oauth = require('oauth');
 
 export const getAuthorizeURL = (config: IConfig, callback: any) => {
   const prefix = config.pathPrefix ? config.pathPrefix : '';

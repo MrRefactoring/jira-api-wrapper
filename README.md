@@ -390,6 +390,13 @@ is still valid!
 | | `field.updateIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option/{optionId}
 | | `field.deleteIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}
 | | `field.replaceIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}/issue
+| Group
+| 🚨`Deprecated`🚨 | `group.getGroup({ params })` | GET /rest/api/3/group
+| | `group.createGroup({ params })` | POST /rest/api/3/group
+| | `group.removeGroup({ params })` | DELETE /rest/api/3/group
+| | `group.getUsersFromGroup({ params })` | GET /rest/api/3/group/member
+| | `group.addUserToGroup({ params })` | POST /rest/api/3/group/user
+| | `group.removeUserFromGroup({ params })` | DELETE /rest/api/3/group/user
 | Groups
 | | `groups.findGroups({ params })` | GET /rest/api/3/groups/picker
 | Issue |

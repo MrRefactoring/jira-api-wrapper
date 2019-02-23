@@ -17,6 +17,7 @@ import { IEpic } from 'interfaces/api/iEpic';
 import { IExpression } from 'interfaces/api/iExpression';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 import { IField } from 'interfaces/api/iField';
+import { IGroup } from 'interfaces/api/iGroup';
 import { IGroups } from 'interfaces/api/iGroups';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
@@ -75,6 +76,7 @@ export interface IJiraApi {
   epic: IEpic;
   expression: IExpression;
   field: IField;
+  group: IGroup;
   groups: IGroups;
   issue: IIssue;
   jql: IJql;

@@ -16,5 +16,10 @@
     "plugins": [
       { "transform": "@zerollup/ts-transform-paths" }
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "tests"
+  ],
+  "include": ["src"]
 }

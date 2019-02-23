@@ -24,10 +24,13 @@
   "scripts": {
     "build": "npm rum lint && ttsc",
     "lint": "tslint src/**/*.ts",
-    "lint-fix": "npm run lint -- --fix"
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.6",
     "@zerollup/ts-transform-paths": "^1.7.0",
+    "jest": "^24.1.0",
+    "ts-jest": "^24.0.0",
     "tslint": "^5.12.1",
     "tslint-eslint-rules": "^5.4.0",
     "ttypescript": "^1.5.6",

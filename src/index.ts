@@ -3,6 +3,9 @@ import * as url from 'url';
 import * as errors from 'utils/errors';
 import * as oauth from 'utils/oauth';
 
+import { IConfig } from 'interfaces/iConfig';
+import { IJiraApi } from 'interfaces/iJiraApi';
+
 import { IApplicationProperties } from 'interfaces/api/iApplicationProperties';
 import { IApplicationrole } from 'interfaces/api/iApplicationrole';
 import { IAttachment } from 'interfaces/api/iAttachment';
@@ -10,13 +13,21 @@ import { IAuditing } from 'interfaces/api/iAuditing';
 import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
+import { IComment } from 'interfaces/api/iComment';
+import { IComponent } from 'interfaces/api/iComponent';
+import { IConfiguration } from 'interfaces/api/iConfiguration';
+import { ICustomFieldOption } from 'interfaces/api/iCustomFieldOption';
 import { IDashboard } from 'interfaces/api/iDashboard';
 import { IEpic } from 'interfaces/api/iEpic';
 import { IExpression } from 'interfaces/api/iExpression';
+import { IField } from 'interfaces/api/iField';
+import { IGroup } from 'interfaces/api/iGroup';
+import { IGroups } from 'interfaces/api/iGroups';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
 import { ISearch } from 'interfaces/api/iSearch';
+import { ISession } from 'interfaces/api/iSession';
 import { ISprint } from 'interfaces/api/iSprint';
 import { IWorklog } from 'interfaces/api/iWorklog';
 
@@ -25,9 +36,6 @@ import { IDeployments } from 'interfaces/api/iDeployments';
 import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 
-import { IConfig } from 'interfaces/iConfig';
-import { IJiraApi } from 'interfaces/iJiraApi';
-
 import { ApplicationProperties } from 'api/applicationProperties';
 import { Applicationrole } from 'api/applicationrole';
 import { Attachment } from 'api/attachment';
@@ -35,13 +43,21 @@ import { Auditing } from 'api/auditing';
 import { Avatar } from 'api/avatar';
 import { Backlog } from 'api/backlog';
 import { Board } from 'api/board';
+import { Comment } from 'api/comment';
+import { Component } from 'api/component';
+import { Configuration } from 'api/configuration';
+import { CustomFieldOption } from 'api/customFieldOption';
 import { Dashboard } from 'api/dashboard';
 import { Epic } from 'api/epic';
 import { Expression } from 'api/expression';
+import { Field } from 'api/field';
+import { Group } from 'api/group';
+import { Groups } from 'api/groups';
 import { Issue } from 'api/issue';
 import { Jql } from 'api/jql';
 import { Myself } from 'api/myself';
 import { Search } from 'api/search';
+import { Session } from 'api/session';
 import { Sprint } from 'api/sprint';
 import { Worklog } from 'api/worklog';
 
@@ -79,6 +95,8 @@ class JiraApi implements IJiraApi {
 
   public cookieJar: any;
   public ca: any;
+  public cert: any;
+  public key: any;
 
   public pathPrefix: string;
   public protocol: string;
@@ -92,9 +110,16 @@ class JiraApi implements IJiraApi {
   public avatar: IAvatar;
   public backlog: IBacklog;
   public board: IBoard;
+  public comment: IComment;
+  public component: IComponent;
+  public configuration: IConfiguration;
+  public customFieldOption: ICustomFieldOption;
   public dashboard: IDashboard;
   public epic: IEpic;
   public expression: IExpression;
+  public field: IField;
+  public group: IGroup;
+  public groups: IGroups;
   public issue: IIssue;
   public jql: IJql;
   public myself: IMyself;
@@ -107,12 +132,19 @@ class JiraApi implements IJiraApi {
   public developmentInformation: IDevelopmentInformation;
   public featureFlags: IFeatureFlags;
 
+  /**
+   * @deprecated This resource is deprecated and will be removed December 1, 2018. For more information,
+   * see [Deprecation notice - Basic authentication with passwords and cookie-based authentication]
+   * {@link https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/}.
+   */
+  public session: ISession;
+
   constructor(config: IConfig) {
     this.host = config.host;
-    this.port = config.port;
+    this.port = config.port || 443;
 
-    this.protocol = config.protocol ? config.protocol : 'https';
-    this.pathPrefix = config.pathPrefix ? config.pathPrefix : '/';
+    this.protocol = config.protocol || 'https';
+    this.pathPrefix = config.pathPrefix || '/';
 
     this.apiVersion = 3;
     this.agileApiVersion = '1.0';
@@ -127,8 +159,8 @@ class JiraApi implements IJiraApi {
     if (config.oauth) {
       this.oauth = {
         signatureMethod: 'RSA-SHA1',
-        token: '',
-        tokenSecret: '',
+        token: config.oauth.token!!,
+        tokenSecret: config.oauth.tokenSecret!!,
         ...config.oauth
       };
     } else if (config.basicAuth) {
@@ -141,6 +173,8 @@ class JiraApi implements IJiraApi {
 
     this.rejectUnauthorized = config.rejectUnauthorized;
     this.ca = config.ca;
+    this.cert = config.cert;
+    this.key = config.key;
 
     this.applicationProperties = new ApplicationProperties(this);
     this.applicationrole = new Applicationrole(this);
@@ -149,15 +183,23 @@ class JiraApi implements IJiraApi {
     this.avatar = new Avatar(this);
     this.backlog = new Backlog(this);
     this.board = new Board(this);
+    this.comment = new Comment(this);
+    this.component = new Component(this);
+    this.configuration = new Configuration(this);
+    this.customFieldOption = new CustomFieldOption(this);
     this.dashboard = new Dashboard(this);
     this.expression = new Expression(this);
     this.epic = new Epic(this);
+    this.field = new Field(this);
+    this.group = new Group(this);
+    this.groups = new Groups(this);
     this.issue = new Issue(this);
     this.jql = new Jql(this);
     this.myself = new Myself(this);
     this.search = new Search(this);
     this.sprint = new Sprint(this);
     this.worklog = new Worklog(this);
+    this.session = new Session(this);
 
     this.builds = new Builds(this);
     this.deployments = new Deployments(this);
@@ -230,6 +272,8 @@ class JiraApi implements IJiraApi {
   public sendRequest(options: any, callback: any, successString: string): any {
     options.rejectUnauthorized = this.rejectUnauthorized;
     options.ca = this.ca;
+    options.cert = this.cert;
+    options.key = this.key;
 
     if (this.oauth) {
       options.oauth = this.oauth;
@@ -238,7 +282,7 @@ class JiraApi implements IJiraApi {
         if (!options.headers) {
           options.headers = {};
         }
-        options.headers.Authorization = 'Basic ' + this.basicAuth.base64;
+        options.headers.Authorization = `Basic ${this.basicAuth.base64}`;
       } else {
         options.auth = this.basicAuth;
       }
@@ -250,7 +294,7 @@ class JiraApi implements IJiraApi {
 
     if (callback) {
       request(options, (error: any, response: any, body: any) => {
-        if (error || response.statusCode.toString()[0] !== '2' || response.statusCode.toString()[0] !== '3') {
+        if (error || (response.statusCode.toString()[0] !== '2' && response.statusCode.toString()[0] !== '3')) {
           return callback(error ? error : body, null, response);
         }
 

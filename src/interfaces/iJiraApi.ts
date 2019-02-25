@@ -6,16 +6,24 @@ import { IAvatar } from 'interfaces/api/iAvatar';
 import { IBacklog } from 'interfaces/api/iBacklog';
 import { IBoard } from 'interfaces/api/iBoard';
 import { IBuilds } from 'interfaces/api/iBuilds';
+import { IComment } from 'interfaces/api/iComment';
+import { IComponent } from 'interfaces/api/iComponent';
+import { IConfiguration } from 'interfaces/api/iConfiguration';
+import { ICustomFieldOption } from 'interfaces/api/iCustomFieldOption';
 import { IDashboard } from 'interfaces/api/iDashboard';
 import { IDeployments } from 'interfaces/api/iDeployments';
 import { IDevelopmentInformation } from 'interfaces/api/iDevelopmentInformation';
 import { IEpic } from 'interfaces/api/iEpic';
 import { IExpression } from 'interfaces/api/iExpression';
 import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
+import { IField } from 'interfaces/api/iField';
+import { IGroup } from 'interfaces/api/iGroup';
+import { IGroups } from 'interfaces/api/iGroups';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
 import { ISearch } from 'interfaces/api/iSearch';
+import { ISession } from 'interfaces/api/iSession';
 import { ISprint } from 'interfaces/api/iSprint';
 import { IWorklog } from 'interfaces/api/iWorklog';
 
@@ -61,15 +69,23 @@ export interface IJiraApi {
   avatar: IAvatar;
   backlog: IBacklog;
   board: IBoard;
+  comment: IComment;
+  component: IComponent;
+  configuration: IConfiguration;
+  customFieldOption: ICustomFieldOption;
   dashboard: IDashboard;
   epic: IEpic;
   expression: IExpression;
+  field: IField;
+  group: IGroup;
+  groups: IGroups;
   issue: IIssue;
   jql: IJql;
   myself: IMyself;
   search: ISearch;
   sprint: ISprint;
   worklog: IWorklog;
+  session: ISession;
 
   builds: IBuilds;
   deployments: IDeployments;
@@ -90,5 +106,6 @@ export interface IJiraApi {
       | string,
     apiVersion?: number | string
   ): any;
+
   sendRequest(options: any, callback: any, successString?: string): any;
 }

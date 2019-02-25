@@ -1,11 +1,13 @@
-# jira-api-wrapper [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
-
-Jira Api Wrapper for NodeJS
+# 🔧Jira Api Wrapper for NodeJS (Supports TypeScript)
+[![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
+[![install size](https://packagephobia.now.sh/badge?p=jira-api-wrapper)](https://packagephobia.now.sh/result?p=jira-api-wrapper)
+[![Downloads](https://img.shields.io/npm/dm/jira-api-wrapper.svg)](https://npmjs.com/jira-api-wrapper)
+[![npm](https://img.shields.io/npm/v/jira-api-wrapper.svg)](https://www.npmjs.com/package/jira-api-wrapper)
 
 Supports:
-* [Supported REST API v3](#rest-api-supported-calls) (in progress)
-* [Supported Agile API](#agile-supported-calls)
-* [Auth API](https://developer.atlassian.com/cloud/jira/platform/security-for-other-integrations/) (in progress)
+* ⬇️ [Supported Agile API](#agile-supported-calls)
+* ⬇️ [Supported REST API v3](#rest-supported-calls) (in progress)
+* ⬇️ [Supported Auth API](#auth-supported-calls) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
 * [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 
 # Installation
@@ -67,47 +69,6 @@ Depending on the Jira instance to which you are connecting, authentication may
 or may not be required for various API calls.
 
 `jira-api-wrapper` supports two forms of authentication:
-
-### Basic Authentication
-
-This is not recommended; it will require you to provide a username and password each
-time you connect to the Jira instance. However, jira-connector supports it
-for users who are unable to use OAuth.
-
-Example:
-
-```javascript 1.8
-const JiraApi = require('jira-api-wrapper');
-
-const api = new JiraApi({
-  host: 'jira.atlassian.net',
-  basicAuth: {
-    username: 'myUsername',
-    password: 'myPassword'
-  }
-});
-```
-
-### Basic Authentication (base64)
-
-Also not recommended, but slightly better than the above; it will require you to
-provide a Base64 encoded username and password (a Base64 encoding in the
-format of "username:password") each time you connect to the Jira instance.
-
-Example:
-
-```javascript 1.8
-const JiraApi = require('jira-api-wrapper');
-
-const api = new JiraApi({
-  host: 'jira.atlassian.net',
-  basicAuth: {
-    base64: 'bXlVc2VybmFtZTpteVBhc3N3b3Jk'
-  }
-});
-
-// Base64 encoding of 'myUsername:myPassword'
-```
 
 ### OAuth Authentication
 
@@ -197,6 +158,48 @@ const api = new JiraApi({
 // Jira is now authenticted with your account!
 ```
 
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### Basic Authentication
+
+This is not recommended; it will require you to provide a username and password each
+time you connect to the Jira instance. However, jira-connector supports it
+for users who are unable to use OAuth.
+
+Example:
+
+```javascript 1.8
+const JiraApi = require('jira-api-wrapper');
+
+const api = new JiraApi({
+  host: 'jira.atlassian.net',
+  basicAuth: {
+    username: 'myUsername',
+    password: 'myPassword'
+  }
+});
+```
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### Basic Authentication (base64)
+
+Also not recommended, but slightly better than the above; it will require you to
+provide a Base64 encoded username and password (a Base64 encoding in the
+format of "username:password") each time you connect to the Jira instance.
+
+Example:
+
+```javascript 1.8
+const JiraApi = require('jira-api-wrapper');
+
+const api = new JiraApi({
+  host: 'jira.atlassian.net',
+  basicAuth: {
+    base64: 'bXlVc2VybmFtZTpteVBhc3N3b3Jk'
+  }
+});
+
+// Base64 encoding of 'myUsername:myPassword'
+```
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
 ### Cookie Jar
 
 You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
@@ -238,6 +241,10 @@ is still valid!
 ## Supported API Calls
 
 ### Agile supported calls
+
+* [⬇️ Rest supported calls](#rest-supported-calls)
+* [⬇️ Auth supported calls](#auth-supported-calls)
+
 | API | Method | REST Call |
 | ----- | ------ | --------- |
 | Backlog
@@ -318,7 +325,11 @@ is still valid!
 | | `builds.getBuildByKey({ params })` | GET /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
 | | `builds.deleteBuildByKey({ params })` | DELETE /rest/builds/0.1/pipelines/{pipelineId}/builds/{buildNumber}
 
-### Rest Api supported calls
+### Rest supported calls
+
+* [⬆️ Agile supported calls](#agile-supported-calls)
+* [⬇️ Auth supported calls](#auth-supported-calls)
+
 | API | Method | REST Call |
 | ----- | ------ | --------- |
 | Application-properties
@@ -338,6 +349,28 @@ is still valid!
 | | `auditing.getAuditRecords({ params })` | GET /rest/api/3/auditing/record
 | Avatar
 | | `avatar.getSystemAvatarsByType({ params })` | GET /rest/api/3/avatar/{type}/system
+| Comment
+| | `comment.getCommentsByIDs({ params })` | POST /rest/api/3/comment/list
+| | `comment.getCommentPropertyKeys({ params })` | GET /rest/api/3/comment/{commentId}/properties
+| | `comment.getCommentProperty({ params })` | GET /rest/api/3/comment/{commentId}/properties/{propertyKey}
+| | `comment.setCommentProperty({ params })` | PUT /rest/api/3/comment/{commentId}/properties/{propertyKey}
+| | `comment.deleteCommentProperty({ params })` | DELETE /rest/api/3/comment/{commentId}/properties/{propertyKey}
+| Component
+| | `component.createComponent({ params })` | POST /rest/api/3/component
+| | `component.getComponent({ params })` | GET /rest/api/3/component/{id}
+| | `component.updateComponent({ params })` | PUT /rest/api/3/component/{id}
+| | `component.deleteComponent({ params })` | DELETE /rest/api/3/component/{id}
+| | `component.getComponentIssuesCount({ params })` | GET /rest/api/3/component/{id}/relatedIssueCounts
+| Configuration
+| | `configuration.getGlobalSettings()` | GET /rest/api/3/configuration
+| | `configuration.getSelectedTimeTrackingProvider()` | GET /rest/api/3/configuration/timetracking
+| | `configuration.selectTimeTrackingProvider({ params })` | PUT /rest/api/3/configuration/timetracking
+| | `configuration.disableTimeTracking()` | DELETE /rest/api/3/configuration/timetracking
+| | `configuration.getAllTimeTrackingProviders()` | GET /rest/api/3/configuration/timetracking/list
+| | `configuration.getTimeTrackingSettings()` | GET /rest/api/3/configuration/timetracking/options
+| | `configuration.setTimeTrackingSettings({ params })` | PUT /rest/api/3/configuration/timetracking/options
+| CustomFieldOption
+| | `customFieldOption.getCustomFieldOption({ params })` | GET /rest/api/3/customFieldOption/{id}
 | Dashboard
 | | `dashboard.getAllDashboards({ params })` | GET /rest/api/3/dashboard
 | | `dashboard.searchForDashboards({ params })` | GET /rest/api/3/dashboard/search
@@ -346,6 +379,26 @@ is still valid!
 | | `dashboard.setDashboardItemProperty({ params })` | PUT /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
 | | `dashboard.deleteDashboardItemProperty({ params })` | DELETE /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
 | | `dashboard.getDashboard({ params })` | GET /rest/api/3/dashboard/{id}
+| Field
+| | `field.getFields()` | 
+| | `field.createCustomField({ params })` | GET /rest/api/3/field
+| | `field.getAllIssueFieldOptions({ params })` | POST /rest/api/3/field
+| | `field.createIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option
+| | `field.getSelectableIssueFieldOptions({ params })` | POST /rest/api/3/field/{fieldKey}/option
+| | `field.getVisibleIssueFieldOptions({ params })` | GET /rest/api/3/field/{fieldKey}/option/suggestions/edit
+| | `field.getIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option/suggestions/search
+| | `field.updateIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option/{optionId}
+| | `field.deleteIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}
+| | `field.replaceIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}/issue
+| Group
+| 🚨`Deprecated`🚨 | `group.getGroup({ params })` | GET /rest/api/3/group
+| | `group.createGroup({ params })` | POST /rest/api/3/group
+| | `group.removeGroup({ params })` | DELETE /rest/api/3/group
+| | `group.getUsersFromGroup({ params })` | GET /rest/api/3/group/member
+| | `group.addUserToGroup({ params })` | POST /rest/api/3/group/user
+| | `group.removeUserFromGroup({ params })` | DELETE /rest/api/3/group/user
+| Groups
+| | `groups.findGroups({ params })` | GET /rest/api/3/groups/picker
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
 | | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk
@@ -405,6 +458,19 @@ is still valid!
 | | `worklog.getIDsOfDeletedWorklogs({ params })` | GET /rest/api/3/worklog/deleted
 | | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list
 | | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated 
+
+### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+### Auth supported calls
+
+* [⬆️ Agile supported calls](#agile-supported-calls)
+* [⬆️ Rest supported calls](#rest-supported-calls)
+
+| API | Method | REST Call |
+| ----- | ------ | --------- |
+| Session
+| | `session.getSession()` | GET /rest/auth/1/session
+| | `session.createSession({ params })` | POST /rest/auth/1/session
+| | `session.deleteSession()` | DELETE /rest/auth/1/session
 
 ## License
 

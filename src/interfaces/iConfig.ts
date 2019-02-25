@@ -1,6 +1,6 @@
 export interface IConfig {
   host: string;
-  port: number;
+  port?: number;
 
   protocol?: string;
   pathPrefix?: string;
@@ -23,4 +23,6 @@ export interface IConfig {
   cookieJar?: any;
   rejectUnauthorized?: any;
   ca?: any;
+  cert?: any;
+  key?: any;
 }

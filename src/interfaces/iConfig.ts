@@ -25,4 +25,5 @@ export interface IConfig {
   ca?: any;
   cert?: any;
   key?: any;
+  strictSSL?: boolean;
 }

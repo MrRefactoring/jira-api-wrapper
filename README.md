@@ -62,6 +62,27 @@ api.search.search({
 }, (response) => { console.log(response); })
 ```
 
+## 🔑 JiraApi security options
+
+```typescript
+const fs = require('fs');
+const path = require('path');
+const JiraApi = require('jira-api-wrapper');
+
+const caFile = path.resolve(__dirname, 'ssl/ca.cert.pem');
+const certFile = path.resolve(__dirname, 'ssl/client.crt');
+const keyFile = path.resolve(__dirname, 'ssl/client.key');
+
+const api = new JiraApi({
+  host: 'xxx.atlassian.com',
+  
+  strictSSL: false,
+  
+  ca: fs.readFileSync(caFile),
+  cert: fs.readFileSync(certFile),
+  key: fs.readFileSync(keyFile)
+});
+```
 
 ## Authentication
 

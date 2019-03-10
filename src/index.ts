@@ -97,6 +97,7 @@ class JiraApi implements IJiraApi {
   public ca: any;
   public cert: any;
   public key: any;
+  public strictSSL: boolean;
 
   public pathPrefix: string;
   public protocol: string;
@@ -175,6 +176,7 @@ class JiraApi implements IJiraApi {
     this.ca = config.ca;
     this.cert = config.cert;
     this.key = config.key;
+    this.strictSSL = config.strictSSL || true;
 
     this.applicationProperties = new ApplicationProperties(this);
     this.applicationrole = new Applicationrole(this);
@@ -274,6 +276,7 @@ class JiraApi implements IJiraApi {
     options.ca = this.ca;
     options.cert = this.cert;
     options.key = this.key;
+    options.strictSSL = this.strictSSL;
 
     if (this.oauth) {
       options.oauth = this.oauth;

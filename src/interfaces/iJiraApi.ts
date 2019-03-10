@@ -59,7 +59,12 @@ export interface IJiraApi {
   } | undefined;
 
   cookieJar?: any;
-  rejectUnauthorized: any;
+
+  rejectUnauthorized?: any;
+  cert: any;
+  key: any;
+  ca?: any;
+  strictSSL?: boolean;
 
   applicationProperties: IApplicationProperties;
   applicationrole: IApplicationrole;

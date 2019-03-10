@@ -22,4 +22,8 @@ export interface IConfig {
 
   cookieJar?: any;
   rejectUnauthorized?: any;
+  ca?: any;
+  cert?: any;
+  key?: any;
+  strictSSL?: boolean;
 }

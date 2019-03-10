@@ -101,6 +101,12 @@ describe('JiraApi tests', () => {
       expect(api.field).toBeDefined();
     });
 
+    it('filter should be defined', () => {
+      const api = new JiraApi({ host: defaultHost, port: defaultPort });
+
+      expect(api.filter).toBeDefined();
+    });
+
     it('group should be defined', () => {
       const api = new JiraApi({ host: defaultHost, port: defaultPort });
 

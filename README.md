@@ -24,7 +24,7 @@ npm i jira-api-wrapper
 import JiraApi from 'jira-api-wrapper';
 
 const api: JiraApi = new JiraApi({
-  host: 'jira.atlassian.com'
+  host: 'xxx.atlassian.com'
 });
 
 // Async/await example
@@ -46,7 +46,7 @@ api.search.search({
 const JiraApi = require('jira-api-wrapper');
 
 const api = new JiraApi({
-  host: 'jira.atlassian.com'
+  host: 'xxx.atlassian.com'
 });
 
 // Async/await example
@@ -113,7 +113,7 @@ helper functions for exactly this purpose:
 const JiraApi = require('jira-api-wrapper');
 
 JiraApi.getAuthorizeURL({
-    host: 'jira.atlassian.net',
+    host: 'xxx.atlassian.net',
     oauth: {
         consumerKey: 'your-consumer-key',
         privateKey: '-----BEGIN RSA PRIVATE KEY-----\n' +
@@ -143,7 +143,7 @@ for an Access Token with all the permissions of your account; jira-connector pro
 const JiraApi = require('jira-api-wrapper');
 
 JiraApi.swapRequestTokenWithAccessToken({
-    host: 'jira.atlassian.net',
+    host: 'xxx.atlassian.net',
     oauth: {
         token: 'your-oauth-token',
         tokenSecret: 'your-token-secret',
@@ -165,7 +165,7 @@ Jira with OAuth!
 const JiraApi = require('jira-api-wrapper');
 
 const api = new JiraApi({
-    host: 'jira.atlassian.net',
+    host: 'xxx.atlassian.net',
     oauth: {
         consumerKey: 'your-consumer-key',
         privateKey: '-----BEGIN RSA PRIVATE KEY-----\n' +
@@ -192,7 +192,7 @@ Example:
 const JiraApi = require('jira-api-wrapper');
 
 const api = new JiraApi({
-  host: 'jira.atlassian.net',
+  host: 'xxx.atlassian.net',
   basicAuth: {
     username: 'myUsername',
     password: 'myPassword'
@@ -212,7 +212,7 @@ Example:
 const JiraApi = require('jira-api-wrapper');
 
 const api = new JiraApi({
-  host: 'jira.atlassian.net',
+  host: 'xxx.atlassian.net',
   basicAuth: {
     base64: 'bXlVc2VybmFtZTpteVBhc3N3b3Jk'
   }
@@ -238,7 +238,7 @@ const jar = request.jar(new FileCookieStore(path.join(__dirname, 'cookies.json')
 
 // For the first connection
 const api = new JiraApi( {
-    host: 'jira.atlassian.net',
+    host: 'xxx.atlassian.net',
     basicAuth: {
         username: 'SirUserOfName',
         password: 'Password123'
@@ -248,7 +248,7 @@ const api = new JiraApi( {
 
 // For the following connections
 const api = new JiraApi( {
-    host: 'jira.atlassian.net',
+    host: 'xxx.atlassian.net',
     cookieJar: jar
 });
 ```
@@ -420,6 +420,8 @@ is still valid!
 | | `group.removeUserFromGroup({ params })` | DELETE /rest/api/3/group/user
 | Groups
 | | `groups.findGroups({ params })` | GET /rest/api/3/groups/picker
+| GroupUserPicker
+| | `groupUserPicker.findUsersAndGroups({ params })` | GET /rest/api/3/groupuserpicker
 | Issue |
 | | `issue.createIssue({ params })` | POST /rest/api/3/issue
 | | `issue.bulkIssueCreate({ params })` | POST /rest/api/3/issue/bulk

@@ -19,6 +19,7 @@ import { IFeatureFlags } from 'interfaces/api/iFeatureFlags';
 import { IField } from 'interfaces/api/iField';
 import { IGroup } from 'interfaces/api/iGroup';
 import { IGroups } from 'interfaces/api/iGroups';
+import { IGroupUserPicker } from 'interfaces/api/iGroupUserPicker';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
@@ -83,6 +84,7 @@ export interface IJiraApi {
   field: IField;
   group: IGroup;
   groups: IGroups;
+  groupUserPicker: IGroupUserPicker;
   issue: IIssue;
   jql: IJql;
   myself: IMyself;

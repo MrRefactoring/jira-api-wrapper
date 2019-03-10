@@ -76,7 +76,7 @@ const keyFile = path.resolve(__dirname, 'ssl/client.key');
 const api = new JiraApi({
   host: 'xxx.atlassian.com',
   
-  strictSSL: false,
+  strictSSL: true, // try to set false if you can not pass authorization.
   
   ca: fs.readFileSync(caFile),
   cert: fs.readFileSync(certFile),
@@ -411,6 +411,26 @@ is still valid!
 | | `field.updateIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option/{optionId}
 | | `field.deleteIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}
 | | `field.replaceIssueFieldOption({ params })` | DELETE /rest/api/3/field/{fieldKey}/option/{optionId}/issue
+| Filter
+| 🚨`Deprecated`🚨 | `filter.getFilters()` | GET /rest/api/3/filter
+| | `filter.createFilter({ params })` | POST /rest/api/3/filter
+| | `filter.getDefaultShareScope()` | GET /rest/api/3/filter/defaultShareScope
+| | `filter.setDefaultShareScope({ params })` | PUT /rest/api/3/filter/defaultShareScope
+| | `filter.getFavoriteFilters({ params })` | GET /rest/api/3/filter/favourite
+| | `filter.getMyFilters({ params })` | GET /rest/api/3/filter/my
+| | `filter.searchForFilters({ params })` | GET /rest/api/3/filter/search
+| | `filter.getFilter({ params })` | GET /rest/api/3/filter/{id}
+| | `filter.updateFilter({ params })` | PUT /rest/api/3/filter/{id}
+| | `filter.deleteFilter({ params })` | DELETE /rest/api/3/filter/{id}
+| | `filter.getColumns({ params })` | GET /rest/api/3/filter/{id}/columns
+| | `filter.setColumns({ params })` | PUT /rest/api/3/filter/{id}/columns
+| | `filter.resetColumns({ params })` | DELETE /rest/api/3/filter/{id}/columns
+| | `filter.addFilterAsFavorite({ params })` | PUT /rest/api/3/filter/{id}/favourite
+| | `filter.removeFilterAsFavorite({ params })` | DELETE /rest/api/3/filter/{id}/favourite
+| | `filter.getSharePermissions({ params })` | GET /rest/api/3/filter/{id}/permission
+| | `filter.addSharePermissions({ params })` | POST /rest/api/3/filter/{id}/permission
+| | `filter.getSharePermission({ params })` | GET /rest/api/3/filter/{id}/permission/{permissionId}
+| | `filter.deleteSharePermission({ params })` | DELETE /rest/api/3/filter/{id}/permission/{permissionId}
 | Group
 | 🚨`Deprecated`🚨 | `group.getGroup({ params })` | GET /rest/api/3/group
 | | `group.createGroup({ params })` | POST /rest/api/3/group

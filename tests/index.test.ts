@@ -143,6 +143,12 @@ describe('JiraApi tests', () => {
       expect(api.myself).toBeDefined();
     });
 
+    it('notificationscheme should be defined', () => {
+      const api = new JiraApi({ host: defaultHost, port: defaultPort });
+
+      expect(api.notificationScheme).toBeDefined();
+    });
+
     it('search should be defined', () => {
       const api = new JiraApi({ host: defaultHost, port: defaultPort });
 

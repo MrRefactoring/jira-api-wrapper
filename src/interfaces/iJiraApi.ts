@@ -24,6 +24,7 @@ import { IGroupUserPicker } from 'interfaces/api/iGroupUserPicker';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
+import { INotificationScheme } from 'interfaces/api/iNotificationScheme';
 import { ISearch } from 'interfaces/api/iSearch';
 import { ISession } from 'interfaces/api/iSession';
 import { ISprint } from 'interfaces/api/iSprint';
@@ -88,6 +89,7 @@ export interface IJiraApi {
   groups: IGroups;
   groupUserPicker: IGroupUserPicker;
   issue: IIssue;
+  notificationScheme: INotificationScheme;
   jql: IJql;
   myself: IMyself;
   search: ISearch;

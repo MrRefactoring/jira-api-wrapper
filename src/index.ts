@@ -28,6 +28,7 @@ import { IGroupUserPicker } from 'interfaces/api/iGroupUserPicker';
 import { IIssue } from 'interfaces/api/iIssue';
 import { IJql } from 'interfaces/api/IJql';
 import { IMyself } from 'interfaces/api/iMyself';
+import { INotificationScheme } from 'interfaces/api/iNotificationScheme';
 import { ISearch } from 'interfaces/api/iSearch';
 import { ISession } from 'interfaces/api/iSession';
 import { ISprint } from 'interfaces/api/iSprint';
@@ -60,6 +61,7 @@ import { GroupUserPicker } from 'api/groupUserPicker';
 import { Issue } from 'api/issue';
 import { Jql } from 'api/jql';
 import { Myself } from 'api/myself';
+import { NotificationScheme } from 'api/notificationScheme';
 import { Search } from 'api/search';
 import { Session } from 'api/session';
 import { Sprint } from 'api/sprint';
@@ -130,6 +132,7 @@ class JiraApi implements IJiraApi {
   public issue: IIssue;
   public jql: IJql;
   public myself: IMyself;
+  public notificationScheme: INotificationScheme;
   public search: ISearch;
   public sprint: ISprint;
   public worklog: IWorklog;
@@ -206,6 +209,7 @@ class JiraApi implements IJiraApi {
     this.issue = new Issue(this);
     this.jql = new Jql(this);
     this.myself = new Myself(this);
+    this.notificationScheme = new NotificationScheme(this);
     this.search = new Search(this);
     this.sprint = new Sprint(this);
     this.worklog = new Worklog(this);
@@ -324,11 +328,11 @@ class JiraApi implements IJiraApi {
         const req = request(options);
         let requestObj: any = null;
 
-        req.on('request', (reqs) => {
+        req.on('request', (reqs: any) => {
           requestObj = reqs;
         });
 
-        req.on('response', (response) => {
+        req.on('response', (response: any) => {
           const error = response.statusCode.toString()[0] !== '2';
 
           const body: any = [];

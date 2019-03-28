@@ -494,7 +494,10 @@ is still valid!
 | | `jql.getFieldAutoCompleteSuggestions({ params })` | GET /rest/api/3/jql/autocompletedata/suggestions
 | | `jql.convertUserIdentifiers({ params })` | POST /rest/api/3/jql/pdcleaner
 | Myself
-| | `myself.getCurrentUser()` | GET /rest/api/3/myself |
+| | `myself.getCurrentUser()` | GET /rest/api/3/myself
+| Issue notification schemes
+| | `notificationScheme.getNotificationSchemesPaginated({ params })` | GET /rest/api/3/notificationscheme
+| | `notificationScheme.getNotificationScheme({ params })` | GET /rest/api/3/notificationscheme/{id}
 | Search 
 | | `search.search({ post: false or true (default: true), params })` | GET or POST /rest/api/3/search
 | Worklog |

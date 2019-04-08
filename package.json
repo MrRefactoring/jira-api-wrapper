@@ -1,6 +1,6 @@
 {
   "name": "jira-api-wrapper",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "license": "MIT",
   "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
   "description": "Wrapper of jira api for nodejs and typescript",
@@ -22,10 +22,10 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm rum lint && npm run test && ttsc -t es6",
+    "build": "npm rum lint && npm run test && ttsc",
     "lint": "tslint src/**/*.ts",
     "lint:fix": "npm run lint -- --fix",
-    "test": "ttsc -t es6 && jest"
+    "test": "ttsc && jest"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

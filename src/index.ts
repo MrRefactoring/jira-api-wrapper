@@ -1,4 +1,4 @@
-import * as request from 'request';
+import request from 'request';
 import * as url from 'url';
 import * as errors from 'utils/errors';
 import * as oauth from 'utils/oauth';
@@ -433,3 +433,4 @@ class JiraApi implements IJiraApi {
 }
 
 export default JiraApi;
+module.exports = JiraApi;

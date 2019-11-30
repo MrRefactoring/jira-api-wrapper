@@ -125,6 +125,12 @@ describe('JiraApi tests', () => {
       expect(api.groupUserPicker).toBeDefined();
     });
 
+    it('users should be defined', () => {
+      const api = new JiraApi({ host: defaultHost, port: defaultPort });
+
+      expect(api.users).toBeDefined();
+    });
+
     it('issue should be defined', () => {
       const api = new JiraApi({ host: defaultHost, port: defaultPort });
 

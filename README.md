@@ -1,14 +1,16 @@
 # 🔧Jira Api Wrapper for NodeJS (Supports TypeScript)
+
 [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
 [![install size](https://packagephobia.now.sh/badge?p=jira-api-wrapper)](https://packagephobia.now.sh/result?p=jira-api-wrapper)
 [![Downloads](https://img.shields.io/npm/dm/jira-api-wrapper.svg)](https://npmjs.com/jira-api-wrapper)
 [![npm](https://img.shields.io/npm/v/jira-api-wrapper.svg)](https://www.npmjs.com/package/jira-api-wrapper)
 
 Supports:
-* ⬇️ [Supported Agile API](#agile-supported-calls)
-* ⬇️ [Supported REST API v3](#rest-supported-calls) (in progress)
-* ⬇️ [Supported Auth API](#auth-supported-calls) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
-* [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
+
+- ⬇️ [Supported Agile API](#agile-supported-calls)
+- ⬇️ [Supported REST API v3](#rest-supported-calls) (in progress)
+- ⬇️ [Supported Auth API](#auth-supported-calls) 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+- [Webhook API](https://developer.atlassian.com/server/jira/platform/webhooks/) (in progress)
 
 # Installation
 
@@ -21,63 +23,73 @@ npm i jira-api-wrapper
 ##### Typescript
 
 ```typescript
-import JiraApi from 'jira-api-wrapper';
+import JiraApi from "jira-api-wrapper";
 
 const api: JiraApi = new JiraApi({
-  host: 'xxx.atlassian.com'
+  host: "xxx.atlassian.com"
 });
 
 // Async/await example
 const someAsyncFunc = async () => {
-    const response: any = await api.search.search({ jql: 'some jql request' });
-    
-    console.log(response);
+  const response: any = await api.search.search({ jql: "some jql request" });
+
+  console.log(response);
 };
 
 // Callback example
-api.search.search({
-    jql: 'some jql request'
-}, (response) => { console.log(response); })
+api.search.search(
+  {
+    jql: "some jql request"
+  },
+  response => {
+    console.log(response);
+  }
+);
 ```
 
 ##### Pure NodeJS
 
 ```javascript
-const JiraApi = require('jira-api-wrapper');
+const JiraApi = require("jira-api-wrapper");
 
 const api = new JiraApi({
-  host: 'xxx.atlassian.com'
+  host: "xxx.atlassian.com"
 });
 
 // Async/await example
 const someAsyncFunc = async () => {
-    const response = await api.search.search({ jql: 'some jql request' });
-    
-    console.log(response);
+  const response = await api.search.search({ jql: "some jql request" });
+
+  console.log(response);
 };
 
 // Callback example
-api.search.search({
-    jql: 'some jql request'
-}, (response) => { console.log(response); })
+api.search.search(
+  {
+    jql: "some jql request"
+  },
+  response => {
+    console.log(response);
+  }
+);
 ```
 
 ## 🔑 JiraApi security options
 
 ```typescript
-const fs = require('fs');
-const path = require('path');
-const JiraApi = require('jira-api-wrapper');
+const fs = require("fs");
+const path = require("path");
+const JiraApi = require("jira-api-wrapper");
 
-const caFile = path.resolve(__dirname, 'ssl/ca.cert.pem');
-const certFile = path.resolve(__dirname, 'ssl/client.crt');
-const keyFile = path.resolve(__dirname, 'ssl/client.key');
+const caFile = path.resolve(__dirname, "ssl/ca.cert.pem");
+const certFile = path.resolve(__dirname, "ssl/client.crt");
+const keyFile = path.resolve(__dirname, "ssl/client.key");
 
 const api = new JiraApi({
-  host: 'xxx.atlassian.com',
-  
+  host: "xxx.atlassian.com",
+
   strictSSL: true, // try to set false if you can not pass authorization.
-  
+
   ca: fs.readFileSync(caFile),
   cert: fs.readFileSync(certFile),
   key: fs.readFileSync(keyFile)
@@ -110,19 +122,23 @@ Once you have this data, you will need to generate an OAuth token and secret for
 helper functions for exactly this purpose:
 
 ```typescript
-const JiraApi = require('jira-api-wrapper');
+const JiraApi = require("jira-api-wrapper");
 
-JiraApi.getAuthorizeURL({
-    host: 'xxx.atlassian.net',
+JiraApi.getAuthorizeURL(
+  {
+    host: "xxx.atlassian.net",
     oauth: {
-        consumerKey: 'your-consumer-key',
-        privateKey: '-----BEGIN RSA PRIVATE KEY-----\n' +
-        'SomePrivateKeyHere\n' +
-        '-----END RSA PRIVATE KEY-----'
+      consumerKey: "your-consumer-key",
+      privateKey:
+        "-----BEGIN RSA PRIVATE KEY-----\n" +
+        "SomePrivateKeyHere\n" +
+        "-----END RSA PRIVATE KEY-----"
     }
-}, (error, oauth) => {
+  },
+  (error, oauth) => {
     console.log(oauth);
-});
+  }
+);
 ```
 
 This will output something similar to the following:
@@ -136,50 +152,56 @@ This will output something similar to the following:
 ```
 
 You can then visit the specified URL, which will display a page asking you to allow or deny the request for access.
-Allowing access will display a verifier code.  Once you have this code, you can swap out your current OAuth token
+Allowing access will display a verifier code. Once you have this code, you can swap out your current OAuth token
 for an Access Token with all the permissions of your account; jira-connector provides a function to help with this:
 
 ```typescript
-const JiraApi = require('jira-api-wrapper');
+const JiraApi = require("jira-api-wrapper");
 
-JiraApi.swapRequestTokenWithAccessToken({
-    host: 'xxx.atlassian.net',
+JiraApi.swapRequestTokenWithAccessToken(
+  {
+    host: "xxx.atlassian.net",
     oauth: {
-        token: 'your-oauth-token',
-        tokenSecret: 'your-token-secret',
-        oauthVerifier: 'verifier-code-from-jira',
-        consumerKey: 'your-consumer-key',
-        privateKey: '-----BEGIN RSA PRIVATE KEY-----\n' +
-        'SomePrivateKeyHere\n' +
-        '-----END RSA PRIVATE KEY-----'
+      token: "your-oauth-token",
+      tokenSecret: "your-token-secret",
+      oauthVerifier: "verifier-code-from-jira",
+      consumerKey: "your-consumer-key",
+      privateKey:
+        "-----BEGIN RSA PRIVATE KEY-----\n" +
+        "SomePrivateKeyHere\n" +
+        "-----END RSA PRIVATE KEY-----"
     }
-}, (error, accessToken) => {
+  },
+  (error, accessToken) => {
     console.log(accessToken);
-});
+  }
+);
 ```
 
-This will query Jira for an Access Token, which will then be printed to the screen.  Finally, you're ready to access
+This will query Jira for an Access Token, which will then be printed to the screen. Finally, you're ready to access
 Jira with OAuth!
 
 ```javascript
-const JiraApi = require('jira-api-wrapper');
+const JiraApi = require("jira-api-wrapper");
 
 const api = new JiraApi({
-    host: 'xxx.atlassian.net',
-    oauth: {
-        consumerKey: 'your-consumer-key',
-        privateKey: '-----BEGIN RSA PRIVATE KEY-----\n' +
-        'SomePrivateKey\n' +
-        '-----END RSA PRIVATE KEY-----',
-        token: 'your-access-token',
-        tokenSecret: 'your-token-secret'
-    }
+  host: "xxx.atlassian.net",
+  oauth: {
+    consumerKey: "your-consumer-key",
+    privateKey:
+      "-----BEGIN RSA PRIVATE KEY-----\n" +
+      "SomePrivateKey\n" +
+      "-----END RSA PRIVATE KEY-----",
+    token: "your-access-token",
+    tokenSecret: "your-token-secret"
+  }
 });
 
 // Jira is now authenticted with your account!
 ```
 
 ### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+
 ### Basic Authentication
 
 This is not recommended; it will require you to provide a username and password each
@@ -189,17 +211,19 @@ for users who are unable to use OAuth.
 Example:
 
 ```javascript 1.8
-const JiraApi = require('jira-api-wrapper');
+const JiraApi = require("jira-api-wrapper");
 
 const api = new JiraApi({
-  host: 'xxx.atlassian.net',
+  host: "xxx.atlassian.net",
   basicAuth: {
-    username: 'myUsername',
-    password: 'myPassword'
+    username: "myUsername",
+    password: "myPassword"
   }
 });
 ```
+
 ### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+
 ### Basic Authentication (base64)
 
 Also not recommended, but slightly better than the above; it will require you to
@@ -209,47 +233,52 @@ format of "username:password") each time you connect to the Jira instance.
 Example:
 
 ```javascript 1.8
-const JiraApi = require('jira-api-wrapper');
+const JiraApi = require("jira-api-wrapper");
 
 const api = new JiraApi({
-  host: 'xxx.atlassian.net',
+  host: "xxx.atlassian.net",
   basicAuth: {
-    base64: 'bXlVc2VybmFtZTpteVBhc3N3b3Jk'
+    base64: "bXlVc2VybmFtZTpteVBhc3N3b3Jk"
   }
 });
 
 // Base64 encoding of 'myUsername:myPassword'
 ```
+
 ### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+
 ### Cookie Jar
 
 You can also use a Cookie Jar for your request. It could be an easier way to prompt for a login only once, without the
 pain of setting up an OAuth method.
 
 For example, using `though-cookie-filestore`:
+
 ```javascript
-const JiraApi = require('jira-api-wrapper');
-const FileCookieStore = require('tough-cookie-filestore');
+const JiraApi = require("jira-api-wrapper");
+const FileCookieStore = require("tough-cookie-filestore");
 
-const request = require('request');
-const path = require('path');
+const request = require("request");
+const path = require("path");
 
-const jar = request.jar(new FileCookieStore(path.join(__dirname, 'cookies.json')));
+const jar = request.jar(
+  new FileCookieStore(path.join(__dirname, "cookies.json"))
+);
 
 // For the first connection
-const api = new JiraApi( {
-    host: 'xxx.atlassian.net',
-    basicAuth: {
-        username: 'SirUserOfName',
-        password: 'Password123'
-    },
-    cookieJar: jar
+const api = new JiraApi({
+  host: "xxx.atlassian.net",
+  basicAuth: {
+    username: "SirUserOfName",
+    password: "Password123"
+  },
+  cookieJar: jar
 });
 
 // For the following connections
-const api = new JiraApi( {
-    host: 'xxx.atlassian.net',
-    cookieJar: jar
+const api = new JiraApi({
+  host: "xxx.atlassian.net",
+  cookieJar: jar
 });
 ```
 
@@ -263,11 +292,13 @@ is still valid!
 
 ### Agile supported calls
 
-* [⬇️ Rest supported calls](#rest-supported-calls)
-* [⬇️ Auth supported calls](#auth-supported-calls)
+- [⬇️ Rest supported calls](#rest-supported-calls)
+- [⬇️ Auth supported calls](#auth-supported-calls)
 
 | API | Method | REST Call |
-| ----- | ------ | --------- |
+| --- | ------ | --------- |
+
+
 | Backlog
 | | `backlog.moveIssuesToBacklog({ params })` | POST /rest/agile/1.0/backlog/issue
 | | `backlog.moveIssuesToBacklogForBoard({ params })` | POST /rest/agile/1.0/backlog/{boardId}/issue
@@ -331,10 +362,10 @@ is still valid!
 | | `developmentInformation.checkIfDataExistsForSuppliedProperties({ params })` | GET /rest/devinfo/0.10/existsByProperties
 | | `developmentInformation.deleteDevelopmentInformationEntity({ params })` | DELETE /rest/devinfo/0.10/repository/{repositoryId}/{entityType}/{entityId}
 | Feature Flags
-| | `featureFlags.submitFeatureFlagData({ params })` | 
-| | `featureFlags.deleteFeatureFlagsByProperty({ params })` | 
-| | `featureFlags.getFeatureFlagById({ params })` | 
-| | `featureFlags.deleteFeatureFlagById({ params })` | 
+| | `featureFlags.submitFeatureFlagData({ params })` |
+| | `featureFlags.deleteFeatureFlagsByProperty({ params })` |
+| | `featureFlags.getFeatureFlagById({ params })` |
+| | `featureFlags.deleteFeatureFlagById({ params })` |
 | Deployments
 | | `deployments.submitDeploymentData({ params })` | POST /rest/deployments/0.1/bulk
 | | `deployments.deleteDeploymentsByProperty({ params })` | DELETE /rest/deployments/0.1/bulkByProperties
@@ -348,11 +379,13 @@ is still valid!
 
 ### Rest supported calls
 
-* [⬆️ Agile supported calls](#agile-supported-calls)
-* [⬇️ Auth supported calls](#auth-supported-calls)
+- [⬆️ Agile supported calls](#agile-supported-calls)
+- [⬇️ Auth supported calls](#auth-supported-calls)
 
 | API | Method | REST Call |
-| ----- | ------ | --------- |
+| --- | ------ | --------- |
+
+
 | Application-properties
 | | `applicationProperties.getApplicationProperty({ params })` | GET /rest/api/3/application-properties
 | | `applicationProperties.getAdvancedSettings()` | GET /rest/api/3/application-properties/advanced-settings
@@ -401,7 +434,7 @@ is still valid!
 | | `dashboard.deleteDashboardItemProperty({ params })` | DELETE /rest/api/3/dashboard/{dashboardId}/items/{itemId}/properties/{propertyKey}
 | | `dashboard.getDashboard({ params })` | GET /rest/api/3/dashboard/{id}
 | Field
-| | `field.getFields()` | 
+| | `field.getFields()` |
 | | `field.createCustomField({ params })` | GET /rest/api/3/field
 | | `field.getAllIssueFieldOptions({ params })` | POST /rest/api/3/field
 | | `field.createIssueFieldOption({ params })` | GET /rest/api/3/field/{fieldKey}/option
@@ -498,21 +531,26 @@ is still valid!
 | Issue notification schemes
 | | `notificationScheme.getNotificationSchemesPaginated({ params })` | GET /rest/api/3/notificationscheme
 | | `notificationScheme.getNotificationScheme({ params })` | GET /rest/api/3/notificationscheme/{id}
-| Search 
+| Search
 | | `search.search({ post: false or true (default: true), params })` | GET or POST /rest/api/3/search
+| Users
+| | `users.findUsers({ params })` | GET /rest/api/3/user/search
 | Worklog |
 | | `worklog.getIDsOfDeletedWorklogs({ params })` | GET /rest/api/3/worklog/deleted
 | | `worklog.getWorklogs({ params })` | POST /rest/api/3/worklog/list
-| | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated 
+| | `worklog.getIDsOfUpdatedWorklogs({ params })` | GET /rest/api/3/worklog/updated
 
 ### 🚨[`Deprecated`](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-basic-auth-and-cookie-based-auth/)🚨
+
 ### Auth supported calls
 
-* [⬆️ Agile supported calls](#agile-supported-calls)
-* [⬆️ Rest supported calls](#rest-supported-calls)
+- [⬆️ Agile supported calls](#agile-supported-calls)
+- [⬆️ Rest supported calls](#rest-supported-calls)
 
 | API | Method | REST Call |
-| ----- | ------ | --------- |
+| --- | ------ | --------- |
+
+
 | Session
 | | `session.getSession()` | GET /rest/auth/1/session
 | | `session.createSession({ params })` | POST /rest/auth/1/session

@@ -32,6 +32,7 @@ import { INotificationScheme } from 'interfaces/api/iNotificationScheme';
 import { ISearch } from 'interfaces/api/iSearch';
 import { ISession } from 'interfaces/api/iSession';
 import { ISprint } from 'interfaces/api/iSprint';
+import { IUsers } from 'interfaces/api/iUsers';
 import { IWorklog } from 'interfaces/api/iWorklog';
 
 import { IBuilds } from 'interfaces/api/iBuilds';
@@ -65,6 +66,7 @@ import { NotificationScheme } from 'api/notificationScheme';
 import { Search } from 'api/search';
 import { Session } from 'api/session';
 import { Sprint } from 'api/sprint';
+import { Users } from 'api/users';
 import { Worklog } from 'api/worklog';
 
 import { Builds } from 'api/builds';
@@ -129,6 +131,7 @@ class JiraApi implements IJiraApi {
   public group: IGroup;
   public groups: IGroups;
   public groupUserPicker: IGroupUserPicker;
+  public users: IUsers;
   public issue: IIssue;
   public jql: IJql;
   public myself: IMyself;
@@ -206,6 +209,7 @@ class JiraApi implements IJiraApi {
     this.group = new Group(this);
     this.groups = new Groups(this);
     this.groupUserPicker = new GroupUserPicker(this);
+    this.users = new Users(this);
     this.issue = new Issue(this);
     this.jql = new Jql(this);
     this.myself = new Myself(this);

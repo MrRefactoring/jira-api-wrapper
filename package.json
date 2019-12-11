@@ -1,51 +1,16 @@
 {
   "name": "jira-api-wrapper",
-  "version": "0.10.0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MrRefactoring/jira-api-wrapper.git",
   "license": "MIT",
-  "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
-  "description": "Wrapper of jira api for nodejs and typescript",
-  "keywords": [
-    "Jira",
-    "Rest",
-    "Api",
-    "Wrapper",
-    "NodeJS",
-    "Typescript"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:MrRefactoring/jira-api-wrapper.git"
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/"
-  ],
   "scripts": {
-    "build": "npm rum lint && npm run test && ttsc",
-    "lint": "tslint src/**/*.ts",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "ttsc && jest"
+    "build": "tsc"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
-    "@types/oauth": "^0.9.1",
-    "@types/request": "^2.48.3",
-    "@zerollup/ts-transform-paths": "^1.7.7",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.2.0",
-    "ts-node": "^8.5.4",
-    "tslint": "^5.20.1",
-    "tslint-eslint-rules": "^5.4.0",
-    "ttypescript": "^1.5.8",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   },
   "dependencies": {
-    "oauth": "^0.9.15",
-    "request": "^2.88.0"
-  },
-  "engines": {
-    "node": ">=4",
-    "npm": ">=5"
+    "axios": "^0.19.0"
   }
 }

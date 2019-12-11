@@ -1,26 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "declaration": true,
-    "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "lib": ["es2017", "es7", "es6", "dom"],
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "api/*": ["src/api/*"],
-      "interfaces/*": ["src/interfaces/*"],
-      "utils/*": ["src/utils/*"]
-    },
-    "plugins": [
-      { "transform": "@zerollup/ts-transform-paths" }
-    ]
-  },
-  "exclude": [
-    "node_modules",
-    "tests"
-  ],
-  "include": ["src"]
+    "target": "ES5",
+    "outDir": "out",
+    "lib": ["ES2015"],
+    "declaration": true
+  }
 }

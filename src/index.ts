@@ -232,5 +232,21 @@ export class JiraClient {
     this.workflowTransitionRules = new WorkflowTransitionRules();
   }
 
-  public async sendRequest(request: AxiosRequestConfig, callback?: Callback) { }
+  public async sendRequest(config: AxiosRequestConfig, callback?: Callback) {
+    try {
+      const response = await this.requestInstance.request(config);
+
+      if (!!callback) {
+        callback(null, response.data);
+      }
+
+      return response.data;
+    } catch (e) {
+      if (!!callback) {
+        callback(e);
+      } else {
+        throw e;
+      }
+    }
+  }
 }

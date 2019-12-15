@@ -75,11 +75,13 @@ import {
 
 import { Config } from './config';
 import { Callback } from './callback';
+import { Utils } from './utils';
 
 export * from './config';
 export * from './callback';
+export * from './sender';
 
-export class JiraClient {
+export class Client {
   public applicationRoles: ApplicationRoles;
   public auditRecords: AuditRecords;
   public avatars: Avatars;
@@ -152,6 +154,7 @@ export class JiraClient {
   public workflowSchemes: WorkflowSchemes;
   public workflowTransitionRules: WorkflowTransitionRules;
 
+  private config: Config;
   private requestInstance: AxiosInstance;
 
   constructor(config: Config) {
@@ -159,9 +162,11 @@ export class JiraClient {
       baseURL: config.host
     });
 
-    this.applicationRoles = new ApplicationRoles();
-    this.auditRecords = new AuditRecords();
-    this.avatars = new Avatars();
+    this.config = config;
+
+    this.applicationRoles = new ApplicationRoles(this);
+    this.auditRecords = new AuditRecords(this);
+    this.avatars = new Avatars(this);
     this.backlog = new Backlog();
     this.board = new Board();
     this.builds = new Builds();
@@ -234,6 +239,9 @@ export class JiraClient {
 
   public async sendRequest(config: AxiosRequestConfig, callback?: Callback) {
     try {
+      config.headers = config.headers || {};
+      config.headers.Authorization = Utils.getAuthorization(this.config);
+
       const response = await this.requestInstance.request(config);
 
       if (!!callback) {

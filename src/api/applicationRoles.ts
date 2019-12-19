@@ -18,13 +18,13 @@ export class ApplicationRoles {
   }
 
   public async getApplicationRole(
-    options: {
+    params: {
       key: string;
     },
     callback?: Callback<ApplicationRole>
   ): Promise<ApplicationRole> {
     const request: AxiosRequestConfig = {
-      url: `/rest/api/2/applicationrole/${options.key}`,
+      url: `/rest/api/2/applicationrole/${params.key}`,
       method: 'GET'
     };
 

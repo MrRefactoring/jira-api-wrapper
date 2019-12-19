@@ -2,6 +2,7 @@
   "name": "jira-api-wrapper",
   "version": "1.0.0",
   "main": "index.js",
+  "author": "Vladislav Tupikin <mrrefactoring@yandex.ru>",
   "repository": "https://github.com/MrRefactoring/jira-api-wrapper.git",
   "license": "MIT",
   "scripts": {

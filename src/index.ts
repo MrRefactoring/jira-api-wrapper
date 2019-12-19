@@ -1,6 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import {
   ApplicationRoles,
+  AppProperties,
   AuditRecords,
   Avatars,
   Backlog,
@@ -9,6 +10,7 @@ import {
   Dashboards,
   Deployments,
   DevelopmentInformation,
+  DynamicModules,
   Epic,
   FeatureFlags,
   Filters,
@@ -68,8 +70,11 @@ import {
   UserSearch,
   Webhooks,
   Workflows,
+  WorkflowSchemeDrafts,
   WorkflowSchemeProjectAssociation,
   WorkflowSchemes,
+  WorkflowStatusCategories,
+  WorkflowStatuses,
   WorkflowTransitionRules,
 } from './api';
 
@@ -82,6 +87,7 @@ export * from './sender';
 
 export class Client {
   public applicationRoles: ApplicationRoles;
+  public appProperties: AppProperties;
   public auditRecords: AuditRecords;
   public avatars: Avatars;
   public backlog: Backlog;
@@ -90,6 +96,7 @@ export class Client {
   public dashboards: Dashboards;
   public deployments: Deployments;
   public developmentInformation: DevelopmentInformation;
+  public dynamicModules: DynamicModules;
   public epic: Epic;
   public featureFlags: FeatureFlags;
   public filters: Filters;
@@ -149,8 +156,11 @@ export class Client {
   public userSearch: UserSearch;
   public webhooks: Webhooks;
   public workflows: Workflows;
+  public workflowSchemeDrafts: WorkflowSchemeDrafts;
   public workflowSchemeProjectAssociation: WorkflowSchemeProjectAssociation;
   public workflowSchemes: WorkflowSchemes;
+  public workflowStatusCategories: WorkflowStatusCategories;
+  public workflowStatuses: WorkflowStatuses;
   public workflowTransitionRules: WorkflowTransitionRules;
 
   private config: Config;
@@ -164,6 +174,7 @@ export class Client {
     this.config = config;
 
     this.applicationRoles = new ApplicationRoles(this);
+    this.appProperties = new AppProperties(this);
     this.auditRecords = new AuditRecords(this);
     this.avatars = new Avatars(this);
     this.backlog = new Backlog(this);
@@ -231,8 +242,11 @@ export class Client {
     this.userSearch = new UserSearch(this);
     this.webhooks = new Webhooks(this);
     this.workflows = new Workflows(this);
+    this.workflowSchemeDrafts = new WorkflowSchemeDrafts(this);
     this.workflowSchemeProjectAssociation = new WorkflowSchemeProjectAssociation(this);
     this.workflowSchemes = new WorkflowSchemes(this);
+    this.workflowStatusCategories = new WorkflowStatusCategories(this);
+    this.workflowStatuses = new WorkflowStatuses(this);
     this.workflowTransitionRules = new WorkflowTransitionRules(this);
   }
 

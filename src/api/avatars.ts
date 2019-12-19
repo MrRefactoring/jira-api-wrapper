@@ -1,14 +1,10 @@
-import { Sender } from "../sender";
-import { Callback } from "../callback";
-import { AxiosRequestConfig } from "axios";
-import { SystemAvatars, Avatars as AvatarsModel, Avatar } from "../models";
+import { Sender } from '../sender';
+import { Callback } from '../callback';
+import { AxiosRequestConfig } from 'axios';
+import { SystemAvatars, Avatars as AvatarsModel, Avatar } from '../models';
 
 export class Avatars {
-  private client: Sender;
-
-  constructor(client: Sender) {
-    this.client = client;
-  }
+  constructor(private readonly client: Sender) { }
 
   public async getSystemAvatarsByType(
     options: {

@@ -5,10 +5,18 @@
   "repository": "https://github.com/MrRefactoring/jira-api-wrapper.git",
   "license": "MIT",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "yarn lint",
+    "lint": "eslint ./src --ext .js,.ts",
+    "lint:fix": "yarn lint --fix"
   },
   "devDependencies": {
-    "@types/node": "^12.12.17",
+    "@types/node": "^12.12.21",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "eslint": "^6.7.2",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.19.1",
     "typescript": "^3.7.3"
   },
   "dependencies": {

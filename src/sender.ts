@@ -1,4 +1,4 @@
-import { Client } from '.';
+import { Client } from './index';
 import { AxiosRequestConfig } from 'axios';
 import { Callback } from './callback';
 

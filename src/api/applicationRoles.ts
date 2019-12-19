@@ -1,14 +1,10 @@
 import { ApplicationRole } from '../models';
-import { Callback } from "../callback";
-import { Sender } from "../sender";
+import { Callback } from '../callback';
+import { Sender } from '../sender';
 import { AxiosRequestConfig } from 'axios';
 
 export class ApplicationRoles {
-  private client: Sender;
-
-  constructor(client: Sender) {
-    this.client = client;
-  }
+  constructor(private readonly client: Sender) { }
 
   public async getAllApplicationRoles(
     callback?: Callback<ApplicationRole[]>

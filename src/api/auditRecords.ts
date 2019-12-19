@@ -1,14 +1,10 @@
-import { Sender } from "../sender";
+import { Sender } from '../sender';
 import { AuditRecords as AuditRecordsModel } from '../models';
-import { Callback } from "../callback";
-import { AxiosRequestConfig } from "axios";
+import { Callback } from '../callback';
+import { AxiosRequestConfig } from 'axios';
 
 export class AuditRecords {
-  private client: Sender;
-
-  constructor(client: Sender) {
-    this.client = client;
-  }
+  constructor(private readonly client: Sender) { }
 
   public async getAuditRecords(
     options?: {

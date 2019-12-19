@@ -7,13 +7,13 @@ export class Avatars {
   constructor(private readonly client: Sender) { }
 
   public async getSystemAvatarsByType(
-    options: {
+    params: {
       type: 'issuetype' | 'project' | 'user' | string;
     },
     callback?: Callback<SystemAvatars>
   ): Promise<SystemAvatars> {
     const request: AxiosRequestConfig = {
-      url: `/rest/api/2/avatar/${options.type}/system`,
+      url: `/rest/api/2/avatar/${params.type}/system`,
       method: 'GET',
     };
 
@@ -21,13 +21,13 @@ export class Avatars {
   }
 
   public async getAvatars(
-    options: {
+    params: {
       type: string;
       entityId: string;
     },
     callback?: Callback<AvatarsModel>
   ): Promise<AvatarsModel> {
-    const { type, entityId, } = options;
+    const { type, entityId, } = params;
 
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${type}/owner/${entityId}`,
@@ -38,7 +38,7 @@ export class Avatars {
   }
 
   public async loadAvatar(
-    options: {
+    params: {
       type: string;
       entityId: string;
       x?: number;
@@ -57,7 +57,7 @@ export class Avatars {
       size,
       avatar,
       avatarExtension
-    } = options;
+    } = params;
 
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${type}/owner/${entityId}`,
@@ -78,14 +78,14 @@ export class Avatars {
   }
 
   public async deleteAvatar(
-    options: {
+    params: {
       type: string;
       owningObjectId: string;
       id: number;
     },
     callback?: Callback<void>
   ): Promise<void> {
-    const { type, owningObjectId, id, } = options;
+    const { type, owningObjectId, id, } = params;
 
     const request: AxiosRequestConfig = {
       url: `/rest/api/2/universal_avatar/type/${type}/owner/${owningObjectId}/avatar/${id}`,

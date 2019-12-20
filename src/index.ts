@@ -163,15 +163,12 @@ export class Client {
   public workflowStatuses: WorkflowStatuses;
   public workflowTransitionRules: WorkflowTransitionRules;
 
-  private config: Config;
   private requestInstance: AxiosInstance;
 
-  constructor(config: Config) {
+  constructor(private readonly config: Config) {
     this.requestInstance = axios.create({
       baseURL: config.host
     });
-
-    this.config = config;
 
     this.applicationRoles = new ApplicationRoles(this);
     this.appProperties = new AppProperties(this);

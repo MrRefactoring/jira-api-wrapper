@@ -1,5 +1,7 @@
 # 🔧Jira Api Wrapper for NodeJS (Supports TypeScript)
 
+# ⚠️ The library was deprecated. Use [jira.js](https://github.com/MrRefactoring/jira.js) as an alternative, it is more complete and still supported ⚠️
+
 [![Build Status](https://travis-ci.com/MrRefactoring/jira-api-wrapper.svg?branch=master)](https://travis-ci.com/MrRefactoring/jira-api-wrapper)
 [![install size](https://packagephobia.now.sh/badge?p=jira-api-wrapper)](https://packagephobia.now.sh/result?p=jira-api-wrapper)
 [![Downloads](https://img.shields.io/npm/dm/jira-api-wrapper.svg)](https://npmjs.com/jira-api-wrapper)
